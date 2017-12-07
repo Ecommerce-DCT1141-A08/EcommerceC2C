@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f602453e6d954ca79c098b89b7d06f6c" Name="Diagram1" ZoomLevel="71">
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.AspNetRole" Width="1.5" PointX="6" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.AspNetUserClaim" Width="1.5" PointX="10.5" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.AspNetUserLogin" Width="1.5" PointX="10.5" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.AspNetUser" Width="1.5" PointX="8.25" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Category" Width="1.5" PointX="12.75" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.CoinPack" Width="1.5" PointX="15.5" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Customer" Width="1.5" PointX="7.5" PointY="33.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Delivery" Width="1.5" PointX="12.75" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.DeliveryLocation" Width="1.5" PointX="5.25" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Discount" Width="1.5" PointX="12.75" PointY="35.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.DiscountGift" Width="1.5" PointX="15" PointY="36" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.DiscountPrice" Width="1.5" PointX="18" PointY="35.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.District" Width="1.5" PointX="3" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Guarantee" Width="1.5" PointX="12.75" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.HistoryLocked" Width="1.5" PointX="15.75" PointY="39.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.HistoryUseCoin" Width="1.5" PointX="20" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Merchant" Width="1.5" PointX="10.5" PointY="32.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.MerchantOrder" Width="1.5" PointX="20" PointY="31.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.MerchantOrderDetail" Width="1.5" PointX="20.5" PointY="36.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.MerchantPayment" Width="1.5" PointX="17.75" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.OrderA" Width="1.5" PointX="9.75" PointY="27" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.OrderDelivery" Width="1.5" PointX="15" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.OrderDetail" Width="1.5" PointX="22.25" PointY="31.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Poster" Width="1.5" PointX="15" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.PosterCategory" Width="1.5" PointX="17.25" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Price" Width="1.5" PointX="17.25" PointY="42.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Province" Width="1.5" PointX="0.75" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Rating" Width="1.5" PointX="12.75" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Ward" Width="1.5" PointX="5.25" PointY="41.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Webmaster" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="EcommerceC2CA08Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Customer_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Merchant_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Poster_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_PosterCategory_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_MerchantPayment_CoinPack" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Customer_District" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Customer_Province" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Customer_Ward" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_HistoryLocked_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_MerchantOrder_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Order_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Rating_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Delivery_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_DeliveryLocation_Delivery" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_MerchantOrder_Delivery" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_OrderDelivery_Delivery" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_DeliveryLocation_District" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Discount_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_DiscountGift_Discount" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_DiscountPrice_Discount" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Poster_Discount" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_DiscountGift_Poster" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_DiscountPrice_Poster" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.FK_District_Province" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Merchant_District" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Order_District" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.FK_Ward_District" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Poster_Guarantee" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_HistoryLocked_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_HistoryUseCoin_Payment" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_HistoryUseCoin_Poster" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Merchant_Province" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Merchant_Ward" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_MerchantOrder_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_MerchantPayment_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_OrderDetail_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Poster_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Rating_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_MerchantOrder_OrderA" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_MerchantOrderDetail_Poster" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_MerchantOrderDetail_Price" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Order_Province" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Order_Ward" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_OrderDelivery_OrderA" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_OrderDetail_OrderA" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_OrderDetail_Poster" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_PosterCategory_Poster" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Price_Poster" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

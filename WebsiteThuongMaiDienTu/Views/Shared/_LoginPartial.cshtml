@@ -4,14 +4,45 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
     @Html.AntiForgeryToken()
+    
 
-    <ul class="nav navbar-nav navbar-right">
+    @*<ul class="nav navbar-nav navbar-right">
         <li>
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
-    }
+        <li>@Html.ActionLink("Shop", "Shop", "Home")</li>
+    </ul>*@
+        @*<div class = "nav navbar-nav navbar-right">*@
+            <ul class="megamenu nav navbar-nav navbar-right">
+                <li class="grid" style="padding-top:7px">
+                    <a class="color8" href="#">@User.Identity.GetUserName()</a>
+                    <div class="megapanel" style="width:250px">
+                        <div class="row">
+
+                            <div class="col6">
+                                <div class="h_nav">
+                                    <ul  style="padding-left:50px">
+                                        <li>
+                                            <a title="Manage" href="@Url.Action("Index","Manage", routeValues: null)"><i class="fa fa-user"></i> Thông tin tài khoản </a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><a href="@Url.Action("Shop","Home", routeValues: null)"><i class="fa fa-dashboard"></i> Quản lý Shop </a></li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-lock"></i> Đăng xuất</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </li>
+            </ul>
+        @*</div>*@
+     }
 }
 else
 {

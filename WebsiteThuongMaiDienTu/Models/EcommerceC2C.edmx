@@ -1,0 +1,2994 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EcommerceC2CA08Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Keyword" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Created" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CoinPack">
+          <Key>
+            <PropertyRef Name="CoinPackID" />
+          </Key>
+          <Property Name="CoinPackID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Coin" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="LastLogin" Type="datetime" />
+          <Property Name="Fullname" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="ProvinceID" Type="int" />
+          <Property Name="DistrictID" Type="int" />
+          <Property Name="WardID" Type="int" />
+          <Property Name="Phone" Type="char" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Delivery">
+          <Key>
+            <PropertyRef Name="DeliveryID" />
+          </Key>
+          <Property Name="DeliveryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MerchantID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Location" Type="nvarchar" MaxLength="255" />
+          <Property Name="Shipping" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Created" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DeliveryLocation">
+          <Key>
+            <PropertyRef Name="DeliveryLocationID" />
+          </Key>
+          <Property Name="DeliveryLocationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeliveryID" Type="int" Nullable="false" />
+          <Property Name="DistrictID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Discount">
+          <Key>
+            <PropertyRef Name="DiscountID" />
+          </Key>
+          <Property Name="DiscountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MerchantID" Type="int" Nullable="false" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="ExpirationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DiscountGift">
+          <Key>
+            <PropertyRef Name="DiscountGiftID" />
+          </Key>
+          <Property Name="DiscountGiftID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiscountID" Type="int" Nullable="false" />
+          <Property Name="PosterID" Type="int" Nullable="false" />
+          <Property Name="ImageGift" Type="varchar" MaxLength="255" />
+          <Property Name="Description" Type="text" />
+        </EntityType>
+        <EntityType Name="DiscountPrice">
+          <Key>
+            <PropertyRef Name="DiscountPriceID" />
+          </Key>
+          <Property Name="DiscountPriceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiscountID" Type="int" Nullable="false" />
+          <Property Name="PosterID" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DiscountPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DiscountPercent" Type="int" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="LatiLongTude" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProvinceId" Type="int" Nullable="false" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="IsPublished" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Guarantee">
+          <Key>
+            <PropertyRef Name="GuaranteeID" />
+          </Key>
+          <Property Name="GuaranteeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Keyword" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Created" Type="datetime" />
+        </EntityType>
+        <EntityType Name="HistoryLocked">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MerchantID" Type="int" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="LockedDate" Type="datetime" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="HistoryUseCoin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentID" Type="int" />
+          <Property Name="PosterID" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="Coin" Type="int" />
+          <Property Name="Created" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Merchant">
+          <Key>
+            <PropertyRef Name="MerchantID" />
+          </Key>
+          <Property Name="MerchantID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ShopName" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="ProvinceID" Type="int" />
+          <Property Name="DistrictID" Type="int" />
+          <Property Name="WardID" Type="int" />
+          <Property Name="Phone" Type="char" MaxLength="20" />
+          <Property Name="Coin" Type="int" />
+          <Property Name="RatingScore" Type="int" />
+          <Property Name="RatingQuantity" Type="int" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="LastLogin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MerchantOrder">
+          <Key>
+            <PropertyRef Name="MerchantOrderID" />
+          </Key>
+          <Property Name="MerchantOrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="MerchantID" Type="int" Nullable="false" />
+          <Property Name="DeliveryID" Type="int" Nullable="false" />
+          <Property Name="StartusID" Type="int" Nullable="false" />
+          <Property Name="QuantityTotal" Type="int" />
+          <Property Name="ShippingTotal" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PriceTotal" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="MerchantOrderDetail">
+          <Key>
+            <PropertyRef Name="MerchantOrderID" />
+            <PropertyRef Name="PosterID" />
+          </Key>
+          <Property Name="MerchantOrderID" Type="int" Nullable="false" />
+          <Property Name="PosterID" Type="int" Nullable="false" />
+          <Property Name="PriceID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="MerchantPayment">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MerchantID" Type="int" Nullable="false" />
+          <Property Name="CoinPackID" Type="int" Nullable="false" />
+          <Property Name="PriceTotal" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Created" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OrderA">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="StartusID" Type="int" Nullable="false" />
+          <Property Name="QuantityTotal" Type="int" />
+          <Property Name="ShippingTotal" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PriceTotal" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="ProvinceID" Type="int" />
+          <Property Name="DistrictID" Type="int" />
+          <Property Name="WardID" Type="int" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="LastChange" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OrderDelivery">
+          <Key>
+            <PropertyRef Name="OrderDeliveryID" />
+          </Key>
+          <Property Name="OrderDeliveryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="DeliveryID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="PosterID" />
+          </Key>
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="PosterID" Type="int" Nullable="false" />
+          <Property Name="MerchantID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Poster">
+          <Key>
+            <PropertyRef Name="PosterID" />
+          </Key>
+          <Property Name="PosterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MerchantID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="GuaranteeID" Type="int" Nullable="false" />
+          <Property Name="DiscountID" Type="int" Nullable="false" />
+          <Property Name="StatusID" Type="bit" Nullable="false" />
+          <Property Name="Type" Type="bit" Nullable="false" />
+          <Property Name="Keyword" Type="nvarchar(max)" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="LastChanged" Type="datetime" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="SmallImage" Type="varchar" MaxLength="255" />
+          <Property Name="MediumImage" Type="varchar" MaxLength="255" />
+          <Property Name="LargeImage" Type="varchar" MaxLength="255" />
+          <Property Name="Extra1" Type="varchar" MaxLength="255" />
+          <Property Name="Extra2" Type="varchar" MaxLength="255" />
+          <Property Name="Extra3" Type="varchar" MaxLength="255" />
+          <Property Name="Extra4" Type="varchar" MaxLength="255" />
+          <Property Name="Extra5" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PosterCategory">
+          <Key>
+            <PropertyRef Name="PosterCategoryID" />
+          </Key>
+          <Property Name="PosterCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="PosterID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="PriceID" />
+          </Key>
+          <Property Name="PriceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PosterID" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Created" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="20" />
+          <Property Name="TelephoneCode" Type="int" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="IsPublished" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Rating">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MerchantID" Type="int" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="RatingScore" Type="int" Nullable="false" />
+          <Property Name="RatingDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Ward">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="LatiLongTude" Type="nvarchar" MaxLength="50" />
+          <Property Name="DistrictID" Type="int" Nullable="false" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
+          <Property Name="IsPublished" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Webmaster">
+          <Key>
+            <PropertyRef Name="WebmasterID" />
+          </Key>
+          <Property Name="WebmasterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fullname" Type="nvarchar(max)" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="LastLogin" Type="datetime" />
+        </EntityType>
+        <Association Name="fk_Customer_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Customer_District">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="DistrictID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Customer_Province">
+          <End Role="Province" Type="Self.Province" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="ProvinceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Customer_Ward">
+          <End Role="Ward" Type="Self.Ward" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ward">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="WardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Delivery_Merchant">
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="1" />
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="Delivery">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DeliveryLocation_Delivery">
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="1" />
+          <End Role="DeliveryLocation" Type="Self.DeliveryLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Delivery">
+              <PropertyRef Name="DeliveryID" />
+            </Principal>
+            <Dependent Role="DeliveryLocation">
+              <PropertyRef Name="DeliveryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DeliveryLocation_District">
+          <End Role="District" Type="Self.District" Multiplicity="1" />
+          <End Role="DeliveryLocation" Type="Self.DeliveryLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliveryLocation">
+              <PropertyRef Name="DistrictID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Discount_Merchant">
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="1" />
+          <End Role="Discount" Type="Self.Discount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="Discount">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DiscountGift_Discount">
+          <End Role="Discount" Type="Self.Discount" Multiplicity="1" />
+          <End Role="DiscountGift" Type="Self.DiscountGift" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discount">
+              <PropertyRef Name="DiscountID" />
+            </Principal>
+            <Dependent Role="DiscountGift">
+              <PropertyRef Name="DiscountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DiscountGift_Poster">
+          <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
+          <End Role="DiscountGift" Type="Self.DiscountGift" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poster">
+              <PropertyRef Name="PosterID" />
+            </Principal>
+            <Dependent Role="DiscountGift">
+              <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DiscountPrice_Discount">
+          <End Role="Discount" Type="Self.Discount" Multiplicity="1" />
+          <End Role="DiscountPrice" Type="Self.DiscountPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discount">
+              <PropertyRef Name="DiscountID" />
+            </Principal>
+            <Dependent Role="DiscountPrice">
+              <PropertyRef Name="DiscountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DiscountPrice_Poster">
+          <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
+          <End Role="DiscountPrice" Type="Self.DiscountPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poster">
+              <PropertyRef Name="PosterID" />
+            </Principal>
+            <Dependent Role="DiscountPrice">
+              <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_District_Province">
+          <End Role="Province" Type="Self.Province" Multiplicity="1" />
+          <End Role="District" Type="Self.District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="District">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_HistoryLocked_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="HistoryLocked" Type="Self.HistoryLocked" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="HistoryLocked">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_HistoryLocked_Merchant">
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="0..1" />
+          <End Role="HistoryLocked" Type="Self.HistoryLocked" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="HistoryLocked">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_HistoryUseCoin_Payment">
+          <End Role="MerchantPayment" Type="Self.MerchantPayment" Multiplicity="0..1" />
+          <End Role="HistoryUseCoin" Type="Self.HistoryUseCoin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MerchantPayment">
+              <PropertyRef Name="PaymentID" />
+            </Principal>
+            <Dependent Role="HistoryUseCoin">
+              <PropertyRef Name="PaymentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_HistoryUseCoin_Poster">
+          <End Role="Poster" Type="Self.Poster" Multiplicity="0..1" />
+          <End Role="HistoryUseCoin" Type="Self.HistoryUseCoin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poster">
+              <PropertyRef Name="PosterID" />
+            </Principal>
+            <Dependent Role="HistoryUseCoin">
+              <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Merchant_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Merchant">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Merchant_District">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Merchant">
+              <PropertyRef Name="DistrictID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Merchant_Province">
+          <End Role="Province" Type="Self.Province" Multiplicity="0..1" />
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Merchant">
+              <PropertyRef Name="ProvinceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Merchant_Ward">
+          <End Role="Ward" Type="Self.Ward" Multiplicity="0..1" />
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ward">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Merchant">
+              <PropertyRef Name="WardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MerchantOrder_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="MerchantOrder" Type="Self.MerchantOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="MerchantOrder">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MerchantOrder_Delivery">
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="1" />
+          <End Role="MerchantOrder" Type="Self.MerchantOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Delivery">
+              <PropertyRef Name="DeliveryID" />
+            </Principal>
+            <Dependent Role="MerchantOrder">
+              <PropertyRef Name="DeliveryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MerchantOrder_Merchant">
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="1" />
+          <End Role="MerchantOrder" Type="Self.MerchantOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="MerchantOrder">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MerchantOrder_OrderA">
+          <End Role="OrderA" Type="Self.OrderA" Multiplicity="1" />
+          <End Role="MerchantOrder" Type="Self.MerchantOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderA">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="MerchantOrder">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MerchantOrderDetail_Poster">
+          <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
+          <End Role="MerchantOrderDetail" Type="Self.MerchantOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poster">
+              <PropertyRef Name="PosterID" />
+            </Principal>
+            <Dependent Role="MerchantOrderDetail">
+              <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MerchantOrderDetail_Price">
+          <End Role="Price" Type="Self.Price" Multiplicity="1" />
+          <End Role="MerchantOrderDetail" Type="Self.MerchantOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price">
+              <PropertyRef Name="PriceID" />
+            </Principal>
+            <Dependent Role="MerchantOrderDetail">
+              <PropertyRef Name="PriceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MerchantPayment_CoinPack">
+          <End Role="CoinPack" Type="Self.CoinPack" Multiplicity="1" />
+          <End Role="MerchantPayment" Type="Self.MerchantPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoinPack">
+              <PropertyRef Name="CoinPackID" />
+            </Principal>
+            <Dependent Role="MerchantPayment">
+              <PropertyRef Name="CoinPackID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MerchantPayment_Merchant">
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="1" />
+          <End Role="MerchantPayment" Type="Self.MerchantPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="MerchantPayment">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Order_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="OrderA" Type="Self.OrderA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="OrderA">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Order_District">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="OrderA" Type="Self.OrderA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderA">
+              <PropertyRef Name="DistrictID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Order_Province">
+          <End Role="Province" Type="Self.Province" Multiplicity="0..1" />
+          <End Role="OrderA" Type="Self.OrderA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderA">
+              <PropertyRef Name="ProvinceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Order_Ward">
+          <End Role="Ward" Type="Self.Ward" Multiplicity="0..1" />
+          <End Role="OrderA" Type="Self.OrderA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ward">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderA">
+              <PropertyRef Name="WardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_OrderDelivery_Delivery">
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="1" />
+          <End Role="OrderDelivery" Type="Self.OrderDelivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Delivery">
+              <PropertyRef Name="DeliveryID" />
+            </Principal>
+            <Dependent Role="OrderDelivery">
+              <PropertyRef Name="DeliveryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_OrderDelivery_OrderA">
+          <End Role="OrderA" Type="Self.OrderA" Multiplicity="1" />
+          <End Role="OrderDelivery" Type="Self.OrderDelivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderA">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDelivery">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_OrderDetail_Merchant">
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_OrderDetail_OrderA">
+          <End Role="OrderA" Type="Self.OrderA" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderA">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_OrderDetail_Poster">
+          <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poster">
+              <PropertyRef Name="PosterID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Poster_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Poster" Type="Self.Poster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Poster">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Poster_Discount">
+          <End Role="Discount" Type="Self.Discount" Multiplicity="1" />
+          <End Role="Poster" Type="Self.Poster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discount">
+              <PropertyRef Name="DiscountID" />
+            </Principal>
+            <Dependent Role="Poster">
+              <PropertyRef Name="DiscountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Poster_Guarantee">
+          <End Role="Guarantee" Type="Self.Guarantee" Multiplicity="1" />
+          <End Role="Poster" Type="Self.Poster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guarantee">
+              <PropertyRef Name="GuaranteeID" />
+            </Principal>
+            <Dependent Role="Poster">
+              <PropertyRef Name="GuaranteeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Poster_Merchant">
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="1" />
+          <End Role="Poster" Type="Self.Poster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="Poster">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PosterCategory_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="PosterCategory" Type="Self.PosterCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="PosterCategory">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PosterCategory_Poster">
+          <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
+          <End Role="PosterCategory" Type="Self.PosterCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poster">
+              <PropertyRef Name="PosterID" />
+            </Principal>
+            <Dependent Role="PosterCategory">
+              <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Price_Poster">
+          <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
+          <End Role="Price" Type="Self.Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poster">
+              <PropertyRef Name="PosterID" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Rating_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Rating_Merchant">
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="1" />
+          <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ward_District">
+          <End Role="District" Type="Self.District" Multiplicity="1" />
+          <End Role="Ward" Type="Self.Ward" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ward">
+              <PropertyRef Name="DistrictID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EcommerceC2CA08ModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CoinPack" EntityType="Self.CoinPack" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Delivery" EntityType="Self.Delivery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeliveryLocation" EntityType="Self.DeliveryLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Discount" EntityType="Self.Discount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiscountGift" EntityType="Self.DiscountGift" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiscountPrice" EntityType="Self.DiscountPrice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Guarantee" EntityType="Self.Guarantee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistoryLocked" EntityType="Self.HistoryLocked" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistoryUseCoin" EntityType="Self.HistoryUseCoin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Merchant" EntityType="Self.Merchant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MerchantOrder" EntityType="Self.MerchantOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MerchantOrderDetail" EntityType="Self.MerchantOrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MerchantPayment" EntityType="Self.MerchantPayment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderA" EntityType="Self.OrderA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDelivery" EntityType="Self.OrderDelivery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Poster" EntityType="Self.Poster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PosterCategory" EntityType="Self.PosterCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Price" EntityType="Self.Price" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rating" EntityType="Self.Rating" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ward" EntityType="Self.Ward" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Webmaster" EntityType="Self.Webmaster" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_Customer_AspNetUsers" Association="Self.fk_Customer_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Customer_District" Association="Self.fk_Customer_District">
+            <End Role="District" EntitySet="District" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Customer_Province" Association="Self.fk_Customer_Province">
+            <End Role="Province" EntitySet="Province" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Customer_Ward" Association="Self.fk_Customer_Ward">
+            <End Role="Ward" EntitySet="Ward" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Delivery_Merchant" Association="Self.fk_Delivery_Merchant">
+            <End Role="Merchant" EntitySet="Merchant" />
+            <End Role="Delivery" EntitySet="Delivery" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DeliveryLocation_Delivery" Association="Self.fk_DeliveryLocation_Delivery">
+            <End Role="Delivery" EntitySet="Delivery" />
+            <End Role="DeliveryLocation" EntitySet="DeliveryLocation" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DeliveryLocation_District" Association="Self.fk_DeliveryLocation_District">
+            <End Role="District" EntitySet="District" />
+            <End Role="DeliveryLocation" EntitySet="DeliveryLocation" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Discount_Merchant" Association="Self.fk_Discount_Merchant">
+            <End Role="Merchant" EntitySet="Merchant" />
+            <End Role="Discount" EntitySet="Discount" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DiscountGift_Discount" Association="Self.fk_DiscountGift_Discount">
+            <End Role="Discount" EntitySet="Discount" />
+            <End Role="DiscountGift" EntitySet="DiscountGift" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DiscountGift_Poster" Association="Self.fk_DiscountGift_Poster">
+            <End Role="Poster" EntitySet="Poster" />
+            <End Role="DiscountGift" EntitySet="DiscountGift" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DiscountPrice_Discount" Association="Self.fk_DiscountPrice_Discount">
+            <End Role="Discount" EntitySet="Discount" />
+            <End Role="DiscountPrice" EntitySet="DiscountPrice" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DiscountPrice_Poster" Association="Self.fk_DiscountPrice_Poster">
+            <End Role="Poster" EntitySet="Poster" />
+            <End Role="DiscountPrice" EntitySet="DiscountPrice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_District_Province" Association="Self.FK_District_Province">
+            <End Role="Province" EntitySet="Province" />
+            <End Role="District" EntitySet="District" />
+          </AssociationSet>
+          <AssociationSet Name="fk_HistoryLocked_Customer" Association="Self.fk_HistoryLocked_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="HistoryLocked" EntitySet="HistoryLocked" />
+          </AssociationSet>
+          <AssociationSet Name="fk_HistoryLocked_Merchant" Association="Self.fk_HistoryLocked_Merchant">
+            <End Role="Merchant" EntitySet="Merchant" />
+            <End Role="HistoryLocked" EntitySet="HistoryLocked" />
+          </AssociationSet>
+          <AssociationSet Name="fk_HistoryUseCoin_Payment" Association="Self.fk_HistoryUseCoin_Payment">
+            <End Role="MerchantPayment" EntitySet="MerchantPayment" />
+            <End Role="HistoryUseCoin" EntitySet="HistoryUseCoin" />
+          </AssociationSet>
+          <AssociationSet Name="fk_HistoryUseCoin_Poster" Association="Self.fk_HistoryUseCoin_Poster">
+            <End Role="Poster" EntitySet="Poster" />
+            <End Role="HistoryUseCoin" EntitySet="HistoryUseCoin" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Merchant_AspNetUsers" Association="Self.fk_Merchant_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Merchant" EntitySet="Merchant" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Merchant_District" Association="Self.fk_Merchant_District">
+            <End Role="District" EntitySet="District" />
+            <End Role="Merchant" EntitySet="Merchant" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Merchant_Province" Association="Self.fk_Merchant_Province">
+            <End Role="Province" EntitySet="Province" />
+            <End Role="Merchant" EntitySet="Merchant" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Merchant_Ward" Association="Self.fk_Merchant_Ward">
+            <End Role="Ward" EntitySet="Ward" />
+            <End Role="Merchant" EntitySet="Merchant" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MerchantOrder_Customer" Association="Self.fk_MerchantOrder_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="MerchantOrder" EntitySet="MerchantOrder" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MerchantOrder_Delivery" Association="Self.fk_MerchantOrder_Delivery">
+            <End Role="Delivery" EntitySet="Delivery" />
+            <End Role="MerchantOrder" EntitySet="MerchantOrder" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MerchantOrder_Merchant" Association="Self.fk_MerchantOrder_Merchant">
+            <End Role="Merchant" EntitySet="Merchant" />
+            <End Role="MerchantOrder" EntitySet="MerchantOrder" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MerchantOrder_OrderA" Association="Self.fk_MerchantOrder_OrderA">
+            <End Role="OrderA" EntitySet="OrderA" />
+            <End Role="MerchantOrder" EntitySet="MerchantOrder" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MerchantOrderDetail_Poster" Association="Self.fk_MerchantOrderDetail_Poster">
+            <End Role="Poster" EntitySet="Poster" />
+            <End Role="MerchantOrderDetail" EntitySet="MerchantOrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MerchantOrderDetail_Price" Association="Self.fk_MerchantOrderDetail_Price">
+            <End Role="Price" EntitySet="Price" />
+            <End Role="MerchantOrderDetail" EntitySet="MerchantOrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MerchantPayment_CoinPack" Association="Self.fk_MerchantPayment_CoinPack">
+            <End Role="CoinPack" EntitySet="CoinPack" />
+            <End Role="MerchantPayment" EntitySet="MerchantPayment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MerchantPayment_Merchant" Association="Self.fk_MerchantPayment_Merchant">
+            <End Role="Merchant" EntitySet="Merchant" />
+            <End Role="MerchantPayment" EntitySet="MerchantPayment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Order_Customer" Association="Self.fk_Order_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="OrderA" EntitySet="OrderA" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Order_District" Association="Self.fk_Order_District">
+            <End Role="District" EntitySet="District" />
+            <End Role="OrderA" EntitySet="OrderA" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Order_Province" Association="Self.fk_Order_Province">
+            <End Role="Province" EntitySet="Province" />
+            <End Role="OrderA" EntitySet="OrderA" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Order_Ward" Association="Self.fk_Order_Ward">
+            <End Role="Ward" EntitySet="Ward" />
+            <End Role="OrderA" EntitySet="OrderA" />
+          </AssociationSet>
+          <AssociationSet Name="fk_OrderDelivery_Delivery" Association="Self.fk_OrderDelivery_Delivery">
+            <End Role="Delivery" EntitySet="Delivery" />
+            <End Role="OrderDelivery" EntitySet="OrderDelivery" />
+          </AssociationSet>
+          <AssociationSet Name="fk_OrderDelivery_OrderA" Association="Self.fk_OrderDelivery_OrderA">
+            <End Role="OrderA" EntitySet="OrderA" />
+            <End Role="OrderDelivery" EntitySet="OrderDelivery" />
+          </AssociationSet>
+          <AssociationSet Name="fk_OrderDetail_Merchant" Association="Self.fk_OrderDetail_Merchant">
+            <End Role="Merchant" EntitySet="Merchant" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_OrderDetail_OrderA" Association="Self.fk_OrderDetail_OrderA">
+            <End Role="OrderA" EntitySet="OrderA" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_OrderDetail_Poster" Association="Self.fk_OrderDetail_Poster">
+            <End Role="Poster" EntitySet="Poster" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Poster_Category" Association="Self.fk_Poster_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Poster" EntitySet="Poster" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Poster_Discount" Association="Self.fk_Poster_Discount">
+            <End Role="Discount" EntitySet="Discount" />
+            <End Role="Poster" EntitySet="Poster" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Poster_Guarantee" Association="Self.fk_Poster_Guarantee">
+            <End Role="Guarantee" EntitySet="Guarantee" />
+            <End Role="Poster" EntitySet="Poster" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Poster_Merchant" Association="Self.fk_Poster_Merchant">
+            <End Role="Merchant" EntitySet="Merchant" />
+            <End Role="Poster" EntitySet="Poster" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PosterCategory_Category" Association="Self.fk_PosterCategory_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="PosterCategory" EntitySet="PosterCategory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PosterCategory_Poster" Association="Self.fk_PosterCategory_Poster">
+            <End Role="Poster" EntitySet="Poster" />
+            <End Role="PosterCategory" EntitySet="PosterCategory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Price_Poster" Association="Self.fk_Price_Poster">
+            <End Role="Poster" EntitySet="Poster" />
+            <End Role="Price" EntitySet="Price" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Rating_Customer" Association="Self.fk_Rating_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Rating" EntitySet="Rating" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Rating_Merchant" Association="Self.fk_Rating_Merchant">
+            <End Role="Merchant" EntitySet="Merchant" />
+            <End Role="Rating" EntitySet="Rating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ward_District" Association="Self.FK_Ward_District">
+            <End Role="District" EntitySet="District" />
+            <End Role="Ward" EntitySet="Ward" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EcommerceC2CA08Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="Customers" Relationship="Self.fk_Customer_AspNetUsers" FromRole="AspNetUsers" ToRole="Customer" />
+          <NavigationProperty Name="Merchants" Relationship="Self.fk_Merchant_AspNetUsers" FromRole="AspNetUsers" ToRole="Merchant" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Keyword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Posters" Relationship="Self.fk_Poster_Category" FromRole="Category" ToRole="Poster" />
+          <NavigationProperty Name="PosterCategories" Relationship="Self.fk_PosterCategory_Category" FromRole="Category" ToRole="PosterCategory" />
+        </EntityType>
+        <EntityType Name="CoinPack">
+          <Key>
+            <PropertyRef Name="CoinPackID" />
+          </Key>
+          <Property Name="CoinPackID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Coin" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="MerchantPayments" Relationship="Self.fk_MerchantPayment_CoinPack" FromRole="CoinPack" ToRole="MerchantPayment" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <Property Name="LastLogin" Type="DateTime" Precision="3" />
+          <Property Name="Fullname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProvinceID" Type="Int32" />
+          <Property Name="DistrictID" Type="Int32" />
+          <Property Name="WardID" Type="Int32" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.fk_Customer_AspNetUsers" FromRole="Customer" ToRole="AspNetUsers" />
+          <NavigationProperty Name="District" Relationship="Self.fk_Customer_District" FromRole="Customer" ToRole="District" />
+          <NavigationProperty Name="Province" Relationship="Self.fk_Customer_Province" FromRole="Customer" ToRole="Province" />
+          <NavigationProperty Name="Ward" Relationship="Self.fk_Customer_Ward" FromRole="Customer" ToRole="Ward" />
+          <NavigationProperty Name="HistoryLockeds" Relationship="Self.fk_HistoryLocked_Customer" FromRole="Customer" ToRole="HistoryLocked" />
+          <NavigationProperty Name="MerchantOrders" Relationship="Self.fk_MerchantOrder_Customer" FromRole="Customer" ToRole="MerchantOrder" />
+          <NavigationProperty Name="OrderAs" Relationship="Self.fk_Order_Customer" FromRole="Customer" ToRole="OrderA" />
+          <NavigationProperty Name="Ratings" Relationship="Self.fk_Rating_Customer" FromRole="Customer" ToRole="Rating" />
+        </EntityType>
+        <EntityType Name="Delivery">
+          <Key>
+            <PropertyRef Name="DeliveryID" />
+          </Key>
+          <Property Name="DeliveryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MerchantID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Shipping" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Merchant" Relationship="Self.fk_Delivery_Merchant" FromRole="Delivery" ToRole="Merchant" />
+          <NavigationProperty Name="DeliveryLocations" Relationship="Self.fk_DeliveryLocation_Delivery" FromRole="Delivery" ToRole="DeliveryLocation" />
+          <NavigationProperty Name="MerchantOrders" Relationship="Self.fk_MerchantOrder_Delivery" FromRole="Delivery" ToRole="MerchantOrder" />
+          <NavigationProperty Name="OrderDeliveries" Relationship="Self.fk_OrderDelivery_Delivery" FromRole="Delivery" ToRole="OrderDelivery" />
+        </EntityType>
+        <EntityType Name="DeliveryLocation">
+          <Key>
+            <PropertyRef Name="DeliveryLocationID" />
+          </Key>
+          <Property Name="DeliveryLocationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeliveryID" Type="Int32" Nullable="false" />
+          <Property Name="DistrictID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Delivery" Relationship="Self.fk_DeliveryLocation_Delivery" FromRole="DeliveryLocation" ToRole="Delivery" />
+          <NavigationProperty Name="District" Relationship="Self.fk_DeliveryLocation_District" FromRole="DeliveryLocation" ToRole="District" />
+        </EntityType>
+        <EntityType Name="Discount">
+          <Key>
+            <PropertyRef Name="DiscountID" />
+          </Key>
+          <Property Name="DiscountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MerchantID" Type="Int32" Nullable="false" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="ExpirationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Merchant" Relationship="Self.fk_Discount_Merchant" FromRole="Discount" ToRole="Merchant" />
+          <NavigationProperty Name="DiscountGifts" Relationship="Self.fk_DiscountGift_Discount" FromRole="Discount" ToRole="DiscountGift" />
+          <NavigationProperty Name="DiscountPrices" Relationship="Self.fk_DiscountPrice_Discount" FromRole="Discount" ToRole="DiscountPrice" />
+          <NavigationProperty Name="Posters" Relationship="Self.fk_Poster_Discount" FromRole="Discount" ToRole="Poster" />
+        </EntityType>
+        <EntityType Name="DiscountGift">
+          <Key>
+            <PropertyRef Name="DiscountGiftID" />
+          </Key>
+          <Property Name="DiscountGiftID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiscountID" Type="Int32" Nullable="false" />
+          <Property Name="PosterID" Type="Int32" Nullable="false" />
+          <Property Name="ImageGift" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Discount" Relationship="Self.fk_DiscountGift_Discount" FromRole="DiscountGift" ToRole="Discount" />
+          <NavigationProperty Name="Poster" Relationship="Self.fk_DiscountGift_Poster" FromRole="DiscountGift" ToRole="Poster" />
+        </EntityType>
+        <EntityType Name="DiscountPrice">
+          <Key>
+            <PropertyRef Name="DiscountPriceID" />
+          </Key>
+          <Property Name="DiscountPriceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiscountID" Type="Int32" Nullable="false" />
+          <Property Name="PosterID" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DiscountPrice1" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DiscountPercent" Type="Int32" />
+          <NavigationProperty Name="Discount" Relationship="Self.fk_DiscountPrice_Discount" FromRole="DiscountPrice" ToRole="Discount" />
+          <NavigationProperty Name="Poster" Relationship="Self.fk_DiscountPrice_Poster" FromRole="DiscountPrice" ToRole="Poster" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LatiLongTude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProvinceId" Type="Int32" Nullable="false" />
+          <Property Name="SortOrder" Type="Int32" />
+          <Property Name="IsPublished" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Customers" Relationship="Self.fk_Customer_District" FromRole="District" ToRole="Customer" />
+          <NavigationProperty Name="DeliveryLocations" Relationship="Self.fk_DeliveryLocation_District" FromRole="District" ToRole="DeliveryLocation" />
+          <NavigationProperty Name="Province" Relationship="Self.FK_District_Province" FromRole="District" ToRole="Province" />
+          <NavigationProperty Name="Merchants" Relationship="Self.fk_Merchant_District" FromRole="District" ToRole="Merchant" />
+          <NavigationProperty Name="OrderAs" Relationship="Self.fk_Order_District" FromRole="District" ToRole="OrderA" />
+          <NavigationProperty Name="Wards" Relationship="Self.FK_Ward_District" FromRole="District" ToRole="Ward" />
+        </EntityType>
+        <EntityType Name="Guarantee">
+          <Key>
+            <PropertyRef Name="GuaranteeID" />
+          </Key>
+          <Property Name="GuaranteeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Keyword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Posters" Relationship="Self.fk_Poster_Guarantee" FromRole="Guarantee" ToRole="Poster" />
+        </EntityType>
+        <EntityType Name="HistoryLocked">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MerchantID" Type="Int32" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="LockedDate" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer" Relationship="Self.fk_HistoryLocked_Customer" FromRole="HistoryLocked" ToRole="Customer" />
+          <NavigationProperty Name="Merchant" Relationship="Self.fk_HistoryLocked_Merchant" FromRole="HistoryLocked" ToRole="Merchant" />
+        </EntityType>
+        <EntityType Name="HistoryUseCoin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentID" Type="Int32" />
+          <Property Name="PosterID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Coin" Type="Int32" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="MerchantPayment" Relationship="Self.fk_HistoryUseCoin_Payment" FromRole="HistoryUseCoin" ToRole="MerchantPayment" />
+          <NavigationProperty Name="Poster" Relationship="Self.fk_HistoryUseCoin_Poster" FromRole="HistoryUseCoin" ToRole="Poster" />
+        </EntityType>
+        <EntityType Name="Merchant">
+          <Key>
+            <PropertyRef Name="MerchantID" />
+          </Key>
+          <Property Name="MerchantID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShopName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProvinceID" Type="Int32" />
+          <Property Name="DistrictID" Type="Int32" />
+          <Property Name="WardID" Type="Int32" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="Coin" Type="Int32" />
+          <Property Name="RatingScore" Type="Int32" />
+          <Property Name="RatingQuantity" Type="Int32" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <Property Name="LastLogin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.fk_Merchant_AspNetUsers" FromRole="Merchant" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Deliveries" Relationship="Self.fk_Delivery_Merchant" FromRole="Merchant" ToRole="Delivery" />
+          <NavigationProperty Name="Discounts" Relationship="Self.fk_Discount_Merchant" FromRole="Merchant" ToRole="Discount" />
+          <NavigationProperty Name="District" Relationship="Self.fk_Merchant_District" FromRole="Merchant" ToRole="District" />
+          <NavigationProperty Name="HistoryLockeds" Relationship="Self.fk_HistoryLocked_Merchant" FromRole="Merchant" ToRole="HistoryLocked" />
+          <NavigationProperty Name="Province" Relationship="Self.fk_Merchant_Province" FromRole="Merchant" ToRole="Province" />
+          <NavigationProperty Name="Ward" Relationship="Self.fk_Merchant_Ward" FromRole="Merchant" ToRole="Ward" />
+          <NavigationProperty Name="MerchantOrders" Relationship="Self.fk_MerchantOrder_Merchant" FromRole="Merchant" ToRole="MerchantOrder" />
+          <NavigationProperty Name="MerchantPayments" Relationship="Self.fk_MerchantPayment_Merchant" FromRole="Merchant" ToRole="MerchantPayment" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.fk_OrderDetail_Merchant" FromRole="Merchant" ToRole="OrderDetail" />
+          <NavigationProperty Name="Posters" Relationship="Self.fk_Poster_Merchant" FromRole="Merchant" ToRole="Poster" />
+          <NavigationProperty Name="Ratings" Relationship="Self.fk_Rating_Merchant" FromRole="Merchant" ToRole="Rating" />
+        </EntityType>
+        <EntityType Name="MerchantOrder">
+          <Key>
+            <PropertyRef Name="MerchantOrderID" />
+          </Key>
+          <Property Name="MerchantOrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="MerchantID" Type="Int32" Nullable="false" />
+          <Property Name="DeliveryID" Type="Int32" Nullable="false" />
+          <Property Name="StartusID" Type="Int32" Nullable="false" />
+          <Property Name="QuantityTotal" Type="Int32" />
+          <Property Name="ShippingTotal" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PriceTotal" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Customer" Relationship="Self.fk_MerchantOrder_Customer" FromRole="MerchantOrder" ToRole="Customer" />
+          <NavigationProperty Name="Delivery" Relationship="Self.fk_MerchantOrder_Delivery" FromRole="MerchantOrder" ToRole="Delivery" />
+          <NavigationProperty Name="Merchant" Relationship="Self.fk_MerchantOrder_Merchant" FromRole="MerchantOrder" ToRole="Merchant" />
+          <NavigationProperty Name="OrderA" Relationship="Self.fk_MerchantOrder_OrderA" FromRole="MerchantOrder" ToRole="OrderA" />
+        </EntityType>
+        <EntityType Name="MerchantOrderDetail">
+          <Key>
+            <PropertyRef Name="MerchantOrderID" />
+            <PropertyRef Name="PosterID" />
+          </Key>
+          <Property Name="MerchantOrderID" Type="Int32" Nullable="false" />
+          <Property Name="PosterID" Type="Int32" Nullable="false" />
+          <Property Name="PriceID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Poster" Relationship="Self.fk_MerchantOrderDetail_Poster" FromRole="MerchantOrderDetail" ToRole="Poster" />
+          <NavigationProperty Name="Price1" Relationship="Self.fk_MerchantOrderDetail_Price" FromRole="MerchantOrderDetail" ToRole="Price" />
+        </EntityType>
+        <EntityType Name="MerchantPayment">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MerchantID" Type="Int32" Nullable="false" />
+          <Property Name="CoinPackID" Type="Int32" Nullable="false" />
+          <Property Name="PriceTotal" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CoinPack" Relationship="Self.fk_MerchantPayment_CoinPack" FromRole="MerchantPayment" ToRole="CoinPack" />
+          <NavigationProperty Name="HistoryUseCoins" Relationship="Self.fk_HistoryUseCoin_Payment" FromRole="MerchantPayment" ToRole="HistoryUseCoin" />
+          <NavigationProperty Name="Merchant" Relationship="Self.fk_MerchantPayment_Merchant" FromRole="MerchantPayment" ToRole="Merchant" />
+        </EntityType>
+        <EntityType Name="OrderA">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="StartusID" Type="Int32" Nullable="false" />
+          <Property Name="QuantityTotal" Type="Int32" />
+          <Property Name="ShippingTotal" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PriceTotal" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProvinceID" Type="Int32" />
+          <Property Name="DistrictID" Type="Int32" />
+          <Property Name="WardID" Type="Int32" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <Property Name="LastChange" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Customer" Relationship="Self.fk_Order_Customer" FromRole="OrderA" ToRole="Customer" />
+          <NavigationProperty Name="District" Relationship="Self.fk_Order_District" FromRole="OrderA" ToRole="District" />
+          <NavigationProperty Name="MerchantOrders" Relationship="Self.fk_MerchantOrder_OrderA" FromRole="OrderA" ToRole="MerchantOrder" />
+          <NavigationProperty Name="Province" Relationship="Self.fk_Order_Province" FromRole="OrderA" ToRole="Province" />
+          <NavigationProperty Name="Ward" Relationship="Self.fk_Order_Ward" FromRole="OrderA" ToRole="Ward" />
+          <NavigationProperty Name="OrderDeliveries" Relationship="Self.fk_OrderDelivery_OrderA" FromRole="OrderA" ToRole="OrderDelivery" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.fk_OrderDetail_OrderA" FromRole="OrderA" ToRole="OrderDetail" />
+        </EntityType>
+        <EntityType Name="OrderDelivery">
+          <Key>
+            <PropertyRef Name="OrderDeliveryID" />
+          </Key>
+          <Property Name="OrderDeliveryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="DeliveryID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Delivery" Relationship="Self.fk_OrderDelivery_Delivery" FromRole="OrderDelivery" ToRole="Delivery" />
+          <NavigationProperty Name="OrderA" Relationship="Self.fk_OrderDelivery_OrderA" FromRole="OrderDelivery" ToRole="OrderA" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="PosterID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="PosterID" Type="Int32" Nullable="false" />
+          <Property Name="MerchantID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Merchant" Relationship="Self.fk_OrderDetail_Merchant" FromRole="OrderDetail" ToRole="Merchant" />
+          <NavigationProperty Name="OrderA" Relationship="Self.fk_OrderDetail_OrderA" FromRole="OrderDetail" ToRole="OrderA" />
+          <NavigationProperty Name="Poster" Relationship="Self.fk_OrderDetail_Poster" FromRole="OrderDetail" ToRole="Poster" />
+        </EntityType>
+        <EntityType Name="Poster">
+          <Key>
+            <PropertyRef Name="PosterID" />
+          </Key>
+          <Property Name="PosterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MerchantID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="GuaranteeID" Type="Int32" Nullable="false" />
+          <Property Name="DiscountID" Type="Int32" Nullable="false" />
+          <Property Name="StatusID" Type="Boolean" Nullable="false" />
+          <Property Name="Type" Type="Boolean" Nullable="false" />
+          <Property Name="Keyword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <Property Name="LastChanged" Type="DateTime" Precision="3" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="SmallImage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MediumImage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="LargeImage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Extra1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Extra2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Extra3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Extra4" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Extra5" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Category" Relationship="Self.fk_Poster_Category" FromRole="Poster" ToRole="Category" />
+          <NavigationProperty Name="Discount" Relationship="Self.fk_Poster_Discount" FromRole="Poster" ToRole="Discount" />
+          <NavigationProperty Name="DiscountGifts" Relationship="Self.fk_DiscountGift_Poster" FromRole="Poster" ToRole="DiscountGift" />
+          <NavigationProperty Name="DiscountPrices" Relationship="Self.fk_DiscountPrice_Poster" FromRole="Poster" ToRole="DiscountPrice" />
+          <NavigationProperty Name="Guarantee" Relationship="Self.fk_Poster_Guarantee" FromRole="Poster" ToRole="Guarantee" />
+          <NavigationProperty Name="HistoryUseCoins" Relationship="Self.fk_HistoryUseCoin_Poster" FromRole="Poster" ToRole="HistoryUseCoin" />
+          <NavigationProperty Name="Merchant" Relationship="Self.fk_Poster_Merchant" FromRole="Poster" ToRole="Merchant" />
+          <NavigationProperty Name="MerchantOrderDetails" Relationship="Self.fk_MerchantOrderDetail_Poster" FromRole="Poster" ToRole="MerchantOrderDetail" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.fk_OrderDetail_Poster" FromRole="Poster" ToRole="OrderDetail" />
+          <NavigationProperty Name="PosterCategories" Relationship="Self.fk_PosterCategory_Poster" FromRole="Poster" ToRole="PosterCategory" />
+          <NavigationProperty Name="Prices" Relationship="Self.fk_Price_Poster" FromRole="Poster" ToRole="Price" />
+        </EntityType>
+        <EntityType Name="PosterCategory">
+          <Key>
+            <PropertyRef Name="PosterCategoryID" />
+          </Key>
+          <Property Name="PosterCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="PosterID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.fk_PosterCategory_Category" FromRole="PosterCategory" ToRole="Category" />
+          <NavigationProperty Name="Poster" Relationship="Self.fk_PosterCategory_Poster" FromRole="PosterCategory" ToRole="Poster" />
+        </EntityType>
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="PriceID" />
+          </Key>
+          <Property Name="PriceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PosterID" Type="Int32" Nullable="false" />
+          <Property Name="Price1" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="MerchantOrderDetails" Relationship="Self.fk_MerchantOrderDetail_Price" FromRole="Price" ToRole="MerchantOrderDetail" />
+          <NavigationProperty Name="Poster" Relationship="Self.fk_Price_Poster" FromRole="Price" ToRole="Poster" />
+        </EntityType>
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TelephoneCode" Type="Int32" />
+          <Property Name="ZipCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SortOrder" Type="Int32" />
+          <Property Name="IsPublished" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Customers" Relationship="Self.fk_Customer_Province" FromRole="Province" ToRole="Customer" />
+          <NavigationProperty Name="Districts" Relationship="Self.FK_District_Province" FromRole="Province" ToRole="District" />
+          <NavigationProperty Name="Merchants" Relationship="Self.fk_Merchant_Province" FromRole="Province" ToRole="Merchant" />
+          <NavigationProperty Name="OrderAs" Relationship="Self.fk_Order_Province" FromRole="Province" ToRole="OrderA" />
+        </EntityType>
+        <EntityType Name="Rating">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MerchantID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="RatingScore" Type="Int32" Nullable="false" />
+          <Property Name="RatingDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Customer" Relationship="Self.fk_Rating_Customer" FromRole="Rating" ToRole="Customer" />
+          <NavigationProperty Name="Merchant" Relationship="Self.fk_Rating_Merchant" FromRole="Rating" ToRole="Merchant" />
+        </EntityType>
+        <EntityType Name="Ward">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LatiLongTude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DistrictID" Type="Int32" Nullable="false" />
+          <Property Name="SortOrder" Type="Int32" Nullable="false" />
+          <Property Name="IsPublished" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Customers" Relationship="Self.fk_Customer_Ward" FromRole="Ward" ToRole="Customer" />
+          <NavigationProperty Name="District" Relationship="Self.FK_Ward_District" FromRole="Ward" ToRole="District" />
+          <NavigationProperty Name="Merchants" Relationship="Self.fk_Merchant_Ward" FromRole="Ward" ToRole="Merchant" />
+          <NavigationProperty Name="OrderAs" Relationship="Self.fk_Order_Ward" FromRole="Ward" ToRole="OrderA" />
+        </EntityType>
+        <EntityType Name="Webmaster">
+          <Key>
+            <PropertyRef Name="WebmasterID" />
+          </Key>
+          <Property Name="WebmasterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fullname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="LastLogin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Customer_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Merchant_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Merchant">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Poster_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Poster" Type="Self.Poster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Poster">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PosterCategory_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="PosterCategory" Type="Self.PosterCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="PosterCategory">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MerchantPayment_CoinPack">
+          <End Role="CoinPack" Type="Self.CoinPack" Multiplicity="1" />
+          <End Role="MerchantPayment" Type="Self.MerchantPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoinPack">
+              <PropertyRef Name="CoinPackID" />
+            </Principal>
+            <Dependent Role="MerchantPayment">
+              <PropertyRef Name="CoinPackID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Customer_District">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="DistrictID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Customer_Province">
+          <End Role="Province" Type="Self.Province" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="ProvinceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Customer_Ward">
+          <End Role="Ward" Type="Self.Ward" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ward">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="WardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_HistoryLocked_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="HistoryLocked" Type="Self.HistoryLocked" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="HistoryLocked">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MerchantOrder_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="MerchantOrder" Type="Self.MerchantOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="MerchantOrder">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Order_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="OrderA" Type="Self.OrderA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="OrderA">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Rating_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Delivery_Merchant">
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="1" />
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="Delivery">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DeliveryLocation_Delivery">
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="1" />
+          <End Role="DeliveryLocation" Type="Self.DeliveryLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Delivery">
+              <PropertyRef Name="DeliveryID" />
+            </Principal>
+            <Dependent Role="DeliveryLocation">
+              <PropertyRef Name="DeliveryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MerchantOrder_Delivery">
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="1" />
+          <End Role="MerchantOrder" Type="Self.MerchantOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Delivery">
+              <PropertyRef Name="DeliveryID" />
+            </Principal>
+            <Dependent Role="MerchantOrder">
+              <PropertyRef Name="DeliveryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_OrderDelivery_Delivery">
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="1" />
+          <End Role="OrderDelivery" Type="Self.OrderDelivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Delivery">
+              <PropertyRef Name="DeliveryID" />
+            </Principal>
+            <Dependent Role="OrderDelivery">
+              <PropertyRef Name="DeliveryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DeliveryLocation_District">
+          <End Role="District" Type="Self.District" Multiplicity="1" />
+          <End Role="DeliveryLocation" Type="Self.DeliveryLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliveryLocation">
+              <PropertyRef Name="DistrictID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Discount_Merchant">
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="1" />
+          <End Role="Discount" Type="Self.Discount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="Discount">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DiscountGift_Discount">
+          <End Role="Discount" Type="Self.Discount" Multiplicity="1" />
+          <End Role="DiscountGift" Type="Self.DiscountGift" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discount">
+              <PropertyRef Name="DiscountID" />
+            </Principal>
+            <Dependent Role="DiscountGift">
+              <PropertyRef Name="DiscountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DiscountPrice_Discount">
+          <End Role="Discount" Type="Self.Discount" Multiplicity="1" />
+          <End Role="DiscountPrice" Type="Self.DiscountPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discount">
+              <PropertyRef Name="DiscountID" />
+            </Principal>
+            <Dependent Role="DiscountPrice">
+              <PropertyRef Name="DiscountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Poster_Discount">
+          <End Role="Discount" Type="Self.Discount" Multiplicity="1" />
+          <End Role="Poster" Type="Self.Poster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discount">
+              <PropertyRef Name="DiscountID" />
+            </Principal>
+            <Dependent Role="Poster">
+              <PropertyRef Name="DiscountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DiscountGift_Poster">
+          <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
+          <End Role="DiscountGift" Type="Self.DiscountGift" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poster">
+              <PropertyRef Name="PosterID" />
+            </Principal>
+            <Dependent Role="DiscountGift">
+              <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DiscountPrice_Poster">
+          <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
+          <End Role="DiscountPrice" Type="Self.DiscountPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poster">
+              <PropertyRef Name="PosterID" />
+            </Principal>
+            <Dependent Role="DiscountPrice">
+              <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_District_Province">
+          <End Role="Province" Type="Self.Province" Multiplicity="1" />
+          <End Role="District" Type="Self.District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="District">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Merchant_District">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Merchant">
+              <PropertyRef Name="DistrictID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Order_District">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="OrderA" Type="Self.OrderA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderA">
+              <PropertyRef Name="DistrictID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ward_District">
+          <End Role="District" Type="Self.District" Multiplicity="1" />
+          <End Role="Ward" Type="Self.Ward" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ward">
+              <PropertyRef Name="DistrictID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Poster_Guarantee">
+          <End Role="Guarantee" Type="Self.Guarantee" Multiplicity="1" />
+          <End Role="Poster" Type="Self.Poster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guarantee">
+              <PropertyRef Name="GuaranteeID" />
+            </Principal>
+            <Dependent Role="Poster">
+              <PropertyRef Name="GuaranteeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_HistoryLocked_Merchant">
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="0..1" />
+          <End Role="HistoryLocked" Type="Self.HistoryLocked" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="HistoryLocked">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_HistoryUseCoin_Payment">
+          <End Role="MerchantPayment" Type="Self.MerchantPayment" Multiplicity="0..1" />
+          <End Role="HistoryUseCoin" Type="Self.HistoryUseCoin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MerchantPayment">
+              <PropertyRef Name="PaymentID" />
+            </Principal>
+            <Dependent Role="HistoryUseCoin">
+              <PropertyRef Name="PaymentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_HistoryUseCoin_Poster">
+          <End Role="Poster" Type="Self.Poster" Multiplicity="0..1" />
+          <End Role="HistoryUseCoin" Type="Self.HistoryUseCoin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poster">
+              <PropertyRef Name="PosterID" />
+            </Principal>
+            <Dependent Role="HistoryUseCoin">
+              <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Merchant_Province">
+          <End Role="Province" Type="Self.Province" Multiplicity="0..1" />
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Merchant">
+              <PropertyRef Name="ProvinceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Merchant_Ward">
+          <End Role="Ward" Type="Self.Ward" Multiplicity="0..1" />
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ward">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Merchant">
+              <PropertyRef Name="WardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MerchantOrder_Merchant">
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="1" />
+          <End Role="MerchantOrder" Type="Self.MerchantOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="MerchantOrder">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MerchantPayment_Merchant">
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="1" />
+          <End Role="MerchantPayment" Type="Self.MerchantPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="MerchantPayment">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_OrderDetail_Merchant">
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Poster_Merchant">
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="1" />
+          <End Role="Poster" Type="Self.Poster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="Poster">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Rating_Merchant">
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="1" />
+          <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MerchantOrder_OrderA">
+          <End Role="OrderA" Type="Self.OrderA" Multiplicity="1" />
+          <End Role="MerchantOrder" Type="Self.MerchantOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderA">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="MerchantOrder">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MerchantOrderDetail_Poster">
+          <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
+          <End Role="MerchantOrderDetail" Type="Self.MerchantOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poster">
+              <PropertyRef Name="PosterID" />
+            </Principal>
+            <Dependent Role="MerchantOrderDetail">
+              <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MerchantOrderDetail_Price">
+          <End Role="Price" Type="Self.Price" Multiplicity="1" />
+          <End Role="MerchantOrderDetail" Type="Self.MerchantOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price">
+              <PropertyRef Name="PriceID" />
+            </Principal>
+            <Dependent Role="MerchantOrderDetail">
+              <PropertyRef Name="PriceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Order_Province">
+          <End Role="Province" Type="Self.Province" Multiplicity="0..1" />
+          <End Role="OrderA" Type="Self.OrderA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderA">
+              <PropertyRef Name="ProvinceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Order_Ward">
+          <End Role="Ward" Type="Self.Ward" Multiplicity="0..1" />
+          <End Role="OrderA" Type="Self.OrderA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ward">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderA">
+              <PropertyRef Name="WardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_OrderDelivery_OrderA">
+          <End Role="OrderA" Type="Self.OrderA" Multiplicity="1" />
+          <End Role="OrderDelivery" Type="Self.OrderDelivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderA">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDelivery">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_OrderDetail_OrderA">
+          <End Role="OrderA" Type="Self.OrderA" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderA">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_OrderDetail_Poster">
+          <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poster">
+              <PropertyRef Name="PosterID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PosterCategory_Poster">
+          <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
+          <End Role="PosterCategory" Type="Self.PosterCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poster">
+              <PropertyRef Name="PosterID" />
+            </Principal>
+            <Dependent Role="PosterCategory">
+              <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Price_Poster">
+          <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
+          <End Role="Price" Type="Self.Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poster">
+              <PropertyRef Name="PosterID" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="EcommerceC2CA08" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="CoinPacks" EntityType="Self.CoinPack" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Deliveries" EntityType="Self.Delivery" />
+          <EntitySet Name="DeliveryLocations" EntityType="Self.DeliveryLocation" />
+          <EntitySet Name="Discounts" EntityType="Self.Discount" />
+          <EntitySet Name="DiscountGifts" EntityType="Self.DiscountGift" />
+          <EntitySet Name="DiscountPrices" EntityType="Self.DiscountPrice" />
+          <EntitySet Name="Districts" EntityType="Self.District" />
+          <EntitySet Name="Guarantees" EntityType="Self.Guarantee" />
+          <EntitySet Name="HistoryLockeds" EntityType="Self.HistoryLocked" />
+          <EntitySet Name="HistoryUseCoins" EntityType="Self.HistoryUseCoin" />
+          <EntitySet Name="Merchants" EntityType="Self.Merchant" />
+          <EntitySet Name="MerchantOrders" EntityType="Self.MerchantOrder" />
+          <EntitySet Name="MerchantOrderDetails" EntityType="Self.MerchantOrderDetail" />
+          <EntitySet Name="MerchantPayments" EntityType="Self.MerchantPayment" />
+          <EntitySet Name="OrderAs" EntityType="Self.OrderA" />
+          <EntitySet Name="OrderDeliveries" EntityType="Self.OrderDelivery" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+          <EntitySet Name="Posters" EntityType="Self.Poster" />
+          <EntitySet Name="PosterCategories" EntityType="Self.PosterCategory" />
+          <EntitySet Name="Prices" EntityType="Self.Price" />
+          <EntitySet Name="Provinces" EntityType="Self.Province" />
+          <EntitySet Name="Ratings" EntityType="Self.Rating" />
+          <EntitySet Name="Wards" EntityType="Self.Ward" />
+          <EntitySet Name="Webmasters" EntityType="Self.Webmaster" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Customer_AspNetUsers" Association="Self.fk_Customer_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Merchant_AspNetUsers" Association="Self.fk_Merchant_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Merchant" EntitySet="Merchants" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Poster_Category" Association="Self.fk_Poster_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Poster" EntitySet="Posters" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PosterCategory_Category" Association="Self.fk_PosterCategory_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="PosterCategory" EntitySet="PosterCategories" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MerchantPayment_CoinPack" Association="Self.fk_MerchantPayment_CoinPack">
+            <End Role="CoinPack" EntitySet="CoinPacks" />
+            <End Role="MerchantPayment" EntitySet="MerchantPayments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Customer_District" Association="Self.fk_Customer_District">
+            <End Role="District" EntitySet="Districts" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Customer_Province" Association="Self.fk_Customer_Province">
+            <End Role="Province" EntitySet="Provinces" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Customer_Ward" Association="Self.fk_Customer_Ward">
+            <End Role="Ward" EntitySet="Wards" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_HistoryLocked_Customer" Association="Self.fk_HistoryLocked_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="HistoryLocked" EntitySet="HistoryLockeds" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MerchantOrder_Customer" Association="Self.fk_MerchantOrder_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="MerchantOrder" EntitySet="MerchantOrders" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Order_Customer" Association="Self.fk_Order_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="OrderA" EntitySet="OrderAs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Rating_Customer" Association="Self.fk_Rating_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Rating" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Delivery_Merchant" Association="Self.fk_Delivery_Merchant">
+            <End Role="Merchant" EntitySet="Merchants" />
+            <End Role="Delivery" EntitySet="Deliveries" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DeliveryLocation_Delivery" Association="Self.fk_DeliveryLocation_Delivery">
+            <End Role="Delivery" EntitySet="Deliveries" />
+            <End Role="DeliveryLocation" EntitySet="DeliveryLocations" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MerchantOrder_Delivery" Association="Self.fk_MerchantOrder_Delivery">
+            <End Role="Delivery" EntitySet="Deliveries" />
+            <End Role="MerchantOrder" EntitySet="MerchantOrders" />
+          </AssociationSet>
+          <AssociationSet Name="fk_OrderDelivery_Delivery" Association="Self.fk_OrderDelivery_Delivery">
+            <End Role="Delivery" EntitySet="Deliveries" />
+            <End Role="OrderDelivery" EntitySet="OrderDeliveries" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DeliveryLocation_District" Association="Self.fk_DeliveryLocation_District">
+            <End Role="District" EntitySet="Districts" />
+            <End Role="DeliveryLocation" EntitySet="DeliveryLocations" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Discount_Merchant" Association="Self.fk_Discount_Merchant">
+            <End Role="Merchant" EntitySet="Merchants" />
+            <End Role="Discount" EntitySet="Discounts" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DiscountGift_Discount" Association="Self.fk_DiscountGift_Discount">
+            <End Role="Discount" EntitySet="Discounts" />
+            <End Role="DiscountGift" EntitySet="DiscountGifts" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DiscountPrice_Discount" Association="Self.fk_DiscountPrice_Discount">
+            <End Role="Discount" EntitySet="Discounts" />
+            <End Role="DiscountPrice" EntitySet="DiscountPrices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Poster_Discount" Association="Self.fk_Poster_Discount">
+            <End Role="Discount" EntitySet="Discounts" />
+            <End Role="Poster" EntitySet="Posters" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DiscountGift_Poster" Association="Self.fk_DiscountGift_Poster">
+            <End Role="Poster" EntitySet="Posters" />
+            <End Role="DiscountGift" EntitySet="DiscountGifts" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DiscountPrice_Poster" Association="Self.fk_DiscountPrice_Poster">
+            <End Role="Poster" EntitySet="Posters" />
+            <End Role="DiscountPrice" EntitySet="DiscountPrices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_District_Province" Association="Self.FK_District_Province">
+            <End Role="Province" EntitySet="Provinces" />
+            <End Role="District" EntitySet="Districts" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Merchant_District" Association="Self.fk_Merchant_District">
+            <End Role="District" EntitySet="Districts" />
+            <End Role="Merchant" EntitySet="Merchants" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Order_District" Association="Self.fk_Order_District">
+            <End Role="District" EntitySet="Districts" />
+            <End Role="OrderA" EntitySet="OrderAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ward_District" Association="Self.FK_Ward_District">
+            <End Role="District" EntitySet="Districts" />
+            <End Role="Ward" EntitySet="Wards" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Poster_Guarantee" Association="Self.fk_Poster_Guarantee">
+            <End Role="Guarantee" EntitySet="Guarantees" />
+            <End Role="Poster" EntitySet="Posters" />
+          </AssociationSet>
+          <AssociationSet Name="fk_HistoryLocked_Merchant" Association="Self.fk_HistoryLocked_Merchant">
+            <End Role="Merchant" EntitySet="Merchants" />
+            <End Role="HistoryLocked" EntitySet="HistoryLockeds" />
+          </AssociationSet>
+          <AssociationSet Name="fk_HistoryUseCoin_Payment" Association="Self.fk_HistoryUseCoin_Payment">
+            <End Role="MerchantPayment" EntitySet="MerchantPayments" />
+            <End Role="HistoryUseCoin" EntitySet="HistoryUseCoins" />
+          </AssociationSet>
+          <AssociationSet Name="fk_HistoryUseCoin_Poster" Association="Self.fk_HistoryUseCoin_Poster">
+            <End Role="Poster" EntitySet="Posters" />
+            <End Role="HistoryUseCoin" EntitySet="HistoryUseCoins" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Merchant_Province" Association="Self.fk_Merchant_Province">
+            <End Role="Province" EntitySet="Provinces" />
+            <End Role="Merchant" EntitySet="Merchants" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Merchant_Ward" Association="Self.fk_Merchant_Ward">
+            <End Role="Ward" EntitySet="Wards" />
+            <End Role="Merchant" EntitySet="Merchants" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MerchantOrder_Merchant" Association="Self.fk_MerchantOrder_Merchant">
+            <End Role="Merchant" EntitySet="Merchants" />
+            <End Role="MerchantOrder" EntitySet="MerchantOrders" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MerchantPayment_Merchant" Association="Self.fk_MerchantPayment_Merchant">
+            <End Role="Merchant" EntitySet="Merchants" />
+            <End Role="MerchantPayment" EntitySet="MerchantPayments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_OrderDetail_Merchant" Association="Self.fk_OrderDetail_Merchant">
+            <End Role="Merchant" EntitySet="Merchants" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Poster_Merchant" Association="Self.fk_Poster_Merchant">
+            <End Role="Merchant" EntitySet="Merchants" />
+            <End Role="Poster" EntitySet="Posters" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Rating_Merchant" Association="Self.fk_Rating_Merchant">
+            <End Role="Merchant" EntitySet="Merchants" />
+            <End Role="Rating" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MerchantOrder_OrderA" Association="Self.fk_MerchantOrder_OrderA">
+            <End Role="OrderA" EntitySet="OrderAs" />
+            <End Role="MerchantOrder" EntitySet="MerchantOrders" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MerchantOrderDetail_Poster" Association="Self.fk_MerchantOrderDetail_Poster">
+            <End Role="Poster" EntitySet="Posters" />
+            <End Role="MerchantOrderDetail" EntitySet="MerchantOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MerchantOrderDetail_Price" Association="Self.fk_MerchantOrderDetail_Price">
+            <End Role="Price" EntitySet="Prices" />
+            <End Role="MerchantOrderDetail" EntitySet="MerchantOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Order_Province" Association="Self.fk_Order_Province">
+            <End Role="Province" EntitySet="Provinces" />
+            <End Role="OrderA" EntitySet="OrderAs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Order_Ward" Association="Self.fk_Order_Ward">
+            <End Role="Ward" EntitySet="Wards" />
+            <End Role="OrderA" EntitySet="OrderAs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_OrderDelivery_OrderA" Association="Self.fk_OrderDelivery_OrderA">
+            <End Role="OrderA" EntitySet="OrderAs" />
+            <End Role="OrderDelivery" EntitySet="OrderDeliveries" />
+          </AssociationSet>
+          <AssociationSet Name="fk_OrderDetail_OrderA" Association="Self.fk_OrderDetail_OrderA">
+            <End Role="OrderA" EntitySet="OrderAs" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="fk_OrderDetail_Poster" Association="Self.fk_OrderDetail_Poster">
+            <End Role="Poster" EntitySet="Posters" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PosterCategory_Poster" Association="Self.fk_PosterCategory_Poster">
+            <End Role="Poster" EntitySet="Posters" />
+            <End Role="PosterCategory" EntitySet="PosterCategories" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Price_Poster" Association="Self.fk_Price_Poster">
+            <End Role="Poster" EntitySet="Posters" />
+            <End Role="Price" EntitySet="Prices" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EcommerceC2CA08ModelStoreContainer" CdmEntityContainer="EcommerceC2CA08">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Keyword" ColumnName="Keyword" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CoinPacks">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.CoinPack">
+              <MappingFragment StoreEntitySet="CoinPack">
+                <ScalarProperty Name="CoinPackID" ColumnName="CoinPackID" />
+                <ScalarProperty Name="Coin" ColumnName="Coin" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+                <ScalarProperty Name="WardID" ColumnName="WardID" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Deliveries">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.Delivery">
+              <MappingFragment StoreEntitySet="Delivery">
+                <ScalarProperty Name="DeliveryID" ColumnName="DeliveryID" />
+                <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Shipping" ColumnName="Shipping" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeliveryLocations">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.DeliveryLocation">
+              <MappingFragment StoreEntitySet="DeliveryLocation">
+                <ScalarProperty Name="DeliveryLocationID" ColumnName="DeliveryLocationID" />
+                <ScalarProperty Name="DeliveryID" ColumnName="DeliveryID" />
+                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Discounts">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.Discount">
+              <MappingFragment StoreEntitySet="Discount">
+                <ScalarProperty Name="DiscountID" ColumnName="DiscountID" />
+                <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiscountGifts">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.DiscountGift">
+              <MappingFragment StoreEntitySet="DiscountGift">
+                <ScalarProperty Name="DiscountGiftID" ColumnName="DiscountGiftID" />
+                <ScalarProperty Name="DiscountID" ColumnName="DiscountID" />
+                <ScalarProperty Name="PosterID" ColumnName="PosterID" />
+                <ScalarProperty Name="ImageGift" ColumnName="ImageGift" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiscountPrices">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.DiscountPrice">
+              <MappingFragment StoreEntitySet="DiscountPrice">
+                <ScalarProperty Name="DiscountPriceID" ColumnName="DiscountPriceID" />
+                <ScalarProperty Name="DiscountID" ColumnName="DiscountID" />
+                <ScalarProperty Name="PosterID" ColumnName="PosterID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="DiscountPrice1" ColumnName="DiscountPrice" />
+                <ScalarProperty Name="DiscountPercent" ColumnName="DiscountPercent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Districts">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.District">
+              <MappingFragment StoreEntitySet="District">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="LatiLongTude" ColumnName="LatiLongTude" />
+                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Guarantees">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.Guarantee">
+              <MappingFragment StoreEntitySet="Guarantee">
+                <ScalarProperty Name="GuaranteeID" ColumnName="GuaranteeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Keyword" ColumnName="Keyword" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoryLockeds">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.HistoryLocked">
+              <MappingFragment StoreEntitySet="HistoryLocked">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="LockedDate" ColumnName="LockedDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoryUseCoins">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.HistoryUseCoin">
+              <MappingFragment StoreEntitySet="HistoryUseCoin">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="PosterID" ColumnName="PosterID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Coin" ColumnName="Coin" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Merchants">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.Merchant">
+              <MappingFragment StoreEntitySet="Merchant">
+                <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+                <ScalarProperty Name="WardID" ColumnName="WardID" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Coin" ColumnName="Coin" />
+                <ScalarProperty Name="RatingScore" ColumnName="RatingScore" />
+                <ScalarProperty Name="RatingQuantity" ColumnName="RatingQuantity" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MerchantOrders">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.MerchantOrder">
+              <MappingFragment StoreEntitySet="MerchantOrder">
+                <ScalarProperty Name="MerchantOrderID" ColumnName="MerchantOrderID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+                <ScalarProperty Name="DeliveryID" ColumnName="DeliveryID" />
+                <ScalarProperty Name="StartusID" ColumnName="StartusID" />
+                <ScalarProperty Name="QuantityTotal" ColumnName="QuantityTotal" />
+                <ScalarProperty Name="ShippingTotal" ColumnName="ShippingTotal" />
+                <ScalarProperty Name="PriceTotal" ColumnName="PriceTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MerchantOrderDetails">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.MerchantOrderDetail">
+              <MappingFragment StoreEntitySet="MerchantOrderDetail">
+                <ScalarProperty Name="MerchantOrderID" ColumnName="MerchantOrderID" />
+                <ScalarProperty Name="PosterID" ColumnName="PosterID" />
+                <ScalarProperty Name="PriceID" ColumnName="PriceID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MerchantPayments">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.MerchantPayment">
+              <MappingFragment StoreEntitySet="MerchantPayment">
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+                <ScalarProperty Name="CoinPackID" ColumnName="CoinPackID" />
+                <ScalarProperty Name="PriceTotal" ColumnName="PriceTotal" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderAs">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.OrderA">
+              <MappingFragment StoreEntitySet="OrderA">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="StartusID" ColumnName="StartusID" />
+                <ScalarProperty Name="QuantityTotal" ColumnName="QuantityTotal" />
+                <ScalarProperty Name="ShippingTotal" ColumnName="ShippingTotal" />
+                <ScalarProperty Name="PriceTotal" ColumnName="PriceTotal" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+                <ScalarProperty Name="WardID" ColumnName="WardID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastChange" ColumnName="LastChange" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDeliveries">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.OrderDelivery">
+              <MappingFragment StoreEntitySet="OrderDelivery">
+                <ScalarProperty Name="OrderDeliveryID" ColumnName="OrderDeliveryID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="DeliveryID" ColumnName="DeliveryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetail">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="PosterID" ColumnName="PosterID" />
+                <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posters">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.Poster">
+              <MappingFragment StoreEntitySet="Poster">
+                <ScalarProperty Name="PosterID" ColumnName="PosterID" />
+                <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="GuaranteeID" ColumnName="GuaranteeID" />
+                <ScalarProperty Name="DiscountID" ColumnName="DiscountID" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Keyword" ColumnName="Keyword" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastChanged" ColumnName="LastChanged" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="SmallImage" ColumnName="SmallImage" />
+                <ScalarProperty Name="MediumImage" ColumnName="MediumImage" />
+                <ScalarProperty Name="LargeImage" ColumnName="LargeImage" />
+                <ScalarProperty Name="Extra1" ColumnName="Extra1" />
+                <ScalarProperty Name="Extra2" ColumnName="Extra2" />
+                <ScalarProperty Name="Extra3" ColumnName="Extra3" />
+                <ScalarProperty Name="Extra4" ColumnName="Extra4" />
+                <ScalarProperty Name="Extra5" ColumnName="Extra5" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PosterCategories">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.PosterCategory">
+              <MappingFragment StoreEntitySet="PosterCategory">
+                <ScalarProperty Name="PosterCategoryID" ColumnName="PosterCategoryID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="PosterID" ColumnName="PosterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prices">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.Price">
+              <MappingFragment StoreEntitySet="Price">
+                <ScalarProperty Name="PriceID" ColumnName="PriceID" />
+                <ScalarProperty Name="PosterID" ColumnName="PosterID" />
+                <ScalarProperty Name="Price1" ColumnName="Price" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provinces">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.Province">
+              <MappingFragment StoreEntitySet="Province">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="TelephoneCode" ColumnName="TelephoneCode" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ratings">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.Rating">
+              <MappingFragment StoreEntitySet="Rating">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="RatingScore" ColumnName="RatingScore" />
+                <ScalarProperty Name="RatingDate" ColumnName="RatingDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wards">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.Ward">
+              <MappingFragment StoreEntitySet="Ward">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="LatiLongTude" ColumnName="LatiLongTude" />
+                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Webmasters">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.Webmaster">
+              <MappingFragment StoreEntitySet="Webmaster">
+                <ScalarProperty Name="WebmasterID" ColumnName="WebmasterID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="EcommerceC2CA08Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -26,5 +26,13 @@ namespace WebsiteThuongMaiDienTu.Controllers
 
             return View();
         }
+
+        [CustomAuthorize(Roles = "Merchant")]
+        public ActionResult Shop()
+        {
+            ViewBag.Message = "Your shop page.";
+
+            return View();
+        }
     }
 }
