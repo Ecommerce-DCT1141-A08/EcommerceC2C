@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebsiteThuongMaiDienTu.Models;
 using System.Collections.Generic;
+using System.Data.Entity;
 
 namespace WebsiteThuongMaiDienTu.Controllers
 {
@@ -97,6 +98,21 @@ namespace WebsiteThuongMaiDienTu.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    //lưu thông tin LastLogin
+                    string userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
+                    if (UserManager.IsInRole(userId, "Merchant"))
+                    {
+                        var user = db.Merchants.Where(a => a.UserID == userId).FirstOrDefault();
+                        user.LastLogin = DateTime.Now;
+                        db.Entry(user).State = EntityState.Modified;
+                    }
+                    else if (UserManager.IsInRole(userId, "Customer"))
+                    {
+                        var user = db.Customers.Where(a => a.UserID == userId).FirstOrDefault();
+                        user.LastLogin = DateTime.Now;
+                        db.Entry(user).State = EntityState.Modified;
+                    }
+                    db.SaveChanges();
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

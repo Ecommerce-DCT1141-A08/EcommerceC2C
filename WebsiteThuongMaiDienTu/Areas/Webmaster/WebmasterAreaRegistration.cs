@@ -15,10 +15,10 @@ namespace WebsiteThuongMaiDienTu.Areas.Webmaster
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                name:"Webmaster_default",
-                url:"Webmaster/{controller}/{action}/{id}",
-                defaults: new { action = "Index", id = UrlParameter.Optional },
-                namespaces: new string[] { "WebsiteThuongMaiDienTu..Areas.Webmaster.Controller" }
+                "Webmaster_default",
+                "Webmaster/{controller}/{action}/{id}",
+                new { controller = "Home", action = "Login", id = UrlParameter.Optional },
+                new string[] { "WebsiteThuongMaiDienTu.Areas.Webmaster.Controllers" }//nhập chính xác lỗi do sai string[]
             );
         }
     }

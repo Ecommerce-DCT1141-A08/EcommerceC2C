@@ -18,7 +18,7 @@ namespace WebsiteThuongMaiDienTu.Areas.Merchant
                 name: "Merchant_default",
                 url: "Merchant/{controller}/{action}/{id}",
                 defaults: new { action = "Index", id = UrlParameter.Optional },
-                namespaces: new string[] { "WebsiteThuongMaiDienTu..Areas.Merchant.Controller" }
+                namespaces: new string[] { "WebsiteThuongMaiDienTu.Areas.Merchant.Controllers" }
             );
         }
     }

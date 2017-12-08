@@ -10,6 +10,7 @@ namespace WebsiteThuongMaiDienTu
     public class CustomAuthorizeAttribute : AuthorizeAttribute
     {
         public string ViewName { get; set; }
+        public string Page { get; set; }
 
         public CustomAuthorizeAttribute()
         {
@@ -27,7 +28,7 @@ namespace WebsiteThuongMaiDienTu
             //nếu người dùng có quyền
             if (filterContext.Result == null)
                 return;
-            if(filterContext.HttpContext.User.Identity.IsAuthenticated)
+            if (filterContext.HttpContext.User.Identity.IsAuthenticated)
             {
                 ViewDataDictionary dict = new ViewDataDictionary();
                 dict.Add("Message", "Tài khoản của bạn chỉ dùng để mua hàng. Bạn không có quyền truy cập trang này!");

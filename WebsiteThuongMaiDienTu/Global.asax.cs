@@ -20,5 +20,11 @@ namespace WebsiteThuongMaiDienTu
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.Name;
         }
+        protected void Session_Start()
+        {
+            Session["WebmasterID"] = null;
+            Session["WebmasterName"] = null;
+            Session["WebmasterUser"] = null;
+        }
     }
 }

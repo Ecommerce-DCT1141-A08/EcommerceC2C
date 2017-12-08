@@ -27,7 +27,7 @@
                                             <a title="Manage" href="@Url.Action("Index","Manage", routeValues: null)"><i class="fa fa-user"></i> Thông tin tài khoản </a>
                                         </li>
                                         <li class="divider"></li>
-                                        <li><a href="@Url.Action("Shop","Home", routeValues: null)"><i class="fa fa-dashboard"></i> Quản lý Shop </a></li>
+                                        <li><a href="@Url.Action("Shop","Home",routeValues: new { id = User.Identity.GetUserId() })"><i class="fa fa-dashboard"></i> Quản lý Shop </a></li>
                                         <li class="divider"></li>
                                         <li>
                                             <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-lock"></i> Đăng xuất</a>
