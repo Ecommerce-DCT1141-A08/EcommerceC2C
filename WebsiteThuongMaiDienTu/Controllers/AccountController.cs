@@ -193,7 +193,7 @@ namespace WebsiteThuongMaiDienTu.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Username, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -202,6 +202,7 @@ namespace WebsiteThuongMaiDienTu.Controllers
                     {
                         Customer c = new Customer();
                         c.UserID = user.Id;
+                        c.Fullname = model.Name;
                         c.Created = DateTime.Now;
                         c.LastLogin = DateTime.Now;
                         db.Customers.Add(c);
@@ -211,6 +212,7 @@ namespace WebsiteThuongMaiDienTu.Controllers
                     {
                         Merchant m = new Merchant();
                         m.UserID = user.Id;
+                        m.ShopName = model.Name;
                         m.Created = DateTime.Now;
                         m.LastLogin = DateTime.Now;
                         db.Merchants.Add(m);

@@ -70,6 +70,14 @@ namespace WebsiteThuongMaiDienTu.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "Please enter your username.")]
+        [Display(Name = "Username")]
+        public string Username { get; set; }
+
+        //[Required(ErrorMessage = "Please enter your shopname.")]
+        [Display(Name = "Fullname or Shopname")]
+        public string Name { get; set; }
+
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]

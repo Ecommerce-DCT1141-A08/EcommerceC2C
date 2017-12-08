@@ -49,9 +49,8 @@
 			if(send) {
 				send.onclick = function () {
 					this.innerHTML = '...Sending';
-				}
-			}
-
+                }
+            }
 		})();
                     </script>
                     <div class="registration_form">
@@ -62,22 +61,32 @@
                             @Html.ValidationSummary("", new { @class = "text-danger" })
                             <div>
                                 <label>
-                                    @Html.DropDownListFor(m => m.RoleName, new SelectList(Model.RolesList, "Name", "Name"), "Select Role", new { @class = "form-control" })
+                                    @Html.DropDownListFor(m => m.RoleName, new SelectList(Model.RolesList, "Name", "Name"), "Select Role", new { @id = "roleselect", @class = "form-control" })  
                                 </label>
                             </div>
                             <div>
                                 <label>
-                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Fullname or Shopname" })
                                 </label>
                             </div>
                             <div>
                                 <label>
-                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "Username ***" })
                                 </label>
                             </div>
                             <div>
                                 <label>
-                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm password" })
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email ***" })
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password ***" })
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm password ***" })
                                 </label>
                             </div>
                             <div>
@@ -95,4 +104,7 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+    </script>
 }
