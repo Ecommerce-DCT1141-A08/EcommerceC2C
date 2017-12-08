@@ -25,6 +25,9 @@ namespace WebsiteThuongMaiDienTu.Models
             this.OrderDetails = new HashSet<OrderDetail>();
             this.Posters = new HashSet<Poster>();
             this.Ratings = new HashSet<Rating>();
+            this.ActivityMerchants = new HashSet<ActivityMerchant>();
+            this.NoticeCustomers = new HashSet<NoticeCustomer>();
+            this.NoticeMerchants = new HashSet<NoticeMerchant>();
         }
     
         public int MerchantID { get; set; }
@@ -61,5 +64,11 @@ namespace WebsiteThuongMaiDienTu.Models
         public virtual ICollection<Poster> Posters { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rating> Ratings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ActivityMerchant> ActivityMerchants { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NoticeCustomer> NoticeCustomers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NoticeMerchant> NoticeMerchants { get; set; }
     }
 }

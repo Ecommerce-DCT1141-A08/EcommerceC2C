@@ -87,6 +87,14 @@
         <AssociationConnector Association="EcommerceC2CA08Model.fk_PosterCategory_Poster" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.fk_Price_Poster" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.ActivityMerchant" Width="1.5" PointX="12.75" PointY="43.5" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.NoticeCustomer" Width="1.5" PointX="17.75" PointY="25.375" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.NoticeMerchant" Width="1.5" PointX="19.75" PointY="40.375" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_ActivityMerchant_Merchant" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_NoticeCustomer_Customer" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_NoticeMerchant_Customer" />
+        <AssociationConnector Association="EcommerceC2CA08Model.FK_NoticeCustomer_Merchant" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_NoticeMerchant_Merchant" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

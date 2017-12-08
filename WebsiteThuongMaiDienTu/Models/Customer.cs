@@ -21,6 +21,8 @@ namespace WebsiteThuongMaiDienTu.Models
             this.MerchantOrders = new HashSet<MerchantOrder>();
             this.OrderAs = new HashSet<OrderA>();
             this.Ratings = new HashSet<Rating>();
+            this.NoticeCustomers = new HashSet<NoticeCustomer>();
+            this.NoticeMerchants = new HashSet<NoticeMerchant>();
         }
     
         public int CustomerID { get; set; }
@@ -46,5 +48,9 @@ namespace WebsiteThuongMaiDienTu.Models
         public virtual ICollection<OrderA> OrderAs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rating> Ratings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NoticeCustomer> NoticeCustomers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NoticeMerchant> NoticeMerchants { get; set; }
     }
 }

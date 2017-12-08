@@ -213,6 +213,9 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ActivityMerchant.cs">
+      <DependentUpon>EcommerceC2C.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AspNetRole.cs">
       <DependentUpon>EcommerceC2C.tt</DependentUpon>
     </Compile>
@@ -291,6 +294,12 @@
       <DependentUpon>EcommerceC2C.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MerchantPayment.cs">
+      <DependentUpon>EcommerceC2C.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NoticeCustomer.cs">
+      <DependentUpon>EcommerceC2C.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NoticeMerchant.cs">
       <DependentUpon>EcommerceC2C.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OrderA.cs">

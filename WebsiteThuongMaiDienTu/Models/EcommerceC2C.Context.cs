@@ -56,5 +56,8 @@ namespace WebsiteThuongMaiDienTu.Models
         public virtual DbSet<Rating> Ratings { get; set; }
         public virtual DbSet<Ward> Wards { get; set; }
         public virtual DbSet<Webmaster> Webmasters { get; set; }
+        public virtual DbSet<ActivityMerchant> ActivityMerchants { get; set; }
+        public virtual DbSet<NoticeCustomer> NoticeCustomers { get; set; }
+        public virtual DbSet<NoticeMerchant> NoticeMerchants { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EcommerceC2CA08Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EcommerceC2CA08Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -15,12 +15,23 @@
           <Property Name="Model" Type="varbinary(max)" Nullable="false" />
           <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
         </EntityType>
+        <EntityType Name="ActivityMerchant">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MerchantID" Type="int" Nullable="false" />
+          <Property Name="Object" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ActivityDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="AspNetUserClaims">
           <Key>
@@ -250,6 +261,26 @@
           <Property Name="PriceTotal" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Created" Type="datetime" />
         </EntityType>
+        <EntityType Name="NoticeCustomer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MerchantID" Type="int" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NoticeDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NoticeMerchant">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="MerchantID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NoticeDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="OrderA">
           <Key>
             <PropertyRef Name="OrderID" />
@@ -376,6 +407,18 @@
           <Property Name="StatusID" Type="int" Nullable="false" />
           <Property Name="LastLogin" Type="datetime" />
         </EntityType>
+        <Association Name="fk_ActivityMerchant_Merchant">
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="1" />
+          <End Role="ActivityMerchant" Type="Self.ActivityMerchant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="ActivityMerchant">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_Customer_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
@@ -780,6 +823,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_NoticeCustomer_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="NoticeCustomer" Type="Self.NoticeCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="NoticeCustomer">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NoticeCustomer_Merchant">
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="1" />
+          <End Role="NoticeCustomer" Type="Self.NoticeCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="NoticeCustomer">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_NoticeMerchant_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="NoticeMerchant" Type="Self.NoticeMerchant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="NoticeMerchant">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_NoticeMerchant_Merchant">
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="1" />
+          <End Role="NoticeMerchant" Type="Self.NoticeMerchant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="NoticeMerchant">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_Order_Customer">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
           <End Role="OrderA" Type="Self.OrderA" Multiplicity="*" />
@@ -1010,6 +1101,7 @@
         </Association>
         <EntityContainer Name="EcommerceC2CA08ModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActivityMerchant" EntityType="Self.ActivityMerchant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
@@ -1031,6 +1123,8 @@
           <EntitySet Name="MerchantOrder" EntityType="Self.MerchantOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MerchantOrderDetail" EntityType="Self.MerchantOrderDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MerchantPayment" EntityType="Self.MerchantPayment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NoticeCustomer" EntityType="Self.NoticeCustomer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NoticeMerchant" EntityType="Self.NoticeMerchant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderA" EntityType="Self.OrderA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDelivery" EntityType="Self.OrderDelivery" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
@@ -1041,6 +1135,10 @@
           <EntitySet Name="Rating" EntityType="Self.Rating" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ward" EntityType="Self.Ward" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Webmaster" EntityType="Self.Webmaster" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_ActivityMerchant_Merchant" Association="Self.fk_ActivityMerchant_Merchant">
+            <End Role="Merchant" EntitySet="Merchant" />
+            <End Role="ActivityMerchant" EntitySet="ActivityMerchant" />
+          </AssociationSet>
           <AssociationSet Name="fk_Customer_AspNetUsers" Association="Self.fk_Customer_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Customer" EntitySet="Customer" />
@@ -1173,6 +1271,22 @@
             <End Role="Merchant" EntitySet="Merchant" />
             <End Role="MerchantPayment" EntitySet="MerchantPayment" />
           </AssociationSet>
+          <AssociationSet Name="fk_NoticeCustomer_Customer" Association="Self.fk_NoticeCustomer_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="NoticeCustomer" EntitySet="NoticeCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NoticeCustomer_Merchant" Association="Self.FK_NoticeCustomer_Merchant">
+            <End Role="Merchant" EntitySet="Merchant" />
+            <End Role="NoticeCustomer" EntitySet="NoticeCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="fk_NoticeMerchant_Customer" Association="Self.fk_NoticeMerchant_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="NoticeMerchant" EntitySet="NoticeMerchant" />
+          </AssociationSet>
+          <AssociationSet Name="fk_NoticeMerchant_Merchant" Association="Self.fk_NoticeMerchant_Merchant">
+            <End Role="Merchant" EntitySet="Merchant" />
+            <End Role="NoticeMerchant" EntitySet="NoticeMerchant" />
+          </AssociationSet>
           <AssociationSet Name="fk_Order_Customer" Association="Self.fk_Order_Customer">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="OrderA" EntitySet="OrderA" />
@@ -1250,8 +1364,7 @@
             <End Role="Ward" EntitySet="Ward" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EcommerceC2CA08Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1272,6 +1385,7 @@
           <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+          <Property Name="Discriminator" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="AspNetUserClaim">
           <Key>
@@ -1359,6 +1473,8 @@
           <NavigationProperty Name="MerchantOrders" Relationship="Self.fk_MerchantOrder_Customer" FromRole="Customer" ToRole="MerchantOrder" />
           <NavigationProperty Name="OrderAs" Relationship="Self.fk_Order_Customer" FromRole="Customer" ToRole="OrderA" />
           <NavigationProperty Name="Ratings" Relationship="Self.fk_Rating_Customer" FromRole="Customer" ToRole="Rating" />
+          <NavigationProperty Name="NoticeCustomers" Relationship="EcommerceC2CA08Model.fk_NoticeCustomer_Customer" FromRole="Customer" ToRole="NoticeCustomer" />
+          <NavigationProperty Name="NoticeMerchants" Relationship="EcommerceC2CA08Model.fk_NoticeMerchant_Customer" FromRole="Customer" ToRole="NoticeMerchant" />
         </EntityType>
         <EntityType Name="Delivery">
           <Key>
@@ -1511,6 +1627,9 @@
           <NavigationProperty Name="OrderDetails" Relationship="Self.fk_OrderDetail_Merchant" FromRole="Merchant" ToRole="OrderDetail" />
           <NavigationProperty Name="Posters" Relationship="Self.fk_Poster_Merchant" FromRole="Merchant" ToRole="Poster" />
           <NavigationProperty Name="Ratings" Relationship="Self.fk_Rating_Merchant" FromRole="Merchant" ToRole="Rating" />
+          <NavigationProperty Name="ActivityMerchants" Relationship="EcommerceC2CA08Model.fk_ActivityMerchant_Merchant" FromRole="Merchant" ToRole="ActivityMerchant" />
+          <NavigationProperty Name="NoticeCustomers" Relationship="EcommerceC2CA08Model.FK_NoticeCustomer_Merchant" FromRole="Merchant" ToRole="NoticeCustomer" />
+          <NavigationProperty Name="NoticeMerchants" Relationship="EcommerceC2CA08Model.fk_NoticeMerchant_Merchant" FromRole="Merchant" ToRole="NoticeMerchant" />
         </EntityType>
         <EntityType Name="MerchantOrder">
           <Key>
@@ -2564,7 +2683,125 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="ActivityMerchants" EntityType="EcommerceC2CA08Model.ActivityMerchant" />
+          <EntitySet Name="NoticeCustomers" EntityType="EcommerceC2CA08Model.NoticeCustomer" />
+          <EntitySet Name="NoticeMerchants" EntityType="EcommerceC2CA08Model.NoticeMerchant" />
+          <AssociationSet Name="fk_ActivityMerchant_Merchant" Association="EcommerceC2CA08Model.fk_ActivityMerchant_Merchant">
+            <End Role="Merchant" EntitySet="Merchants" />
+            <End Role="ActivityMerchant" EntitySet="ActivityMerchants" />
+          </AssociationSet>
+          <AssociationSet Name="fk_NoticeCustomer_Customer" Association="EcommerceC2CA08Model.fk_NoticeCustomer_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="NoticeCustomer" EntitySet="NoticeCustomers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_NoticeMerchant_Customer" Association="EcommerceC2CA08Model.fk_NoticeMerchant_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="NoticeMerchant" EntitySet="NoticeMerchants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NoticeCustomer_Merchant" Association="EcommerceC2CA08Model.FK_NoticeCustomer_Merchant">
+            <End Role="Merchant" EntitySet="Merchants" />
+            <End Role="NoticeCustomer" EntitySet="NoticeCustomers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_NoticeMerchant_Merchant" Association="EcommerceC2CA08Model.fk_NoticeMerchant_Merchant">
+            <End Role="Merchant" EntitySet="Merchants" />
+            <End Role="NoticeMerchant" EntitySet="NoticeMerchants" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ActivityMerchant">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MerchantID" Type="Int32" Nullable="false" />
+          <Property Name="Object" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ActivityDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Merchant" Relationship="EcommerceC2CA08Model.fk_ActivityMerchant_Merchant" FromRole="ActivityMerchant" ToRole="Merchant" />
+        </EntityType>
+        <EntityType Name="NoticeCustomer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MerchantID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NoticeDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Customer" Relationship="EcommerceC2CA08Model.fk_NoticeCustomer_Customer" FromRole="NoticeCustomer" ToRole="Customer" />
+          <NavigationProperty Name="Merchant" Relationship="EcommerceC2CA08Model.FK_NoticeCustomer_Merchant" FromRole="NoticeCustomer" ToRole="Merchant" />
+        </EntityType>
+        <EntityType Name="NoticeMerchant">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="MerchantID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NoticeDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Customer" Relationship="EcommerceC2CA08Model.fk_NoticeMerchant_Customer" FromRole="NoticeMerchant" ToRole="Customer" />
+          <NavigationProperty Name="Merchant" Relationship="EcommerceC2CA08Model.fk_NoticeMerchant_Merchant" FromRole="NoticeMerchant" ToRole="Merchant" />
+        </EntityType>
+        <Association Name="fk_ActivityMerchant_Merchant">
+          <End Type="EcommerceC2CA08Model.Merchant" Role="Merchant" Multiplicity="1" />
+          <End Type="EcommerceC2CA08Model.ActivityMerchant" Role="ActivityMerchant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="ActivityMerchant">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_NoticeCustomer_Customer">
+          <End Type="EcommerceC2CA08Model.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="EcommerceC2CA08Model.NoticeCustomer" Role="NoticeCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="NoticeCustomer">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_NoticeMerchant_Customer">
+          <End Type="EcommerceC2CA08Model.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="EcommerceC2CA08Model.NoticeMerchant" Role="NoticeMerchant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="NoticeMerchant">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NoticeCustomer_Merchant">
+          <End Type="EcommerceC2CA08Model.Merchant" Role="Merchant" Multiplicity="1" />
+          <End Type="EcommerceC2CA08Model.NoticeCustomer" Role="NoticeCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="NoticeCustomer">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_NoticeMerchant_Merchant">
+          <End Type="EcommerceC2CA08Model.Merchant" Role="Merchant" Multiplicity="1" />
+          <End Type="EcommerceC2CA08Model.NoticeMerchant" Role="NoticeMerchant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="NoticeMerchant">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2584,6 +2821,7 @@
           <EntitySetMapping Name="AspNetRoles">
             <EntityTypeMapping TypeName="EcommerceC2CA08Model.AspNetRole">
               <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
@@ -2968,6 +3206,39 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="ActivityMerchants">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.ActivityMerchant">
+              <MappingFragment StoreEntitySet="ActivityMerchant">
+                <ScalarProperty Name="ActivityDate" ColumnName="ActivityDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Object" ColumnName="Object" />
+                <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NoticeCustomers">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.NoticeCustomer">
+              <MappingFragment StoreEntitySet="NoticeCustomer">
+                <ScalarProperty Name="NoticeDate" ColumnName="NoticeDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NoticeMerchants">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.NoticeMerchant">
+              <MappingFragment StoreEntitySet="NoticeMerchant">
+                <ScalarProperty Name="NoticeDate" ColumnName="NoticeDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
