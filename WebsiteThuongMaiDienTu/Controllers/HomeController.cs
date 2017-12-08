@@ -28,11 +28,10 @@ namespace WebsiteThuongMaiDienTu.Controllers
         }
 
         [CustomAuthorize(Roles = "Merchant")]
-        public ActionResult Shop(string id)
+        public ActionResult Shop()
         {
             ViewBag.Message = "Your shop page.";
-
-            return RedirectToAction("Index", "Home", new { area = "Merchant", id = id });
+            return RedirectToAction("Index", "Home", new { area = "Merchant"});
         }
     }
 }

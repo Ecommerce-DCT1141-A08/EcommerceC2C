@@ -10,5 +10,7 @@ namespace WebsiteThuongMaiDienTu
         {
             ConfigureAuth(app);
         }
+
+        //public static string User_ID;
     }
 }

@@ -100,6 +100,7 @@ namespace WebsiteThuongMaiDienTu.Controllers
                 case SignInStatus.Success:
                     //lưu thông tin LastLogin
                     string userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
+                    //Startup.User_ID = userId;
                     if (UserManager.IsInRole(userId, "Merchant"))
                     {
                         var user = db.Merchants.Where(a => a.UserID == userId).FirstOrDefault();

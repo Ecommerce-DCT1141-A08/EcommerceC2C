@@ -40,22 +40,32 @@ namespace WebsiteThuongMaiDienTu.Areas.Merchant.Controllers
             }
         }
 
-        [CustomAuthorize(Roles = "Merchant")]
+        //[CustomAuthorize(Roles = "Merchant")]
         // GET: Merchant/Home
-        public ActionResult Index(string id)
+        public ActionResult Index()
         {
-            if (UserManager.IsInRole(id, "Customer"))
+            if (User.IsInRole("Merchant"))
             {
-                return RedirectToAction("Shop", "Home", new { area = "", id = id });
+                string id = User.Identity.GetUserId();
+                var merchant = db.AspNetUsers.Where(a => a.Id == id).FirstOrDefault();
+                if (merchant.EmailConfirmed == false)
+                {
+                    SetCallout("Tài khoản chưa được xác nhận. Vui lòng kiểm tra email để xác nhận tài khoản!", "warning");
+                }
+                return View();
             }
-            var merchant = db.AspNetUsers.Where(a => a.Id == id).FirstOrDefault();
-            if(merchant.EmailConfirmed == false)
-            {
-                SetCallout("Tài khoản chưa được xác nhận. Vui lòng kiểm tra email để xác nhận tài khoản!", "warning");
-            }
-            return View();
+            else
+                return RedirectToAction("Shop", "Home", new { area = "" });
         }
 
+        //[CustomAuthorize(Roles = "Merchant")]
+        // GET: Merchant/Home
+        public ActionResult Shop()
+        {
+            return View("Index");
+        }
+
+        //[CustomAuthorize(Roles = "Merchant")]
         public ActionResult Logout()
         {
             //return RedirectToAction("LogOff", "Account", new { area = "" });
