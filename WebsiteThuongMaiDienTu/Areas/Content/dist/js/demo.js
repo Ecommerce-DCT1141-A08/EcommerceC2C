@@ -11,6 +11,7 @@ $(function () {
    * Get access to plugins
    */
 
+
   $('[data-toggle="control-sidebar"]').controlSidebar()
   $('[data-toggle="push-menu"]').pushMenu()
 

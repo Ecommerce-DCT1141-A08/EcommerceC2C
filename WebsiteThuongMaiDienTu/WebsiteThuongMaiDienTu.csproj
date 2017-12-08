@@ -192,8 +192,11 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Merchant\Controllers\BaseController.cs" />
     <Compile Include="Areas\Merchant\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Merchant\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Merchant\MerchantAreaRegistration.cs" />
+    <Compile Include="Areas\Webmaster\Controllers\BaseController.cs" />
     <Compile Include="Areas\Webmaster\Controllers\HomeController.cs" />
     <Compile Include="Areas\Webmaster\WebmasterAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -7647,6 +7650,7 @@
     <Content Include="Areas\Webmaster\Views\Home\Index.cshtml" />
     <Content Include="Areas\Webmaster\Views\Home\Login.cshtml" />
     <Content Include="Areas\Merchant\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Merchant\Views\Profile\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\demo.js" />
     <Content Include="Scripts\fastclick.js" />
@@ -7710,8 +7714,10 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Merchant\Models\" />
+    <Folder Include="Areas\Merchant\Views\Base\" />
     <Folder Include="Areas\Scripts\" />
     <Folder Include="Areas\Webmaster\Models\" />
+    <Folder Include="Areas\Webmaster\Views\Base\" />
     <Folder Include="Views\Role\" />
   </ItemGroup>
   <ItemGroup>

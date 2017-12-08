@@ -15,7 +15,7 @@ using System.Data.Entity;
 namespace WebsiteThuongMaiDienTu.Areas.Webmaster.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         EcommerceC2CA08 db = new EcommerceC2CA08();
         // GET: Webmaster/Home

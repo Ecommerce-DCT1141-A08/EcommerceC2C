@@ -11,7 +11,7 @@ using WebsiteThuongMaiDienTu.Models;
 
 namespace WebsiteThuongMaiDienTu.Areas.Merchant.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         EcommerceC2CA08 db = new EcommerceC2CA08();
         private ApplicationSignInManager _signInManager;
@@ -47,6 +47,11 @@ namespace WebsiteThuongMaiDienTu.Areas.Merchant.Controllers
             if (UserManager.IsInRole(id, "Customer"))
             {
                 return RedirectToAction("Shop", "Home", new { area = "", id = id });
+            }
+            var merchant = db.AspNetUsers.Where(a => a.Id == id).FirstOrDefault();
+            if(merchant.EmailConfirmed == false)
+            {
+                SetCallout("Tài khoản chưa được xác nhận. Vui lòng kiểm tra email để xác nhận tài khoản!", "warning");
             }
             return View();
         }
