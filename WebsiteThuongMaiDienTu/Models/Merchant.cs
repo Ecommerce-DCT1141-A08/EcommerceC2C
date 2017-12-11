@@ -17,17 +17,17 @@ namespace WebsiteThuongMaiDienTu.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Merchant()
         {
+            this.ActivityMerchants = new HashSet<ActivityMerchant>();
             this.Deliveries = new HashSet<Delivery>();
             this.Discounts = new HashSet<Discount>();
             this.HistoryLockeds = new HashSet<HistoryLocked>();
             this.MerchantOrders = new HashSet<MerchantOrder>();
             this.MerchantPayments = new HashSet<MerchantPayment>();
+            this.NoticeCustomers = new HashSet<NoticeCustomer>();
+            this.NoticeMerchants = new HashSet<NoticeMerchant>();
             this.OrderDetails = new HashSet<OrderDetail>();
             this.Posters = new HashSet<Poster>();
             this.Ratings = new HashSet<Rating>();
-            this.ActivityMerchants = new HashSet<ActivityMerchant>();
-            this.NoticeCustomers = new HashSet<NoticeCustomer>();
-            this.NoticeMerchants = new HashSet<NoticeMerchant>();
         }
     
         public int MerchantID { get; set; }
@@ -39,11 +39,13 @@ namespace WebsiteThuongMaiDienTu.Models
         public Nullable<int> WardID { get; set; }
         public string Phone { get; set; }
         public Nullable<int> Coin { get; set; }
-        public Nullable<int> RatingScore { get; set; }
+        public Nullable<decimal> RatingScore { get; set; }
         public Nullable<int> RatingQuantity { get; set; }
         public Nullable<System.DateTime> Created { get; set; }
         public Nullable<System.DateTime> LastLogin { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ActivityMerchant> ActivityMerchants { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Delivery> Deliveries { get; set; }
@@ -59,16 +61,14 @@ namespace WebsiteThuongMaiDienTu.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MerchantPayment> MerchantPayments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NoticeCustomer> NoticeCustomers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NoticeMerchant> NoticeMerchants { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Poster> Posters { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rating> Ratings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ActivityMerchant> ActivityMerchants { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NoticeCustomer> NoticeCustomers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NoticeMerchant> NoticeMerchants { get; set; }
     }
 }

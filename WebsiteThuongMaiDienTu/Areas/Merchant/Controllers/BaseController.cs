@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using WebsiteThuongMaiDienTu.Models;
 
 namespace WebsiteThuongMaiDienTu.Areas.Merchant.Controllers
 {
@@ -21,5 +22,6 @@ namespace WebsiteThuongMaiDienTu.Areas.Merchant.Controllers
             else if (type == "danger")
                 TempData["CalloutType"] = "callout-danger";
         }
+        
     }
 }

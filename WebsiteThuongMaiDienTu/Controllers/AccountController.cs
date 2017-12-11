@@ -94,13 +94,12 @@ namespace WebsiteThuongMaiDienTu.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
                     //lưu thông tin LastLogin
                     string userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
-                    //Startup.User_ID = userId;
                     if (UserManager.IsInRole(userId, "Merchant"))
                     {
                         var user = db.Merchants.Where(a => a.UserID == userId).FirstOrDefault();

@@ -2216,7 +2216,7 @@ p.product_descr {
 	color: #777777;
 }
 .registration_form{
-	display: inline-block;
+	display: block;
 }
 .registration_form div{
 	padding:10px 0;
@@ -2236,13 +2236,13 @@ p.product_descr {
 	margin-left: 0;
 }
 label {
-	display: inline-block;
+	display: block;
 	margin-bottom: 0;
 	font-weight: normal;
 }
 .registration_form input[type="text"],.registration_form input[type="email"],.registration_form input[type="tel"],.registration_form input[type="password"]{
 	padding: 8px;
-	display: inline-block;
+	display: block;
 	width:100%;
 	outline: none;
 	font-family: 'Open Sans', sans-serif;

@@ -1,0 +1,151 @@
+﻿@model WebsiteThuongMaiDienTu.Areas.Merchant.Models.PayPalModel
+@{
+    ViewBag.Title = "ValidateCommand";
+    Layout = "~/Areas/Merchant/Views/Shared/_Merchant.cshtml";
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Order
+        <small>#@Model.paymentID</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Coin</a></li>
+        <li class="active">Invoice</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="invoice">
+    <!-- title row -->
+    <div class="row">
+        <div class="col-xs-12">
+            <h2 class="page-header">
+                <i class="fa fa-globe"></i> Thanh toán.
+                <small class="pull-right">@Model.date</small>
+            </h2>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- info row -->
+    <div class="row invoice-info">
+        <div class="col-sm-6 invoice-col">
+            From
+            <address>
+                <strong>Merchant, @Model.merchant.AspNetUser.UserName</strong><br>
+                Phone: @Model.merchant.Phone<br>
+                Email: @Model.merchant.AspNetUser.Email
+            </address>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    <!-- Table row -->
+    <div class="row">
+        <div class="col-xs-12 table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Qty</th>
+                        <th>Product</th>
+                        <th>Coin</th>
+                        <th>Total coin</th>
+                        <th>Pack price</th>
+                        <th>Total price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.quantity</td>
+                        <td>@Model.item_name</td>
+                        <td>@Model.coin</td>
+                        <td>@Model.cointotal</td>
+                        <th>$ @Model.price</th>
+                        <td><b>$ @Model.amount</b></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+        <!-- accepted payments column -->
+        <div class="col-xs-6">
+            <p class="lead">Payment Methods:</p>
+            <img src="~/Areas/Content/dist/img/credit/paypal2.png" alt="Paypal">
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-6">
+            <p class="lead" id="date"></p>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <th style="width:50%">Giá gói Coin:</th>
+                        <td>$ @Model.price</td>
+                    </tr>
+                    <tr>
+                        <th>Số Coin : </th>
+                        <td>
+                            <i class="fa fa-gittip" style="color:yellow"></i> @Model.coin
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Số Coin nhận được : </th>
+                        <td>
+                            <i class="fa fa-gittip" style="color:yellow"></i> @Model.cointotal
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Số lượng gói : </th>
+                        <td>@Model.quantity</td>
+                    </tr>
+                    <tr>
+                        <th>Tổng tiền :</th>
+                        <td>$ @Model.amount</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    <!-- this row will not appear when printing -->
+    <div class="row no-print">
+        <div class="col-xs-12">
+            <a href="@Url.Action("CancelFromPaypal","PayPal", routeValues: new { id = Model.paymentID })" class="btn btn-success">
+                Cancle
+            </a>
+            <form action="@Model.actionURL" method="post" target="_top" class="pull-right">
+                <input type="hidden" name="business" value="@Model.business">
+                <input type="hidden" name="cmd" value="_xclick">
+                <input type="hidden" name="amount" value="@Model.price">@*amount này là giá của 1 item trên paypal*@
+                <input type="hidden" name="quantity" value="@Model.quantity">
+                <input type="hidden" name="item_name" value="@Model.item_name">
+                <input type="hidden" name="currency_code" value="@Model.currency_code">
+                <input type="hidden" name="return" value="@Model.return_url?id=@Model.paymentID&coin=@Model.cointotal">
+                <input type="hidden" name="cancel_return" value="@Model.cancel_return?id=@Model.paymentID">
+                <input type="hidden" name="notify_url" value="@Model.notify_url">
+                <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+            </form>
+        </div>
+    </div>
+</section>
+<!-- /.content -->
+
+@section Scripts{
+    <script type="text/javascript">
+         $(function () {
+            n = new Date();
+            y = n.getFullYear();
+            m = n.getMonth() + 1;
+            d = n.getDate();
+            document.getElementById("date").innerHTML = "Ngày " + m + "/" + d + "/" + y;
+        })
+    </script>
+}
+

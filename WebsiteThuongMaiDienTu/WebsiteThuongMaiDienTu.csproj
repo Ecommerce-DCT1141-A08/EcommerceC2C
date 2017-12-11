@@ -51,6 +51,15 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPalCoreSDK, Version=1.7.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPalCoreSDK.1.7.1\lib\net451\PayPalCoreSDK.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -116,9 +125,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -193,9 +199,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Merchant\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Merchant\Controllers\CoinController.cs" />
     <Compile Include="Areas\Merchant\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Merchant\Controllers\PayPalController.cs" />
     <Compile Include="Areas\Merchant\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Merchant\MerchantAreaRegistration.cs" />
+    <Compile Include="Areas\Merchant\Models\PaymentViewModel.cs" />
+    <Compile Include="Areas\Merchant\Models\ProfileViewModel.cs" />
     <Compile Include="Areas\Webmaster\Controllers\BaseController.cs" />
     <Compile Include="Areas\Webmaster\Controllers\HomeController.cs" />
     <Compile Include="Areas\Webmaster\WebmasterAreaRegistration.cs" />
@@ -6737,6 +6747,7 @@
     <Content Include="Areas\Content\build\js\TodoList.js" />
     <Content Include="Areas\Content\build\js\Tree.js" />
     <Content Include="Areas\Content\custome-js\dateformat.js" />
+    <Content Include="Areas\Content\custome-js\paypal-api-checkout.js" />
     <Content Include="Areas\Content\dist\css\AdminLTE.css" />
     <Content Include="Areas\Content\dist\css\AdminLTE.min.css" />
     <Content Include="Areas\Content\dist\css\alt\AdminLTE-bootstrap-social.css" />
@@ -7037,13 +7048,6 @@
     </Content>
     <Content Include="Areas\Webmaster\Views\web.config" />
     <Content Include="Areas\Merchant\Views\web.config" />
-    <EntityDeploy Include="Models\EcommerceC2C.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EcommerceC2C.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\EcommerceC2C.edmx.diagram">
-      <DependentUpon>EcommerceC2C.edmx</DependentUpon>
-    </Content>
     <Content Include="images\Thumbs.db" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.woff" />
@@ -7660,6 +7664,17 @@
     <Content Include="Areas\Webmaster\Views\Home\Login.cshtml" />
     <Content Include="Areas\Merchant\Views\Home\Index.cshtml" />
     <Content Include="Areas\Merchant\Views\Profile\Index.cshtml" />
+    <Content Include="Areas\Merchant\Views\Coin\Index.cshtml" />
+    <EntityDeploy Include="Models\EcommerceC2C.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EcommerceC2C.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\EcommerceC2C.edmx.diagram">
+      <DependentUpon>EcommerceC2C.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Merchant\Views\Coin\Index2.cshtml" />
+    <Content Include="Areas\Merchant\Views\Coin\ValidateCommand.cshtml" />
+    <Content Include="Areas\Merchant\Views\PayPal\CancelFromPaypal.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\demo.js" />
     <Content Include="Scripts\fastclick.js" />
@@ -7683,7 +7698,9 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\simpleCart.js" />
     <Content Include="Scripts\simpleCart.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -7722,7 +7739,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Merchant\Models\" />
     <Folder Include="Areas\Merchant\Views\Base\" />
     <Folder Include="Areas\Scripts\" />
     <Folder Include="Areas\Webmaster\Models\" />

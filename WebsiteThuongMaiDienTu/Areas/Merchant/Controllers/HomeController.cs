@@ -48,6 +48,7 @@ namespace WebsiteThuongMaiDienTu.Areas.Merchant.Controllers
             {
                 string user_id = User.Identity.GetUserId();
                 var merchant = db.AspNetUsers.Where(a => a.Id == user_id).FirstOrDefault();
+                MvcApplication.merchant_id = db.Merchants.Where(a => a.UserID == user_id).Select(a => a.MerchantID).FirstOrDefault();
                 if (merchant.EmailConfirmed == false)
                 {
                     SetCallout("Tài khoản chưa được xác nhận. Vui lòng kiểm tra email để xác nhận tài khoản!", "warning");

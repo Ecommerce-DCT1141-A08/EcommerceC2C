@@ -21,10 +21,13 @@ namespace WebsiteThuongMaiDienTu.Models
         }
     
         public int PaymentID { get; set; }
+        public string PaypalTransactionID { get; set; }
         public int MerchantID { get; set; }
-        public int CoinPackID { get; set; }
+        public Nullable<int> CoinPackID { get; set; }
+        public int QuantityPack { get; set; }
         public decimal PriceTotal { get; set; }
         public Nullable<System.DateTime> Created { get; set; }
+        public int StartusID { get; set; }
     
         public virtual CoinPack CoinPack { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -26,6 +26,7 @@ namespace WebsiteThuongMaiDienTu.Models
         }
     
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<ActivityMerchant> ActivityMerchants { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
@@ -46,6 +47,8 @@ namespace WebsiteThuongMaiDienTu.Models
         public virtual DbSet<MerchantOrder> MerchantOrders { get; set; }
         public virtual DbSet<MerchantOrderDetail> MerchantOrderDetails { get; set; }
         public virtual DbSet<MerchantPayment> MerchantPayments { get; set; }
+        public virtual DbSet<NoticeCustomer> NoticeCustomers { get; set; }
+        public virtual DbSet<NoticeMerchant> NoticeMerchants { get; set; }
         public virtual DbSet<OrderA> OrderAs { get; set; }
         public virtual DbSet<OrderDelivery> OrderDeliveries { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
@@ -56,8 +59,5 @@ namespace WebsiteThuongMaiDienTu.Models
         public virtual DbSet<Rating> Ratings { get; set; }
         public virtual DbSet<Ward> Wards { get; set; }
         public virtual DbSet<Webmaster> Webmasters { get; set; }
-        public virtual DbSet<ActivityMerchant> ActivityMerchants { get; set; }
-        public virtual DbSet<NoticeCustomer> NoticeCustomers { get; set; }
-        public virtual DbSet<NoticeMerchant> NoticeMerchants { get; set; }
     }
 }

@@ -1,0 +1,352 @@
+﻿@model WebsiteThuongMaiDienTu.Areas.Merchant.Models.CoinPocket
+@using System.Configuration
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Merchant/Views/Shared/_Merchant.cshtml";
+    int star = 5;
+    decimal? mod = Model.RatingScore ?? 0;
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Tài khoản Coin
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Tài khoản Coin</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-3">
+
+            <!-- Profile Image -->
+            <div class="box box-primary">
+                <div class="box-body box-profile">
+                    <img class="profile-user-img img-responsive img-circle" src="~/Areas/Content/dist/img/user4-128x128.jpg" alt="User profile picture">
+                    <h3 class="profile-username text-center">@Model.Username</h3>
+                    <p class="text-muted text-center">
+                        @for (int i = 1; i <= Model.RatingScore; i++)
+                        {
+                            <i style="color:yellow;" class="fa fa-star glyphicon-resize-small"></i>
+                            star = star - 1;
+                            mod = Decimal.Subtract(mod ?? 0, 1);
+                        }
+                        @if (mod > 0 && mod < 1)
+                        {
+                            <i style="color:yellow;" class="fa fa-star-half-o"></i>
+                        }
+                        @for (int i = 1; i <= star; i++)
+                        {
+                            <i style="color:yellow;" class="fa fa-star-o"></i>
+                        }
+                    </p>
+                    <ul class="list-group list-group-unbordered">
+                        <li class="list-group-item">
+                            <b>Số Coin hiện tại</b> <a class="pull-right"><i class="fa fa-gittip" style="color:yellow"></i>   @Model.Coin</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+            <!-- About Me Box -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">About Me</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#activity" data-toggle="tab">Mua Coin</a></li>
+                    <li><a href="#timeline" data-toggle="tab">Lịch sử</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="active tab-pane" id="activity">
+                        <div class="box-body">
+                            @*"Lợi nhuận từ việc bán phiếu tin, người bán mua Coin.
+                Gồm các gói: 10 Coin = 50.000, 20 Coin = 95.000 , 50 Coin = 230.000, 100 Coin = 450.000"*@
+                            <strong><i class="fa fa-cubes margin-r-5"></i> Các gói Coin</strong>
+
+                            <p>
+                                <span class="label label-danger" style="">100</span>
+                                <span class="label label-success">50</span>
+                                <span class="label label-info">20</span>
+                                <span class="label label-primary">10</span>
+                            </p>
+                        </div>
+                        <hr />
+                        <form action="@ConfigurationManager.AppSettings["test_url"]" method="post" target="_top" class="form-horizontal">
+                            <!-- Identify your business so that you can collect the payments. -->
+                            <input type="hidden" name="business" value="@ConfigurationManager.AppSettings["business"]">
+
+                            <input type="hidden" name="cmd" value="_s-xclick">
+                            <input type="hidden" name="hosted_button_id" value="8NF24JJVCH7UW">
+                            @*<table>
+                    <tr><td><input type="hidden" name="on0" value="Coin pack">Coin pack</td></tr>
+                    <tr>
+                        <td>
+                            <select name="os0">
+                                <option value="10 Coin">10 Coin $2.00 USD</option>
+                                <option value="20 Coin">20 Coin $5.00 USD</option>
+                                <option value="50 Coin">50 Coin $10.00 USD</option>
+                                <option value="100 Coin">100 Coin $20.00 USD</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr><td><input type="hidden" name="on1" value="S&#7889; l&#432;&#7907;ng">S&#7889; l&#432;&#7907;ng</td></tr>
+                    <tr><td><input type="text" name="os1" maxlength="200"></td></tr>
+                </table>*@
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="hidden" name="on0" value="Coin pack">
+                                        <span class="input-group-addon">Chọn gói Coin : $</span>
+                                        <select name="os0" id="coin" class="form-control select2">
+                                            <option value="10 Coin">10 Coin $2.00 USD</option>
+                                            <option value="20 Coin">20 Coin $5.00 USD</option>
+                                            <option value="50 Coin">50 Coin $10.00 USD</option>
+                                            <option value="100 Coin">100 Coin $20.00 USD</option>
+                                        </select>
+                                        @*@Html.DropDownList("Coin", ViewBag.Coin as SelectList, "", htmlAttributes: new { @class = "form-control select2", @id = "coin" })*@
+                                    </div>
+                                    <!-- /input-group -->
+                                </div>
+                                <!-- /.col-lg-6 -->
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            Số lượng
+                                        </span>
+                                        <input type="hidden" name="on1" value="Quantity">
+                                        <input id="quantity" type="text" class="form-control" value="1" name="os1">
+                                    </div>
+                                    <!-- /input-group -->
+                                </div>
+                                <!-- /.col-lg-6 -->
+                            </div>
+
+                            <br />
+                            <div class="row">
+                                <!-- accepted payments column -->
+                                <div class="col-lg-6">
+                                    <p class="lead">Payment Methods:</p>
+                                    <img src="~/Areas/Content/dist/img/credit/paypal2.png" alt="Paypal">
+
+                                    <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+                                        Easy payment and convenient...
+                                    </p>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-lg-6">
+                                    <p class="lead" id="date"></p>
+
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tr>
+                                                <th style="width:50%">Giá gói :</th>
+                                                <td id="price"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tống số Coin : </th>
+                                                <td id="cointotal"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Thành tiền : </th>
+                                                <td id="pricetotal"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                            <!-- this row will not appear when printing -->
+                            <div class="row no-print">
+                                <div class="col-sm-12">
+                                    <input type="hidden" name="currency_code" value="USD">
+                                    <input class="pull-right" type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_paynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                                    <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                        @*<div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Chọn gói Coin : $</span>
+                                    @Html.DropDownList("Coin", ViewBag.Coin as SelectList, "", htmlAttributes: new { @class = "form-control select2", @id = "coin" })
+                                </div>       
+                                <!-- /input-group -->
+                            </div>
+                            <!-- /.col-lg-6 -->
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        Số lượng
+                                    </span>
+                                    <input id="quantity" type="text" class="form-control" value="1">
+                                </div>
+                                <!-- /input-group -->
+                            </div>
+                            <!-- /.col-lg-6 -->
+                        </div>
+                        <!-- /.row -->*@
+                        
+                        
+                    
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane" id="timeline">
+                        <!-- The timeline -->
+                        <ul class="timeline timeline-inverse">
+                            <!-- timeline time label -->
+                            <li class="time-label">
+                                <span class="bg-red">
+                                    10 Feb. 2014
+                                </span>
+                            </li>
+                            <!-- /.timeline-label -->
+                            <!-- timeline item -->
+                            <li>
+                                <i class="fa fa-envelope bg-blue"></i>
+
+                                <div class="timeline-item">
+                                    <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+
+                                    <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+
+                                    <div class="timeline-body">
+                                        Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
+                                        weebly ning heekya handango imeem plugg dopplr jibjab, movity
+                                        jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
+                                        quora plaxo ideeli hulu weebly balihoo...
+                                    </div>
+                                    <div class="timeline-footer">
+                                        <a class="btn btn-primary btn-xs">Read more</a>
+                                        <a class="btn btn-danger btn-xs">Delete</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- END timeline item -->
+                            <!-- timeline item -->
+                            <li>
+                                <i class="fa fa-user bg-aqua"></i>
+
+                                <div class="timeline-item">
+                                    <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
+
+                                    <h3 class="timeline-header no-border">
+                                        <a href="#">Sarah Young</a> accepted your friend request
+                                    </h3>
+                                </div>
+                            </li>
+                            <!-- END timeline item -->
+                            <!-- timeline item -->
+                            <li>
+                                <i class="fa fa-comments bg-yellow"></i>
+
+                                <div class="timeline-item">
+                                    <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
+
+                                    <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
+
+                                    <div class="timeline-body">
+                                        Take me to your leader!
+                                        Switzerland is small and neutral!
+                                        We are more like Germany, ambitious and misunderstood!
+                                    </div>
+                                    <div class="timeline-footer">
+                                        <a class="btn btn-warning btn-flat btn-xs">View comment</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- END timeline item -->
+                            <!-- timeline time label -->
+                            <li class="time-label">
+                                <span class="bg-green">
+                                    3 Jan. 2014
+                                </span>
+                            </li>
+                            <!-- /.timeline-label -->
+                            <!-- timeline item -->
+                            <li>
+                                <i class="fa fa-camera bg-purple"></i>
+
+                                <div class="timeline-item">
+                                    <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
+
+                                    <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
+
+                                    <div class="timeline-body">
+                                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- END timeline item -->
+                            <li>
+                                <i class="fa fa-clock-o bg-gray"></i>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+            </div>
+            <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+</section>
+<!-- /.content -->
+@section Scripts{
+    <script src="~/Areas/Content/custome-js/paypal-api-checkout.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            Tinh();
+            n = new Date();
+            y = n.getFullYear();
+            m = n.getMonth() + 1;
+            d = n.getDate();
+            document.getElementById("date").innerHTML = "Ngày " + m + "/" + d + "/" + y;
+            $('#coin').change(function () {
+                Tinh();
+            });
+            $('#quantity').keyup(function () {
+                
+                Tinh();
+            })
+            $('.select2').select2();
+        })
+        function Tinh() {
+            if (parseInt($('#quantity').val(), 10) <= 0 || $('#quantity').val().trim() == "" || /^[0-9]+$/.test($('#quantity').val())==false) {
+                $('#quantity').val('');
+                return;
+            }
+            c = parseInt($('#coin').val(), 10);
+            p = parseInt($("#coin option:selected").text(), 10);
+            q = parseInt($('#quantity').val(), 10);
+            document.getElementById("price").innerHTML = "$ " + p;
+            document.getElementById("cointotal").innerHTML = c * q + ' <i class="fa fa-gittip" style="color:yellow"></i>';
+            document.getElementById("pricetotal").innerHTML = "$ " + p * q;
+        }
+        
+    </script>
+}

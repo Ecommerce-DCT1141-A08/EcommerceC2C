@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Microsoft.AspNet.Identity
+@{
     Layout = null;
     //if (Session["WebmasterID"] == null)
     //{
@@ -26,7 +27,7 @@
     <link rel="stylesheet" href="~/Areas/Content/googleapis/familySansPro.css">
 </head>
 
-<body class="hold-transition skin-red-light sidebar-mini">
+<body class="hold-transition skin-blue-light sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
         <header class="main-header">
@@ -137,15 +138,15 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="~/Areas/Content/dist/img/user9-160x160.jpg" class="user-image" alt="User Image">
-                                <span class="hidden-xs">Merchant</span>
+                                <span class="hidden-xs">@User.Identity.GetUserName()</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
                                     <img src="~/Areas/Content/dist/img/user9-160x160.jpg" class="img-circle" alt="User Image">
                                     <p>
-                                        Merchant - Shop owner
-                                        @*<small>Member since Jul. 2017</small>*@
+                                        @User.Identity.GetUserName() - Shop owner
+                                        @*<small></small>*@
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
@@ -193,7 +194,7 @@
                         <img src="~/Areas/Content/dist/img/user9-160x160.jpg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>Merchant</p>
+                        <p>@User.Identity.GetUserName()</p>
                         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
@@ -212,8 +213,8 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">PROFILE</li>
-                    <li><a href="#"><i class="fa fa-user"></i> <span>Thông tin cá nhân</span></a></li>
-                    <li><a href="#"><i class="fa fa-money"></i> <span>Tài khoản Coin</span></a></li>
+                    <li><a href="@Url.Action("Index","Profile")"><i class="fa fa-user"></i> <span>Thông tin cá nhân</span></a></li>
+                    <li><a href="@Url.Action("Index2","Coin")"><i class="fa fa-money"></i> <span>Tài khoản Coin</span></a></li>
                     <li class="header">SELL</li>
                     <!-- Menu Tin đăng -->
                     <li class="treeview">
@@ -308,7 +309,7 @@
             }
             @RenderBody()
             @* popup *@
-            <div class="modal fade" id="myModal">
+            <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog" role="document">
 
                 </div>
@@ -498,6 +499,7 @@
     <script src="~/Areas/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/Areas/Content/bower_components/fastclick/lib/fastclick.js"></script>
     <script src="~/Areas/Content/bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script src="~/Areas/Content/plugins/iCheck/icheck.min.js"></script>
     <script src="~/Areas/Content/dist/js/adminlte.min.js"></script>
     <script src="~/Areas/Content/dist/js/demo.js"></script>
     @RenderSection("Scripts", required: false)
@@ -506,33 +508,7 @@
             $('#calloutbox').removeAttr('hidden');
             $('#calloutbox').delay(3000).slideUp(500);
             $('.sidebar-menu').tree()
-            $('.btn-link').click(function (e) {
-
-                /*
-                * hủy liên kết
-                *
-                * việc này quan trọng
-                * nếu không hủy liên kết, modal sẽ không được load đúng cách
-                * vì action sẽ trả về 1 trang html trống với partialview
-                *
-                * cách tương tự return false; cách này thực hiện ở cuối method
-                */
-                e.preventDefault();
-
-                var $modal = $('#myModal');
-                var $modalDialog = $('.modal-dialog');
-                var href = $(this).prop('href');
-
-                // không cho phép tắt modal khi click bên ngoài modal
-                var option = { backdrop: 'static' };
-
-                // kiểm tra (logic, điều kiện...)
-
-                // load modal
-                $modalDialog.load(href, function () {
-                    $modal.modal(option, 'show');
-                });
-            });
+            
         })
     </script>
 </body>

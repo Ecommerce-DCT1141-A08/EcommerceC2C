@@ -27,6 +27,6 @@ namespace WebsiteThuongMaiDienTu
             Session["WebmasterUser"] = null;
         }
 
-        
+        public static int merchant_id;
     }
 }
