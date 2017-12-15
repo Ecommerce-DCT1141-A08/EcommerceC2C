@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EcommerceC2CA08Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EcommerceC2CA08Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -14,6 +14,16 @@
           <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
           <Property Name="Model" Type="varbinary(max)" Nullable="false" />
           <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Accessories">
+          <Key>
+            <PropertyRef Name="PosterID" />
+          </Key>
+          <Property Name="PosterID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Device" Type="nvarchar(max)" />
+          <Property Name="Material" Type="nvarchar" MaxLength="50" />
+          <Property Name="Guarantee" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ActivityMerchant">
           <Key>
@@ -159,8 +169,9 @@
           <Property Name="DiscountPriceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DiscountID" Type="int" Nullable="false" />
           <Property Name="PosterID" Type="int" Nullable="false" />
+          <Property Name="PriceID" Type="int" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="DiscountPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DisPrice" Type="decimal" Precision="18" Scale="0" />
           <Property Name="DiscountPercent" Type="int" />
         </EntityType>
         <EntityType Name="District">
@@ -181,6 +192,7 @@
             <PropertyRef Name="GuaranteeID" />
           </Key>
           <Property Name="GuaranteeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MerchantID" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="Keyword" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar(max)" />
@@ -201,11 +213,44 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MerchantID" Type="int" Nullable="false" />
           <Property Name="PaymentID" Type="int" />
           <Property Name="PosterID" Type="int" />
           <Property Name="Description" Type="nvarchar" MaxLength="255" />
           <Property Name="Coin" Type="int" />
           <Property Name="Created" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Filename" Type="nvarchar(max)" />
+          <Property Name="Extension" Type="nvarchar(max)" />
+          <Property Name="PosterID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LaptopConfig">
+          <Key>
+            <PropertyRef Name="PosterID" />
+          </Key>
+          <Property Name="PosterID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Screen" Type="nvarchar(max)" />
+          <Property Name="Camera" Type="nvarchar" MaxLength="50" />
+          <Property Name="RAM" Type="nvarchar" MaxLength="50" />
+          <Property Name="Disk" Type="nvarchar(max)" />
+          <Property Name="CPU" Type="nvarchar(max)" />
+          <Property Name="GPU" Type="nvarchar(max)" />
+          <Property Name="Sound" Type="nvarchar(max)" />
+          <Property Name="ODD" Type="nvarchar(max)" />
+          <Property Name="USB" Type="nvarchar(max)" />
+          <Property Name="LAN/Wifi" Type="nvarchar(max)" />
+          <Property Name="OS" Type="nvarchar(max)" />
+          <Property Name="Battery" Type="nvarchar" MaxLength="250" />
+          <Property Name="Size (H x W x D)" Type="nvarchar" MaxLength="250" />
+          <Property Name="Weight" Type="nvarchar" MaxLength="50" />
+          <Property Name="Material" Type="nvarchar" MaxLength="50" />
+          <Property Name="Guarantee" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Merchant">
           <Key>
@@ -316,10 +361,32 @@
           </Key>
           <Property Name="OrderID" Type="int" Nullable="false" />
           <Property Name="PosterID" Type="int" Nullable="false" />
+          <Property Name="PriceID" Type="int" Nullable="false" />
           <Property Name="MerchantID" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Total" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="PhoneConfig">
+          <Key>
+            <PropertyRef Name="PosterID" />
+          </Key>
+          <Property Name="PosterID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Screen" Type="nvarchar(max)" />
+          <Property Name="Camera" Type="nvarchar(max)" />
+          <Property Name="RAM" Type="nvarchar" MaxLength="50" />
+          <Property Name="ROM" Type="nvarchar" MaxLength="50" />
+          <Property Name="OS" Type="nvarchar(max)" />
+          <Property Name="Chipset" Type="nvarchar(max)" />
+          <Property Name="CPU" Type="nvarchar(max)" />
+          <Property Name="GPU" Type="nvarchar(max)" />
+          <Property Name="Size (H x W x D)" Type="nvarchar" MaxLength="250" />
+          <Property Name="Battery" Type="nvarchar" MaxLength="250" />
+          <Property Name="SIM" Type="nvarchar" MaxLength="50" />
+          <Property Name="Wifi" Type="nvarchar" MaxLength="250" />
+          <Property Name="Bluetooth" Type="nvarchar" MaxLength="50" />
+          <Property Name="Guarantee" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Poster">
           <Key>
@@ -328,8 +395,8 @@
           <Property Name="PosterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MerchantID" Type="int" Nullable="false" />
           <Property Name="CategoryID" Type="int" Nullable="false" />
-          <Property Name="GuaranteeID" Type="int" Nullable="false" />
-          <Property Name="DiscountID" Type="int" Nullable="false" />
+          <Property Name="PriceID" Type="int" Nullable="false" />
+          <Property Name="DiscountID" Type="int" />
           <Property Name="StatusID" Type="bit" Nullable="false" />
           <Property Name="Type" Type="bit" Nullable="false" />
           <Property Name="Keyword" Type="nvarchar(max)" />
@@ -337,14 +404,6 @@
           <Property Name="Created" Type="datetime" />
           <Property Name="LastChanged" Type="datetime" />
           <Property Name="Quantity" Type="int" />
-          <Property Name="SmallImage" Type="varchar" MaxLength="255" />
-          <Property Name="MediumImage" Type="varchar" MaxLength="255" />
-          <Property Name="LargeImage" Type="varchar" MaxLength="255" />
-          <Property Name="Extra1" Type="varchar" MaxLength="255" />
-          <Property Name="Extra2" Type="varchar" MaxLength="255" />
-          <Property Name="Extra3" Type="varchar" MaxLength="255" />
-          <Property Name="Extra4" Type="varchar" MaxLength="255" />
-          <Property Name="Extra5" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="PosterCategory">
           <Key>
@@ -359,8 +418,8 @@
             <PropertyRef Name="PriceID" />
           </Key>
           <Property Name="PriceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PosterID" Type="int" Nullable="false" />
-          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PosterID" Type="int" />
+          <Property Name="SellingPrice" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Created" Type="datetime" />
         </EntityType>
         <EntityType Name="Province">
@@ -410,6 +469,30 @@
           <Property Name="StatusID" Type="int" Nullable="false" />
           <Property Name="LastLogin" Type="datetime" />
         </EntityType>
+        <Association Name="FK_Accessories_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Accessories" Type="Self.Accessories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Accessories">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accessories_Poster">
+          <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
+          <End Role="Accessories" Type="Self.Accessories" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Poster">
+              <PropertyRef Name="PosterID" />
+            </Principal>
+            <Dependent Role="Accessories">
+              <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_ActivityMerchant_Merchant">
           <End Role="Merchant" Type="Self.Merchant" Multiplicity="1" />
           <End Role="ActivityMerchant" Type="Self.ActivityMerchant" Multiplicity="*" />
@@ -622,6 +705,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_DiscountPrice_Price">
+          <End Role="Price" Type="Self.Price" Multiplicity="1" />
+          <End Role="DiscountPrice" Type="Self.DiscountPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price">
+              <PropertyRef Name="PriceID" />
+            </Principal>
+            <Dependent Role="DiscountPrice">
+              <PropertyRef Name="PriceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_District_Province">
           <End Role="Province" Type="Self.Province" Multiplicity="1" />
           <End Role="District" Type="Self.District" Multiplicity="*" />
@@ -631,6 +726,18 @@
             </Principal>
             <Dependent Role="District">
               <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Guarantee_Merchant">
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="1" />
+          <End Role="Guarantee" Type="Self.Guarantee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="Guarantee">
+              <PropertyRef Name="MerchantID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -658,6 +765,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_HistoryUseCoin_Merchant">
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="1" />
+          <End Role="HistoryUseCoin" Type="Self.HistoryUseCoin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="HistoryUseCoin">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_HistoryUseCoin_Payment">
           <End Role="MerchantPayment" Type="Self.MerchantPayment" Multiplicity="0..1" />
           <End Role="HistoryUseCoin" Type="Self.HistoryUseCoin" Multiplicity="*" />
@@ -678,6 +797,42 @@
               <PropertyRef Name="PosterID" />
             </Principal>
             <Dependent Role="HistoryUseCoin">
+              <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Image_Poster">
+          <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
+          <End Role="Image" Type="Self.Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poster">
+              <PropertyRef Name="PosterID" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LaptopConfig_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="LaptopConfig" Type="Self.LaptopConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="LaptopConfig">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LaptopConfig_Poster">
+          <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
+          <End Role="LaptopConfig" Type="Self.LaptopConfig" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Poster">
+              <PropertyRef Name="PosterID" />
+            </Principal>
+            <Dependent Role="LaptopConfig">
               <PropertyRef Name="PosterID" />
             </Dependent>
           </ReferentialConstraint>
@@ -982,6 +1137,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_OrderDetail_Price">
+          <End Role="Price" Type="Self.Price" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price">
+              <PropertyRef Name="PriceID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="PriceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhoneConfig_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="PhoneConfig" Type="Self.PhoneConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="PhoneConfig">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhoneConfig_Poster">
+          <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
+          <End Role="PhoneConfig" Type="Self.PhoneConfig" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Poster">
+              <PropertyRef Name="PosterID" />
+            </Principal>
+            <Dependent Role="PhoneConfig">
+              <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_Poster_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="Poster" Type="Self.Poster" Multiplicity="*" />
@@ -995,7 +1186,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_Poster_Discount">
-          <End Role="Discount" Type="Self.Discount" Multiplicity="1" />
+          <End Role="Discount" Type="Self.Discount" Multiplicity="0..1" />
           <End Role="Poster" Type="Self.Poster" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Discount">
@@ -1003,18 +1194,6 @@
             </Principal>
             <Dependent Role="Poster">
               <PropertyRef Name="DiscountID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_Poster_Guarantee">
-          <End Role="Guarantee" Type="Self.Guarantee" Multiplicity="1" />
-          <End Role="Poster" Type="Self.Poster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Guarantee">
-              <PropertyRef Name="GuaranteeID" />
-            </Principal>
-            <Dependent Role="Poster">
-              <PropertyRef Name="GuaranteeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1027,6 +1206,18 @@
             </Principal>
             <Dependent Role="Poster">
               <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Poster_Price">
+          <End Role="Price" Type="Self.Price" Multiplicity="1" />
+          <End Role="Poster" Type="Self.Poster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price">
+              <PropertyRef Name="PriceID" />
+            </Principal>
+            <Dependent Role="Poster">
+              <PropertyRef Name="PriceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1055,7 +1246,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_Price_Poster">
-          <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
+          <End Role="Poster" Type="Self.Poster" Multiplicity="0..1" />
           <End Role="Price" Type="Self.Price" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Poster">
@@ -1104,6 +1295,7 @@
         </Association>
         <EntityContainer Name="EcommerceC2CA08ModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Accessories" EntityType="Self.Accessories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActivityMerchant" EntityType="Self.ActivityMerchant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -1122,6 +1314,8 @@
           <EntitySet Name="Guarantee" EntityType="Self.Guarantee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HistoryLocked" EntityType="Self.HistoryLocked" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HistoryUseCoin" EntityType="Self.HistoryUseCoin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LaptopConfig" EntityType="Self.LaptopConfig" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Merchant" EntityType="Self.Merchant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MerchantOrder" EntityType="Self.MerchantOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MerchantOrderDetail" EntityType="Self.MerchantOrderDetail" Schema="dbo" store:Type="Tables" />
@@ -1131,6 +1325,7 @@
           <EntitySet Name="OrderA" EntityType="Self.OrderA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDelivery" EntityType="Self.OrderDelivery" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhoneConfig" EntityType="Self.PhoneConfig" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Poster" EntityType="Self.Poster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PosterCategory" EntityType="Self.PosterCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Price" EntityType="Self.Price" Schema="dbo" store:Type="Tables" />
@@ -1138,6 +1333,14 @@
           <EntitySet Name="Rating" EntityType="Self.Rating" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ward" EntityType="Self.Ward" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Webmaster" EntityType="Self.Webmaster" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Accessories_Category" Association="Self.FK_Accessories_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Accessories" EntitySet="Accessories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accessories_Poster" Association="Self.FK_Accessories_Poster">
+            <End Role="Poster" EntitySet="Poster" />
+            <End Role="Accessories" EntitySet="Accessories" />
+          </AssociationSet>
           <AssociationSet Name="fk_ActivityMerchant_Merchant" Association="Self.fk_ActivityMerchant_Merchant">
             <End Role="Merchant" EntitySet="Merchant" />
             <End Role="ActivityMerchant" EntitySet="ActivityMerchant" />
@@ -1206,9 +1409,17 @@
             <End Role="Poster" EntitySet="Poster" />
             <End Role="DiscountPrice" EntitySet="DiscountPrice" />
           </AssociationSet>
+          <AssociationSet Name="fk_DiscountPrice_Price" Association="Self.fk_DiscountPrice_Price">
+            <End Role="Price" EntitySet="Price" />
+            <End Role="DiscountPrice" EntitySet="DiscountPrice" />
+          </AssociationSet>
           <AssociationSet Name="FK_District_Province" Association="Self.FK_District_Province">
             <End Role="Province" EntitySet="Province" />
             <End Role="District" EntitySet="District" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Guarantee_Merchant" Association="Self.fk_Guarantee_Merchant">
+            <End Role="Merchant" EntitySet="Merchant" />
+            <End Role="Guarantee" EntitySet="Guarantee" />
           </AssociationSet>
           <AssociationSet Name="fk_HistoryLocked_Customer" Association="Self.fk_HistoryLocked_Customer">
             <End Role="Customer" EntitySet="Customer" />
@@ -1218,6 +1429,10 @@
             <End Role="Merchant" EntitySet="Merchant" />
             <End Role="HistoryLocked" EntitySet="HistoryLocked" />
           </AssociationSet>
+          <AssociationSet Name="fk_HistoryUseCoin_Merchant" Association="Self.fk_HistoryUseCoin_Merchant">
+            <End Role="Merchant" EntitySet="Merchant" />
+            <End Role="HistoryUseCoin" EntitySet="HistoryUseCoin" />
+          </AssociationSet>
           <AssociationSet Name="fk_HistoryUseCoin_Payment" Association="Self.fk_HistoryUseCoin_Payment">
             <End Role="MerchantPayment" EntitySet="MerchantPayment" />
             <End Role="HistoryUseCoin" EntitySet="HistoryUseCoin" />
@@ -1225,6 +1440,18 @@
           <AssociationSet Name="fk_HistoryUseCoin_Poster" Association="Self.fk_HistoryUseCoin_Poster">
             <End Role="Poster" EntitySet="Poster" />
             <End Role="HistoryUseCoin" EntitySet="HistoryUseCoin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Image_Poster" Association="Self.FK_Image_Poster">
+            <End Role="Poster" EntitySet="Poster" />
+            <End Role="Image" EntitySet="Image" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LaptopConfig_Category" Association="Self.FK_LaptopConfig_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="LaptopConfig" EntitySet="LaptopConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LaptopConfig_Poster" Association="Self.FK_LaptopConfig_Poster">
+            <End Role="Poster" EntitySet="Poster" />
+            <End Role="LaptopConfig" EntitySet="LaptopConfig" />
           </AssociationSet>
           <AssociationSet Name="fk_Merchant_AspNetUsers" Association="Self.fk_Merchant_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -1326,6 +1553,18 @@
             <End Role="Poster" EntitySet="Poster" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
+          <AssociationSet Name="fk_OrderDetail_Price" Association="Self.fk_OrderDetail_Price">
+            <End Role="Price" EntitySet="Price" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhoneConfig_Category" Association="Self.FK_PhoneConfig_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="PhoneConfig" EntitySet="PhoneConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhoneConfig_Poster" Association="Self.FK_PhoneConfig_Poster">
+            <End Role="Poster" EntitySet="Poster" />
+            <End Role="PhoneConfig" EntitySet="PhoneConfig" />
+          </AssociationSet>
           <AssociationSet Name="fk_Poster_Category" Association="Self.fk_Poster_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="Poster" EntitySet="Poster" />
@@ -1334,12 +1573,12 @@
             <End Role="Discount" EntitySet="Discount" />
             <End Role="Poster" EntitySet="Poster" />
           </AssociationSet>
-          <AssociationSet Name="fk_Poster_Guarantee" Association="Self.fk_Poster_Guarantee">
-            <End Role="Guarantee" EntitySet="Guarantee" />
-            <End Role="Poster" EntitySet="Poster" />
-          </AssociationSet>
           <AssociationSet Name="fk_Poster_Merchant" Association="Self.fk_Poster_Merchant">
             <End Role="Merchant" EntitySet="Merchant" />
+            <End Role="Poster" EntitySet="Poster" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Poster_Price" Association="Self.fk_Poster_Price">
+            <End Role="Price" EntitySet="Price" />
             <End Role="Poster" EntitySet="Poster" />
           </AssociationSet>
           <AssociationSet Name="fk_PosterCategory_Category" Association="Self.fk_PosterCategory_Category">
@@ -1367,8 +1606,7 @@
             <End Role="Ward" EntitySet="Ward" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EcommerceC2CA08Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1381,6 +1619,18 @@
           <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Accessory">
+          <Key>
+            <PropertyRef Name="PosterID" />
+          </Key>
+          <Property Name="PosterID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Device" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Material" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Guarantee" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Accessories_Category" FromRole="Accessories" ToRole="Category" />
+          <NavigationProperty Name="Poster" Relationship="Self.FK_Accessories_Poster" FromRole="Accessories" ToRole="Poster" />
         </EntityType>
         <EntityType Name="ActivityMerchant">
           <Key>
@@ -1454,6 +1704,9 @@
           <Property Name="Keyword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Created" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Accessories" Relationship="Self.FK_Accessories_Category" FromRole="Category" ToRole="Accessories" />
+          <NavigationProperty Name="LaptopConfigs" Relationship="Self.FK_LaptopConfig_Category" FromRole="Category" ToRole="LaptopConfig" />
+          <NavigationProperty Name="PhoneConfigs" Relationship="Self.FK_PhoneConfig_Category" FromRole="Category" ToRole="PhoneConfig" />
           <NavigationProperty Name="Posters" Relationship="Self.fk_Poster_Category" FromRole="Category" ToRole="Poster" />
           <NavigationProperty Name="PosterCategories" Relationship="Self.fk_PosterCategory_Category" FromRole="Category" ToRole="PosterCategory" />
         </EntityType>
@@ -1552,11 +1805,13 @@
           <Property Name="DiscountPriceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DiscountID" Type="Int32" Nullable="false" />
           <Property Name="PosterID" Type="Int32" Nullable="false" />
+          <Property Name="PriceID" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="DiscountPrice1" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DisPrice" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="DiscountPercent" Type="Int32" />
           <NavigationProperty Name="Discount" Relationship="Self.fk_DiscountPrice_Discount" FromRole="DiscountPrice" ToRole="Discount" />
           <NavigationProperty Name="Poster" Relationship="Self.fk_DiscountPrice_Poster" FromRole="DiscountPrice" ToRole="Poster" />
+          <NavigationProperty Name="Price1" Relationship="Self.fk_DiscountPrice_Price" FromRole="DiscountPrice" ToRole="Price" />
         </EntityType>
         <EntityType Name="District">
           <Key>
@@ -1582,11 +1837,12 @@
             <PropertyRef Name="GuaranteeID" />
           </Key>
           <Property Name="GuaranteeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MerchantID" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Keyword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Created" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Posters" Relationship="Self.fk_Poster_Guarantee" FromRole="Guarantee" ToRole="Poster" />
+          <NavigationProperty Name="Merchant" Relationship="Self.fk_Guarantee_Merchant" FromRole="Guarantee" ToRole="Merchant" />
         </EntityType>
         <EntityType Name="HistoryLocked">
           <Key>
@@ -1612,6 +1868,43 @@
           <Property Name="Created" Type="DateTime" Precision="3" />
           <NavigationProperty Name="MerchantPayment" Relationship="Self.fk_HistoryUseCoin_Payment" FromRole="HistoryUseCoin" ToRole="MerchantPayment" />
           <NavigationProperty Name="Poster" Relationship="Self.fk_HistoryUseCoin_Poster" FromRole="HistoryUseCoin" ToRole="Poster" />
+          <Property Name="MerchantID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Merchant" Relationship="EcommerceC2CA08Model.fk_HistoryUseCoin_Merchant" FromRole="HistoryUseCoin" ToRole="Merchant" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Extension" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PosterID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Poster" Relationship="Self.FK_Image_Poster" FromRole="Image" ToRole="Poster" />
+        </EntityType>
+        <EntityType Name="LaptopConfig">
+          <Key>
+            <PropertyRef Name="PosterID" />
+          </Key>
+          <Property Name="PosterID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Screen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Camera" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RAM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Disk" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CPU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GPU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sound" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ODD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="USB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LAN_Wifi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Battery" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Size__H_x_W_x_D_" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Weight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Material" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Guarantee" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_LaptopConfig_Category" FromRole="LaptopConfig" ToRole="Category" />
+          <NavigationProperty Name="Poster" Relationship="Self.FK_LaptopConfig_Poster" FromRole="LaptopConfig" ToRole="Poster" />
         </EntityType>
         <EntityType Name="Merchant">
           <Key>
@@ -1635,6 +1928,7 @@
           <NavigationProperty Name="Deliveries" Relationship="Self.fk_Delivery_Merchant" FromRole="Merchant" ToRole="Delivery" />
           <NavigationProperty Name="Discounts" Relationship="Self.fk_Discount_Merchant" FromRole="Merchant" ToRole="Discount" />
           <NavigationProperty Name="District" Relationship="Self.fk_Merchant_District" FromRole="Merchant" ToRole="District" />
+          <NavigationProperty Name="Guarantees" Relationship="Self.fk_Guarantee_Merchant" FromRole="Merchant" ToRole="Guarantee" />
           <NavigationProperty Name="HistoryLockeds" Relationship="Self.fk_HistoryLocked_Merchant" FromRole="Merchant" ToRole="HistoryLocked" />
           <NavigationProperty Name="Province" Relationship="Self.fk_Merchant_Province" FromRole="Merchant" ToRole="Province" />
           <NavigationProperty Name="Ward" Relationship="Self.fk_Merchant_Ward" FromRole="Merchant" ToRole="Ward" />
@@ -1645,6 +1939,7 @@
           <NavigationProperty Name="OrderDetails" Relationship="Self.fk_OrderDetail_Merchant" FromRole="Merchant" ToRole="OrderDetail" />
           <NavigationProperty Name="Posters" Relationship="Self.fk_Poster_Merchant" FromRole="Merchant" ToRole="Poster" />
           <NavigationProperty Name="Ratings" Relationship="Self.fk_Rating_Merchant" FromRole="Merchant" ToRole="Rating" />
+          <NavigationProperty Name="HistoryUseCoins" Relationship="EcommerceC2CA08Model.fk_HistoryUseCoin_Merchant" FromRole="Merchant" ToRole="HistoryUseCoin" />
         </EntityType>
         <EntityType Name="MerchantOrder">
           <Key>
@@ -1759,6 +2054,7 @@
           </Key>
           <Property Name="OrderID" Type="Int32" Nullable="false" />
           <Property Name="PosterID" Type="Int32" Nullable="false" />
+          <Property Name="PriceID" Type="Int32" Nullable="false" />
           <Property Name="MerchantID" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" />
           <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
@@ -1766,6 +2062,30 @@
           <NavigationProperty Name="Merchant" Relationship="Self.fk_OrderDetail_Merchant" FromRole="OrderDetail" ToRole="Merchant" />
           <NavigationProperty Name="OrderA" Relationship="Self.fk_OrderDetail_OrderA" FromRole="OrderDetail" ToRole="OrderA" />
           <NavigationProperty Name="Poster" Relationship="Self.fk_OrderDetail_Poster" FromRole="OrderDetail" ToRole="Poster" />
+          <NavigationProperty Name="Price1" Relationship="Self.fk_OrderDetail_Price" FromRole="OrderDetail" ToRole="Price" />
+        </EntityType>
+        <EntityType Name="PhoneConfig">
+          <Key>
+            <PropertyRef Name="PosterID" />
+          </Key>
+          <Property Name="PosterID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Screen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Camera" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RAM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ROM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Chipset" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CPU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GPU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Size__H_x_W_x_D_" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Battery" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SIM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Wifi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Bluetooth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Guarantee" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_PhoneConfig_Category" FromRole="PhoneConfig" ToRole="Category" />
+          <NavigationProperty Name="Poster" Relationship="Self.FK_PhoneConfig_Poster" FromRole="PhoneConfig" ToRole="Poster" />
         </EntityType>
         <EntityType Name="Poster">
           <Key>
@@ -1774,8 +2094,8 @@
           <Property Name="PosterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MerchantID" Type="Int32" Nullable="false" />
           <Property Name="CategoryID" Type="Int32" Nullable="false" />
-          <Property Name="GuaranteeID" Type="Int32" Nullable="false" />
-          <Property Name="DiscountID" Type="Int32" Nullable="false" />
+          <Property Name="PriceID" Type="Int32" Nullable="false" />
+          <Property Name="DiscountID" Type="Int32" />
           <Property Name="StatusID" Type="Boolean" Nullable="false" />
           <Property Name="Type" Type="Boolean" Nullable="false" />
           <Property Name="Keyword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -1783,23 +2103,19 @@
           <Property Name="Created" Type="DateTime" Precision="3" />
           <Property Name="LastChanged" Type="DateTime" Precision="3" />
           <Property Name="Quantity" Type="Int32" />
-          <Property Name="SmallImage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="MediumImage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="LargeImage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Extra1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Extra2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Extra3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Extra4" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Extra5" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Accessory" Relationship="Self.FK_Accessories_Poster" FromRole="Poster" ToRole="Accessories" />
           <NavigationProperty Name="Category" Relationship="Self.fk_Poster_Category" FromRole="Poster" ToRole="Category" />
           <NavigationProperty Name="Discount" Relationship="Self.fk_Poster_Discount" FromRole="Poster" ToRole="Discount" />
           <NavigationProperty Name="DiscountGifts" Relationship="Self.fk_DiscountGift_Poster" FromRole="Poster" ToRole="DiscountGift" />
           <NavigationProperty Name="DiscountPrices" Relationship="Self.fk_DiscountPrice_Poster" FromRole="Poster" ToRole="DiscountPrice" />
-          <NavigationProperty Name="Guarantee" Relationship="Self.fk_Poster_Guarantee" FromRole="Poster" ToRole="Guarantee" />
           <NavigationProperty Name="HistoryUseCoins" Relationship="Self.fk_HistoryUseCoin_Poster" FromRole="Poster" ToRole="HistoryUseCoin" />
+          <NavigationProperty Name="Images" Relationship="Self.FK_Image_Poster" FromRole="Poster" ToRole="Image" />
+          <NavigationProperty Name="LaptopConfig" Relationship="Self.FK_LaptopConfig_Poster" FromRole="Poster" ToRole="LaptopConfig" />
           <NavigationProperty Name="Merchant" Relationship="Self.fk_Poster_Merchant" FromRole="Poster" ToRole="Merchant" />
           <NavigationProperty Name="MerchantOrderDetails" Relationship="Self.fk_MerchantOrderDetail_Poster" FromRole="Poster" ToRole="MerchantOrderDetail" />
           <NavigationProperty Name="OrderDetails" Relationship="Self.fk_OrderDetail_Poster" FromRole="Poster" ToRole="OrderDetail" />
+          <NavigationProperty Name="PhoneConfig" Relationship="Self.FK_PhoneConfig_Poster" FromRole="Poster" ToRole="PhoneConfig" />
+          <NavigationProperty Name="Price" Relationship="Self.fk_Poster_Price" FromRole="Poster" ToRole="Price" />
           <NavigationProperty Name="PosterCategories" Relationship="Self.fk_PosterCategory_Poster" FromRole="Poster" ToRole="PosterCategory" />
           <NavigationProperty Name="Prices" Relationship="Self.fk_Price_Poster" FromRole="Poster" ToRole="Price" />
         </EntityType>
@@ -1818,10 +2134,13 @@
             <PropertyRef Name="PriceID" />
           </Key>
           <Property Name="PriceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PosterID" Type="Int32" Nullable="false" />
-          <Property Name="Price1" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PosterID" Type="Int32" />
+          <Property Name="SellingPrice" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Created" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DiscountPrices" Relationship="Self.fk_DiscountPrice_Price" FromRole="Price" ToRole="DiscountPrice" />
           <NavigationProperty Name="MerchantOrderDetails" Relationship="Self.fk_MerchantOrderDetail_Price" FromRole="Price" ToRole="MerchantOrderDetail" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.fk_OrderDetail_Price" FromRole="Price" ToRole="OrderDetail" />
+          <NavigationProperty Name="Posters" Relationship="Self.fk_Poster_Price" FromRole="Price" ToRole="Poster" />
           <NavigationProperty Name="Poster" Relationship="Self.fk_Price_Poster" FromRole="Price" ToRole="Poster" />
         </EntityType>
         <EntityType Name="Province">
@@ -1881,6 +2200,30 @@
           <Property Name="StatusID" Type="Int32" Nullable="false" />
           <Property Name="LastLogin" Type="DateTime" Precision="3" />
         </EntityType>
+        <Association Name="FK_Accessories_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Accessories" Type="Self.Accessory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Accessories">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accessories_Poster">
+          <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
+          <End Role="Accessories" Type="Self.Accessory" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Poster">
+              <PropertyRef Name="PosterID" />
+            </Principal>
+            <Dependent Role="Accessories">
+              <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_ActivityMerchant_Merchant">
           <End Role="Merchant" Type="Self.Merchant" Multiplicity="1" />
           <End Role="ActivityMerchant" Type="Self.ActivityMerchant" Multiplicity="*" />
@@ -1942,6 +2285,30 @@
             </Principal>
             <Dependent Role="Merchant">
               <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LaptopConfig_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="LaptopConfig" Type="Self.LaptopConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="LaptopConfig">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhoneConfig_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="PhoneConfig" Type="Self.PhoneConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="PhoneConfig">
+              <PropertyRef Name="CategoryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2186,7 +2553,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_Poster_Discount">
-          <End Role="Discount" Type="Self.Discount" Multiplicity="1" />
+          <End Role="Discount" Type="Self.Discount" Multiplicity="0..1" />
           <End Role="Poster" Type="Self.Poster" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Discount">
@@ -2218,6 +2585,18 @@
             </Principal>
             <Dependent Role="DiscountPrice">
               <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DiscountPrice_Price">
+          <End Role="Price" Type="Self.Price" Multiplicity="1" />
+          <End Role="DiscountPrice" Type="Self.DiscountPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price">
+              <PropertyRef Name="PriceID" />
+            </Principal>
+            <Dependent Role="DiscountPrice">
+              <PropertyRef Name="PriceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2269,15 +2648,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_Poster_Guarantee">
-          <End Role="Guarantee" Type="Self.Guarantee" Multiplicity="1" />
-          <End Role="Poster" Type="Self.Poster" Multiplicity="*" />
+        <Association Name="fk_Guarantee_Merchant">
+          <End Role="Merchant" Type="Self.Merchant" Multiplicity="1" />
+          <End Role="Guarantee" Type="Self.Guarantee" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Guarantee">
-              <PropertyRef Name="GuaranteeID" />
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
             </Principal>
-            <Dependent Role="Poster">
-              <PropertyRef Name="GuaranteeID" />
+            <Dependent Role="Guarantee">
+              <PropertyRef Name="MerchantID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2313,6 +2692,30 @@
               <PropertyRef Name="PosterID" />
             </Principal>
             <Dependent Role="HistoryUseCoin">
+              <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Image_Poster">
+          <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
+          <End Role="Image" Type="Self.Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poster">
+              <PropertyRef Name="PosterID" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LaptopConfig_Poster">
+          <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
+          <End Role="LaptopConfig" Type="Self.LaptopConfig" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Poster">
+              <PropertyRef Name="PosterID" />
+            </Principal>
+            <Dependent Role="LaptopConfig">
               <PropertyRef Name="PosterID" />
             </Dependent>
           </ReferentialConstraint>
@@ -2521,6 +2924,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_OrderDetail_Price">
+          <End Role="Price" Type="Self.Price" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price">
+              <PropertyRef Name="PriceID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="PriceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhoneConfig_Poster">
+          <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
+          <End Role="PhoneConfig" Type="Self.PhoneConfig" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Poster">
+              <PropertyRef Name="PosterID" />
+            </Principal>
+            <Dependent Role="PhoneConfig">
+              <PropertyRef Name="PosterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Poster_Price">
+          <End Role="Price" Type="Self.Price" Multiplicity="1" />
+          <End Role="Poster" Type="Self.Poster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price">
+              <PropertyRef Name="PriceID" />
+            </Principal>
+            <Dependent Role="Poster">
+              <PropertyRef Name="PriceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_PosterCategory_Poster">
           <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
           <End Role="PosterCategory" Type="Self.PosterCategory" Multiplicity="*" />
@@ -2534,7 +2973,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_Price_Poster">
-          <End Role="Poster" Type="Self.Poster" Multiplicity="1" />
+          <End Role="Poster" Type="Self.Poster" Multiplicity="0..1" />
           <End Role="Price" Type="Self.Price" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Poster">
@@ -2549,8 +2988,9 @@
           <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="EcommerceC2CA08" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="EcommerceC2CA08Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Accessories" EntityType="Self.Accessory" />
           <EntitySet Name="ActivityMerchants" EntityType="Self.ActivityMerchant" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
@@ -2568,6 +3008,8 @@
           <EntitySet Name="Guarantees" EntityType="Self.Guarantee" />
           <EntitySet Name="HistoryLockeds" EntityType="Self.HistoryLocked" />
           <EntitySet Name="HistoryUseCoins" EntityType="Self.HistoryUseCoin" />
+          <EntitySet Name="Images" EntityType="Self.Image" />
+          <EntitySet Name="LaptopConfigs" EntityType="Self.LaptopConfig" />
           <EntitySet Name="Merchants" EntityType="Self.Merchant" />
           <EntitySet Name="MerchantOrders" EntityType="Self.MerchantOrder" />
           <EntitySet Name="MerchantOrderDetails" EntityType="Self.MerchantOrderDetail" />
@@ -2577,6 +3019,7 @@
           <EntitySet Name="OrderAs" EntityType="Self.OrderA" />
           <EntitySet Name="OrderDeliveries" EntityType="Self.OrderDelivery" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+          <EntitySet Name="PhoneConfigs" EntityType="Self.PhoneConfig" />
           <EntitySet Name="Posters" EntityType="Self.Poster" />
           <EntitySet Name="PosterCategories" EntityType="Self.PosterCategory" />
           <EntitySet Name="Prices" EntityType="Self.Price" />
@@ -2584,6 +3027,14 @@
           <EntitySet Name="Ratings" EntityType="Self.Rating" />
           <EntitySet Name="Wards" EntityType="Self.Ward" />
           <EntitySet Name="Webmasters" EntityType="Self.Webmaster" />
+          <AssociationSet Name="FK_Accessories_Category" Association="Self.FK_Accessories_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Accessories" EntitySet="Accessories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accessories_Poster" Association="Self.FK_Accessories_Poster">
+            <End Role="Poster" EntitySet="Posters" />
+            <End Role="Accessories" EntitySet="Accessories" />
+          </AssociationSet>
           <AssociationSet Name="fk_ActivityMerchant_Merchant" Association="Self.fk_ActivityMerchant_Merchant">
             <End Role="Merchant" EntitySet="Merchants" />
             <End Role="ActivityMerchant" EntitySet="ActivityMerchants" />
@@ -2603,6 +3054,14 @@
           <AssociationSet Name="fk_Merchant_AspNetUsers" Association="Self.fk_Merchant_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Merchant" EntitySet="Merchants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LaptopConfig_Category" Association="Self.FK_LaptopConfig_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="LaptopConfig" EntitySet="LaptopConfigs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhoneConfig_Category" Association="Self.FK_PhoneConfig_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="PhoneConfig" EntitySet="PhoneConfigs" />
           </AssociationSet>
           <AssociationSet Name="fk_Poster_Category" Association="Self.fk_Poster_Category">
             <End Role="Category" EntitySet="Categories" />
@@ -2696,6 +3155,10 @@
             <End Role="Poster" EntitySet="Posters" />
             <End Role="DiscountPrice" EntitySet="DiscountPrices" />
           </AssociationSet>
+          <AssociationSet Name="fk_DiscountPrice_Price" Association="Self.fk_DiscountPrice_Price">
+            <End Role="Price" EntitySet="Prices" />
+            <End Role="DiscountPrice" EntitySet="DiscountPrices" />
+          </AssociationSet>
           <AssociationSet Name="FK_District_Province" Association="Self.FK_District_Province">
             <End Role="Province" EntitySet="Provinces" />
             <End Role="District" EntitySet="Districts" />
@@ -2712,9 +3175,9 @@
             <End Role="District" EntitySet="Districts" />
             <End Role="Ward" EntitySet="Wards" />
           </AssociationSet>
-          <AssociationSet Name="fk_Poster_Guarantee" Association="Self.fk_Poster_Guarantee">
+          <AssociationSet Name="fk_Guarantee_Merchant" Association="Self.fk_Guarantee_Merchant">
+            <End Role="Merchant" EntitySet="Merchants" />
             <End Role="Guarantee" EntitySet="Guarantees" />
-            <End Role="Poster" EntitySet="Posters" />
           </AssociationSet>
           <AssociationSet Name="fk_HistoryLocked_Merchant" Association="Self.fk_HistoryLocked_Merchant">
             <End Role="Merchant" EntitySet="Merchants" />
@@ -2727,6 +3190,14 @@
           <AssociationSet Name="fk_HistoryUseCoin_Poster" Association="Self.fk_HistoryUseCoin_Poster">
             <End Role="Poster" EntitySet="Posters" />
             <End Role="HistoryUseCoin" EntitySet="HistoryUseCoins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Image_Poster" Association="Self.FK_Image_Poster">
+            <End Role="Poster" EntitySet="Posters" />
+            <End Role="Image" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LaptopConfig_Poster" Association="Self.FK_LaptopConfig_Poster">
+            <End Role="Poster" EntitySet="Posters" />
+            <End Role="LaptopConfig" EntitySet="LaptopConfigs" />
           </AssociationSet>
           <AssociationSet Name="fk_Merchant_Province" Association="Self.fk_Merchant_Province">
             <End Role="Province" EntitySet="Provinces" />
@@ -2796,6 +3267,18 @@
             <End Role="Poster" EntitySet="Posters" />
             <End Role="OrderDetail" EntitySet="OrderDetails" />
           </AssociationSet>
+          <AssociationSet Name="fk_OrderDetail_Price" Association="Self.fk_OrderDetail_Price">
+            <End Role="Price" EntitySet="Prices" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhoneConfig_Poster" Association="Self.FK_PhoneConfig_Poster">
+            <End Role="Poster" EntitySet="Posters" />
+            <End Role="PhoneConfig" EntitySet="PhoneConfigs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Poster_Price" Association="Self.fk_Poster_Price">
+            <End Role="Price" EntitySet="Prices" />
+            <End Role="Poster" EntitySet="Posters" />
+          </AssociationSet>
           <AssociationSet Name="fk_PosterCategory_Poster" Association="Self.fk_PosterCategory_Poster">
             <End Role="Poster" EntitySet="Posters" />
             <End Role="PosterCategory" EntitySet="PosterCategories" />
@@ -2808,13 +3291,29 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <AssociationSet Name="fk_HistoryUseCoin_Merchant" Association="EcommerceC2CA08Model.fk_HistoryUseCoin_Merchant">
+            <End Role="Merchant" EntitySet="Merchants" />
+            <End Role="HistoryUseCoin" EntitySet="HistoryUseCoins" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="fk_HistoryUseCoin_Merchant">
+          <End Type="EcommerceC2CA08Model.Merchant" Role="Merchant" Multiplicity="1" />
+          <End Type="EcommerceC2CA08Model.HistoryUseCoin" Role="HistoryUseCoin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="HistoryUseCoin">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EcommerceC2CA08ModelStoreContainer" CdmEntityContainer="EcommerceC2CA08">
+        <EntityContainerMapping StorageEntityContainer="EcommerceC2CA08ModelStoreContainer" CdmEntityContainer="EcommerceC2CA08Entities">
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="EcommerceC2CA08Model.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -2822,6 +3321,17 @@
                 <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
                 <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accessories">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.Accessory">
+              <MappingFragment StoreEntitySet="Accessories">
+                <ScalarProperty Name="PosterID" ColumnName="PosterID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Device" ColumnName="Device" />
+                <ScalarProperty Name="Material" ColumnName="Material" />
+                <ScalarProperty Name="Guarantee" ColumnName="Guarantee" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2970,8 +3480,9 @@
                 <ScalarProperty Name="DiscountPriceID" ColumnName="DiscountPriceID" />
                 <ScalarProperty Name="DiscountID" ColumnName="DiscountID" />
                 <ScalarProperty Name="PosterID" ColumnName="PosterID" />
+                <ScalarProperty Name="PriceID" ColumnName="PriceID" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="DiscountPrice1" ColumnName="DiscountPrice" />
+                <ScalarProperty Name="DisPrice" ColumnName="DisPrice" />
                 <ScalarProperty Name="DiscountPercent" ColumnName="DiscountPercent" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2994,6 +3505,7 @@
             <EntityTypeMapping TypeName="EcommerceC2CA08Model.Guarantee">
               <MappingFragment StoreEntitySet="Guarantee">
                 <ScalarProperty Name="GuaranteeID" ColumnName="GuaranteeID" />
+                <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Keyword" ColumnName="Keyword" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -3015,12 +3527,47 @@
           <EntitySetMapping Name="HistoryUseCoins">
             <EntityTypeMapping TypeName="EcommerceC2CA08Model.HistoryUseCoin">
               <MappingFragment StoreEntitySet="HistoryUseCoin">
+                <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
                 <ScalarProperty Name="PosterID" ColumnName="PosterID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Coin" ColumnName="Coin" />
                 <ScalarProperty Name="Created" ColumnName="Created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.Image">
+              <MappingFragment StoreEntitySet="Image">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="PosterID" ColumnName="PosterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LaptopConfigs">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.LaptopConfig">
+              <MappingFragment StoreEntitySet="LaptopConfig">
+                <ScalarProperty Name="PosterID" ColumnName="PosterID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Screen" ColumnName="Screen" />
+                <ScalarProperty Name="Camera" ColumnName="Camera" />
+                <ScalarProperty Name="RAM" ColumnName="RAM" />
+                <ScalarProperty Name="Disk" ColumnName="Disk" />
+                <ScalarProperty Name="CPU" ColumnName="CPU" />
+                <ScalarProperty Name="GPU" ColumnName="GPU" />
+                <ScalarProperty Name="Sound" ColumnName="Sound" />
+                <ScalarProperty Name="ODD" ColumnName="ODD" />
+                <ScalarProperty Name="USB" ColumnName="USB" />
+                <ScalarProperty Name="LAN_Wifi" ColumnName="LAN/Wifi" />
+                <ScalarProperty Name="OS" ColumnName="OS" />
+                <ScalarProperty Name="Battery" ColumnName="Battery" />
+                <ScalarProperty Name="Size__H_x_W_x_D_" ColumnName="Size (H x W x D)" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Material" ColumnName="Material" />
+                <ScalarProperty Name="Guarantee" ColumnName="Guarantee" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3138,10 +3685,33 @@
               <MappingFragment StoreEntitySet="OrderDetail">
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="PosterID" ColumnName="PosterID" />
+                <ScalarProperty Name="PriceID" ColumnName="PriceID" />
                 <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhoneConfigs">
+            <EntityTypeMapping TypeName="EcommerceC2CA08Model.PhoneConfig">
+              <MappingFragment StoreEntitySet="PhoneConfig">
+                <ScalarProperty Name="PosterID" ColumnName="PosterID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Screen" ColumnName="Screen" />
+                <ScalarProperty Name="Camera" ColumnName="Camera" />
+                <ScalarProperty Name="RAM" ColumnName="RAM" />
+                <ScalarProperty Name="ROM" ColumnName="ROM" />
+                <ScalarProperty Name="OS" ColumnName="OS" />
+                <ScalarProperty Name="Chipset" ColumnName="Chipset" />
+                <ScalarProperty Name="CPU" ColumnName="CPU" />
+                <ScalarProperty Name="GPU" ColumnName="GPU" />
+                <ScalarProperty Name="Size__H_x_W_x_D_" ColumnName="Size (H x W x D)" />
+                <ScalarProperty Name="Battery" ColumnName="Battery" />
+                <ScalarProperty Name="SIM" ColumnName="SIM" />
+                <ScalarProperty Name="Wifi" ColumnName="Wifi" />
+                <ScalarProperty Name="Bluetooth" ColumnName="Bluetooth" />
+                <ScalarProperty Name="Guarantee" ColumnName="Guarantee" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3151,7 +3721,7 @@
                 <ScalarProperty Name="PosterID" ColumnName="PosterID" />
                 <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-                <ScalarProperty Name="GuaranteeID" ColumnName="GuaranteeID" />
+                <ScalarProperty Name="PriceID" ColumnName="PriceID" />
                 <ScalarProperty Name="DiscountID" ColumnName="DiscountID" />
                 <ScalarProperty Name="StatusID" ColumnName="StatusID" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
@@ -3160,14 +3730,6 @@
                 <ScalarProperty Name="Created" ColumnName="Created" />
                 <ScalarProperty Name="LastChanged" ColumnName="LastChanged" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="SmallImage" ColumnName="SmallImage" />
-                <ScalarProperty Name="MediumImage" ColumnName="MediumImage" />
-                <ScalarProperty Name="LargeImage" ColumnName="LargeImage" />
-                <ScalarProperty Name="Extra1" ColumnName="Extra1" />
-                <ScalarProperty Name="Extra2" ColumnName="Extra2" />
-                <ScalarProperty Name="Extra3" ColumnName="Extra3" />
-                <ScalarProperty Name="Extra4" ColumnName="Extra4" />
-                <ScalarProperty Name="Extra5" ColumnName="Extra5" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3185,7 +3747,7 @@
               <MappingFragment StoreEntitySet="Price">
                 <ScalarProperty Name="PriceID" ColumnName="PriceID" />
                 <ScalarProperty Name="PosterID" ColumnName="PosterID" />
-                <ScalarProperty Name="Price1" ColumnName="Price" />
+                <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
                 <ScalarProperty Name="Created" ColumnName="Created" />
               </MappingFragment>
             </EntityTypeMapping>

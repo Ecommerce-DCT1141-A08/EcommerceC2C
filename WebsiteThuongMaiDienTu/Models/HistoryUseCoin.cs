@@ -20,8 +20,10 @@ namespace WebsiteThuongMaiDienTu.Models
         public string Description { get; set; }
         public Nullable<int> Coin { get; set; }
         public Nullable<System.DateTime> Created { get; set; }
+        public int MerchantID { get; set; }
     
         public virtual MerchantPayment MerchantPayment { get; set; }
         public virtual Poster Poster { get; set; }
+        public virtual Merchant Merchant { get; set; }
     }
 }

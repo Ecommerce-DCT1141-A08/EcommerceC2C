@@ -17,7 +17,7 @@ namespace WebsiteThuongMaiDienTu.Areas.Webmaster.Controllers
     [Authorize]
     public class HomeController : BaseController
     {
-        EcommerceC2CA08 db = new EcommerceC2CA08();
+        EcommerceC2CA08Entities db = new EcommerceC2CA08Entities();
         // GET: Webmaster/Home
         [Authorize]
         public ActionResult Index()

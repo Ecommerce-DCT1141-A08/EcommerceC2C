@@ -17,16 +17,25 @@ namespace WebsiteThuongMaiDienTu.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Price()
         {
+            this.DiscountPrices = new HashSet<DiscountPrice>();
             this.MerchantOrderDetails = new HashSet<MerchantOrderDetail>();
+            this.OrderDetails = new HashSet<OrderDetail>();
+            this.Posters = new HashSet<Poster>();
         }
     
         public int PriceID { get; set; }
-        public int PosterID { get; set; }
-        public Nullable<decimal> Price1 { get; set; }
+        public Nullable<int> PosterID { get; set; }
+        public Nullable<decimal> SellingPrice { get; set; }
         public Nullable<System.DateTime> Created { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DiscountPrice> DiscountPrices { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MerchantOrderDetail> MerchantOrderDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Poster> Posters { get; set; }
         public virtual Poster Poster { get; set; }
     }
 }

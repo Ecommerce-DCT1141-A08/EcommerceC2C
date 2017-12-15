@@ -20,6 +20,7 @@ namespace WebsiteThuongMaiDienTu.Models
             this.DiscountGifts = new HashSet<DiscountGift>();
             this.DiscountPrices = new HashSet<DiscountPrice>();
             this.HistoryUseCoins = new HashSet<HistoryUseCoin>();
+            this.Images = new HashSet<Image>();
             this.MerchantOrderDetails = new HashSet<MerchantOrderDetail>();
             this.OrderDetails = new HashSet<OrderDetail>();
             this.PosterCategories = new HashSet<PosterCategory>();
@@ -29,8 +30,8 @@ namespace WebsiteThuongMaiDienTu.Models
         public int PosterID { get; set; }
         public int MerchantID { get; set; }
         public int CategoryID { get; set; }
-        public int GuaranteeID { get; set; }
-        public int DiscountID { get; set; }
+        public int PriceID { get; set; }
+        public Nullable<int> DiscountID { get; set; }
         public bool StatusID { get; set; }
         public bool Type { get; set; }
         public string Keyword { get; set; }
@@ -38,29 +39,26 @@ namespace WebsiteThuongMaiDienTu.Models
         public Nullable<System.DateTime> Created { get; set; }
         public Nullable<System.DateTime> LastChanged { get; set; }
         public Nullable<int> Quantity { get; set; }
-        public string SmallImage { get; set; }
-        public string MediumImage { get; set; }
-        public string LargeImage { get; set; }
-        public string Extra1 { get; set; }
-        public string Extra2 { get; set; }
-        public string Extra3 { get; set; }
-        public string Extra4 { get; set; }
-        public string Extra5 { get; set; }
     
+        public virtual Accessory Accessory { get; set; }
         public virtual Category Category { get; set; }
         public virtual Discount Discount { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DiscountGift> DiscountGifts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DiscountPrice> DiscountPrices { get; set; }
-        public virtual Guarantee Guarantee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistoryUseCoin> HistoryUseCoins { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Image> Images { get; set; }
+        public virtual LaptopConfig LaptopConfig { get; set; }
         public virtual Merchant Merchant { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MerchantOrderDetail> MerchantOrderDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual PhoneConfig PhoneConfig { get; set; }
+        public virtual Price Price { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PosterCategory> PosterCategories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

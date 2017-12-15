@@ -1,0 +1,452 @@
+﻿@model WebsiteThuongMaiDienTu.Areas.Merchant.Models.UploadPoster
+@{
+    ViewBag.Title = "CreatePoster";
+    Layout = "~/Areas/Merchant/Views/Shared/_Merchant.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Đăng tin sản phẩm
+        <small>Create poster</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home")"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Poster</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="box">
+        <div class="box-header with-border">
+            <h2 class="box-title">Tạo tin đăng</h2>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        @using (Html.BeginForm("CreatePoster", "Poster", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form"}))
+        {
+            <div class="box-body">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="external-event bg-light-blue disabled" style="position: relative;">
+                    <i class="fa fa-info-circle margin-r-5"></i> Thông tin cơ bản
+                </div><br />
+                    <div class="form-group">
+                        <label for="inputTitle" class="col-sm-2 control-label">Tiêu đề tin bán<label style="color:red">*</label></label>
+
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(m => m.Keyword, new { @class = "form-control", @placeholder = "Title", @id = "inputTitle" })
+                            @Html.ValidationMessageFor(m => m.Keyword, "", new { @class = "text-red" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Loại tin bán<label style="color:red">*</label></label>  
+                        <div class="col-sm-9">
+                            <label class="radio-inline">
+                                <input type="radio" name="Type" id="optionGeneral" value="false" checked>
+                                Tin thường
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="Type" id="optionVip" value="true">
+                                Tin Vip
+                            </label>
+                        </div>
+                    </div>
+                <hr />
+                <div class="external-event bg-light-blue disabled" style="position: relative;">
+                    <i class="fa fa-list margin-r-5"></i> Thông tin danh mục
+                </div><br />
+                    <div class="form-group">
+                        <label for="inputCategory" class="col-sm-2 control-label">Danh mục sản phẩm<label style="color:red">*</label></label>
+
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(m => m.CategoryID, ViewBag.Category as SelectList, htmlAttributes: new { @class = "form-control select2", @id = "category", @style = "border:none", @onchange = "onCategoryChange()" })
+                        </div>
+                    </div>
+                    <div class="form-group" id="ipConfig">
+                        <label for="inputConfig" class="col-sm-2 control-label">Thông số cấu hình</label>
+
+                        <div class="col-sm-9">
+                            <div class="tab-content form-control-static" id="inputConfig">
+                                <div class="tab-pane active" id="PhoneConfig">
+                                    <div class="box-body no-padding">
+                                        <table id="phonetable" class="table table-striped">
+                                            <tr>
+                                                <th><input type="text" class="form-control" value="Màn hình:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.PhoneConfig.Screen, new { @class = "form-control", @placeholder = "", @id = "p_screen" })
+                                                </td>
+                                                <th><input type="text" class="form-control" value="Camera:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.PhoneConfig.Camera, new { @class = "form-control", @placeholder = "", @id = "p_camera" })
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th><input type="text" class="form-control" value="RAM:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.PhoneConfig.RAM, new { @class = "form-control", @placeholder = "", @id = "p_ram" })
+                                                </td>
+                                                <th><input type="text" class="form-control" value="ROM:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.PhoneConfig.ROM, new { @class = "form-control", @placeholder = "", @id = "p_rom" })
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th><input type="text" class="form-control" value="Hệ điều hành:" style="border:none;width:120px" /></th>
+                                                <td>@**@
+                                                    @Html.TextBoxFor(m => m.PhoneConfig.OS, new { @class = "form-control", @placeholder = "", @id = "p_osystem" })
+                                                </td>
+                                                <th><input type="text" class="form-control" value="Chipset:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.PhoneConfig.Chipset, new { @class = "form-control", @placeholder = "", @id = "p_chipset" })
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th><input type="text" class="form-control" value="CPU:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.PhoneConfig.CPU, new { @class = "form-control", @placeholder = "", @id = "p_cpu" })
+                                                </td>
+                                                <th><input type="text" class="form-control" value="GPU:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.PhoneConfig.GPU, new { @class = "form-control", @placeholder = "", @id = "p_gpu" })
+                                                </td>
+                                            <tr>
+                                                <th><input type="text" class="form-control" value="Kích thước:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.PhoneConfig.Size__H_x_W_x_D_, new { @class = "form-control", @placeholder = "(H * W * D)", @id = "p_size" })
+                                                </td>
+                                                <th><input type="text" class="form-control" value="Pin:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.PhoneConfig.Battery, new { @class = "form-control", @placeholder = "", @id = "p_battery" })
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th><input type="text" class="form-control" value="Kết nối Wifi:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.PhoneConfig.Wifi, new { @class = "form-control", @placeholder = "", @id = "p_wifi" })
+                                                </td>
+                                                <th><input type="text" class="form-control" value="Bluetooth:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.PhoneConfig.Bluetooth, new { @class = "form-control", @placeholder = "", @id = "p_bluetooth" })
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th><input type="text" class="form-control" value="Hỗ trợ sim:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.PhoneConfig.SIM, new { @class = "form-control", @placeholder = "", @id = "p_sim" })
+                                                </td>
+                                                <th><input type="text" class="form-control" value="Bảo hành:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.PhoneConfig.Guarantee, new { @class = "form-control", @placeholder = "", @id = "p_guarantee" })
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                    <div class="box-group pull-right">
+                                        <button type="button" class="btn btn-danger" id="btnResetPhone"><i class="fa fa-recycle"></i> Reset all</button>
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+                                <div class="tab-pane" id="LaptopConfig">
+                                    <div class="box-body no-padding">
+                                        <table id="laptoptable" class="table table-striped">
+                                            <tr>
+                                                <th><input type="text" class="form-control" value="Màn hình:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.LaptopConfig.Screen, new { @class = "form-control", @placeholder = "", @id = "lt_screen" })
+                                                </td>
+                                                <th><input type="text" class="form-control" value="Camera:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.LaptopConfig.Camera, new { @class = "form-control", @placeholder = "", @id = "lt_camera" })
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th><input type="text" class="form-control" value="RAM:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.LaptopConfig.RAM, new { @class = "form-control", @placeholder = "", @id = "lt_ram" })
+                                                </td>
+                                                <th><input type="text" class="form-control" value="Ổ cứng:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.LaptopConfig.Disk, new { @class = "form-control", @placeholder = "", @id = "lt_disk" })
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th><input type="text" class="form-control" value="CPU:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.LaptopConfig.CPU, new { @class = "form-control", @placeholder = "", @id = "lt_cpu" })
+                                                </td>
+                                                <th><input type="text" class="form-control" value="GPU:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.LaptopConfig.GPU, new { @class = "form-control", @placeholder = "", @id = "lt_gpu" })
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th><input type="text" class="form-control" value="Hệ điều hành:" style="border:none;width:120px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.LaptopConfig.OS, new { @class = "form-control", @placeholder = "", @id = "lt_osystem" })
+                                                </td>
+                                                <th><input type="text" class="form-control" value="Đĩa quang:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.LaptopConfig.ODD, new { @class = "form-control", @placeholder = "", @id = "lt_odd" })
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th><input type="text" class="form-control" value="Âm thanh:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.LaptopConfig.Sound, new { @class = "form-control", @placeholder = "", @id = "lt_sound" })
+                                                </td>
+                                                <th><input type="text" class="form-control" value="Pin:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.LaptopConfig.Battery, new { @class = "form-control", @placeholder = "", @id = "lt_battery" })
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th><input type="text" class="form-control" value="Kết nối USB:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.LaptopConfig.USB, new { @class = "form-control", @placeholder = "", @id = "lt_usb" })
+                                                </td>
+                                                <th><input type="text" class="form-control" value="Mạng LAN/Wifi:" style="border:none;width:120px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.LaptopConfig.LAN_Wifi, new { @class = "form-control", @placeholder = "", @id = "lt_internet" })
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th><input type="text" class="form-control" value="Kích thước:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.LaptopConfig.Size__H_x_W_x_D_, new { @class = "form-control", @placeholder = "(H * W * D)", @id = "lt_size" })
+                                                </td>
+                                                <th><input type="text" class="form-control" value="Khối lượng:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.LaptopConfig.Weight, new { @class = "form-control", @placeholder = "", @id = "lt_weight" })
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th><input type="text" class="form-control" value="Chất liệu:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.LaptopConfig.Material, new { @class = "form-control", @placeholder = "", @id = "lt_material" })
+                                                </td>
+                                                <th><input type="text" class="form-control" value="Bảo hành:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.LaptopConfig.Guarantee, new { @class = "form-control", @placeholder = "", @id = "lt_guarantee" })
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <!-- /.box-body -->
+                                    <div class="box-group pull-right">
+                                        <button type="button" class="btn btn-danger" id="btnResetLaptop"><i class="fa fa-recycle"></i> Reset all</button>
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+                                <!-- /.tab-pane -->
+                                <div class="tab-pane" id="AccessoryConfig">
+                                    <div class="box-body no-padding col-sm-8">
+                                        <table id="accesstable" class="table table-striped">
+                                            <tr>
+                                                <th><input type="text" class="form-control" value="Thiết bị tương thích:" style="border:none;width:160px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.Accessory.Device, new { @class = "form-control", @placeholder = "", @id = "ac_device" })
+                                                </td>
+                                                <th></th>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <th><input type="text" class="form-control" value="Chất liệu:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.Accessory.Material, new { @class = "form-control", @placeholder = "", @id = "ac_material" })
+                                                </td>
+                                                <th></th>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <th><input type="text" class="form-control" value="Bảo hành:" style="border:none;width:100px" /></th>
+                                                <td>
+                                                    @Html.TextBoxFor(m => m.Accessory.Guarantee, new { @class = "form-control", @placeholder = "", @id = "ac_guarantee" })
+                                                </td>
+                                                <th></th>
+                                                <td></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="box-group pull-right">
+                                        <button type="button" class="btn btn-danger" id="btnResetAccess"><i class="fa fa-recycle"></i> Reset all</button>
+                                    </div>
+                                </div>
+                                <!-- /.tab-content -->
+                            </div>
+                        </div>
+                    </div>
+                <hr />
+                <div class="external-event bg-light-blue disabled" style="position: relative;">
+                    <i class="fa fa-money margin-r-5"></i> Thông tin giá và số lượng
+                </div><br />
+                    <div class="form-group">
+                        <label for="inputPrice" class="col-sm-2 control-label">Giá bán<label style="color:red">*</label></label>
+
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(m => m.SellingPrice, new { @class = "form-control", @placeholder = "Price", @id = "inputPrice" })
+                            @Html.ValidationMessageFor(m => m.SellingPrice, "", new { @class = "text-red" })
+                        </div>
+                        <label for="inputQuantity" class="col-sm-1 control-label">Số lượng<label style="color:red">*</label></label>
+
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control", @placeholder = "Quantity", @id = "inputQuantity" })
+                            @Html.ValidationMessageFor(m => m.Quantity, "", new { @class = "text-red" })
+                        </div>
+                    </div>
+                <hr />
+                <div class="external-event bg-light-blue disabled" style="position: relative;">
+                    <i class="fa fa-file-text-o margin-r-5"></i> Thông tin chi tiết
+                </div><br />
+                    <div class="form-group">
+                        <label for="inputDescription" class="col-sm-2 control-label">Mô tả chi tiết sản phẩm<label style="color:red">*</label></label>
+
+                        <div class="col-sm-9">
+                            @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @placeholder = "Description", @id = "inputDescription" })
+                            @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-red" })
+                        </div>
+                    </div>
+                <hr />
+                <div class="external-event bg-light-blue" style="position: relative;">
+                    <i class="fa fa-file-image-o margin-r-5"></i> Hình ảnh sản phẩm
+                </div><br />
+                    <div class="form-group">
+                        <div class="col-sm-2">
+                            @*<img id="user_img" height="150" width="150" style="border:none" />*@
+                            <input class="btn btn-box-tool" multiple type="file" accept="image/*" title="search image" id="file" name="ListImages" @*onchange="show(this)"*@ />
+                        </div>
+                        <div class="col-sm-10">
+                            <div id="selectedFiles"></div>
+                        </div>
+                    </div>
+                <br />
+                <div class="alert alert-info alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h4><i class="icon fa fa-info"></i> Chú ý!</h4>
+                    Kiểm tra mọi thông tin trước khi đăng tin vì sau khi đăng chỉ được sửa Giá bán và Số lượng !
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <div class="box-group pull-right">
+                    <button onclick="" type="button" class="btn btn-danger" id="btnCancle"><i class="fa fa-remove"></i> Hủy</button>
+                    <button type="submit" class="btn btn-success" id="btnSubmit"><i class="fa fa-arrow-up"></i> Đăng bán</button>
+                </div>
+            </div>    
+            <!-- /.box-footer-->
+        }
+    </div>
+    <!-- /.box -->
+</section>
+<!-- /.content -->
+<style>
+    div#selectedFiles{
+        float: left;
+    }
+    div#selectedFiles img {
+        max-width: 150px;
+        max-height: 150px;
+        float: left;
+        display:inline;
+        padding: 5px;
+    }
+
+</style>
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btnResetPhone').click(function () {
+                $('#phonetable td input:text').each(function () {
+                    $(this).val('');
+                });
+            });
+            $('#btnResetLaptop').click(function () {
+                $('#laptoptable td input:text').each(function () {
+                    $(this).val('');
+                });
+            });
+            $('#btnResetAccess').click(function () {
+                $('#accesstable td input:text').each(function () {
+                    $(this).val('');
+                });
+            });
+        });
+        var selDiv = "";
+
+        document.addEventListener("DOMContentLoaded", init, false);
+
+        function init() {
+            document.querySelector('#file').addEventListener('change', handleFileSelect, false);
+            selDiv = document.querySelector("#selectedFiles");
+        }
+
+        function handleFileSelect(e) {
+
+            if (!e.target.files || !window.FileReader) return;
+
+            selDiv.innerHTML = "";
+
+            var files = e.target.files;
+            var filesArr = Array.prototype.slice.call(files);
+            filesArr.forEach(function (f) {
+                if (!f.type.match("image.*")) {
+                    return;
+                }
+
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var html = "<img src=\"" + e.target.result + "\">";
+                    selDiv.innerHTML += html;
+                }
+                reader.readAsDataURL(f);
+            });
+
+        }
+        //function show(input) {
+        //    if (input.files && input.files[0]) {
+        //        var filerdr = new FileReader();
+        //        filerdr.onload = function (e) {
+        //            $('#user_img').attr('src', e.target.result);
+        //        }
+        //        filerdr.readAsDataURL(input.files[0]);
+        //    }
+        //}
+        function onCategoryChange() {
+            var category = $('#category').val();
+            if (category == '1') {
+                $('#PhoneConfig').addClass('active');
+                $('#LaptopConfig').removeClass('active');
+                $('#AccessoryConfig').removeClass('active');
+                $('.table td input:text').each(function () {
+                    $(this).val('');
+                });
+            }
+            else if (category == '2') {
+                $('#LaptopConfig').addClass('active');
+                $('#PhoneConfig').removeClass('active');
+                $('#AccessoryConfig').removeClass('active');
+                $('.table td input:text').each(function () {
+                    $(this).val('');
+                });
+            }
+            else if (category == '3') {
+                $('#LaptopConfig').removeClass('active');
+                $('#PhoneConfig').removeClass('active');
+                $('#AccessoryConfig').addClass('active');
+                $('.table td input:text').each(function () {
+                    $(this).val('');
+                });
+            }
+        }
+    </script>
+}
+
+

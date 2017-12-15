@@ -16,6 +16,7 @@ namespace WebsiteThuongMaiDienTu.Models
     {
         public int OrderID { get; set; }
         public int PosterID { get; set; }
+        public int PriceID { get; set; }
         public int MerchantID { get; set; }
         public Nullable<int> Quantity { get; set; }
         public Nullable<decimal> Price { get; set; }
@@ -24,5 +25,6 @@ namespace WebsiteThuongMaiDienTu.Models
         public virtual Merchant Merchant { get; set; }
         public virtual OrderA OrderA { get; set; }
         public virtual Poster Poster { get; set; }
+        public virtual Price Price1 { get; set; }
     }
 }

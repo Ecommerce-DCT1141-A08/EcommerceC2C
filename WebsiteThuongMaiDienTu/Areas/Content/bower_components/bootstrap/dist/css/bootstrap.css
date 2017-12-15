@@ -6400,21 +6400,21 @@ button.close {
 }
 .carousel-indicators li {
   display: inline-block;
-  width: 10px;
-  height: 10px;
+  width: 6px;
+  height: 6px;
   margin: 1px;
   text-indent: -999px;
   cursor: pointer;
   background-color: #000 \9;
   background-color: rgba(0, 0, 0, 0);
-  border: 1px solid #fff;
-  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, .15);
+  border-radius: 6px;
 }
 .carousel-indicators .active {
-  width: 12px;
-  height: 12px;
+  width: 8px;
+  height: 8px;
   margin: 0;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, .15);
 }
 .carousel-caption {
   position: absolute;
@@ -6455,7 +6455,7 @@ button.close {
     padding-bottom: 30px;
   }
   .carousel-indicators {
-    bottom: 20px;
+    bottom: 5px;
   }
 }
 .clearfix:before,

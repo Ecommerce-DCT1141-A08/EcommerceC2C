@@ -225,8 +225,8 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-file-o"></i> Đăng tin</a></li>
-                            <li><a href="#"><i class="fa fa-list-alt"></i> Danh sách tin đăng</a></li>
+                            <li><a href="@Url.Action("CreatePoster","Poster")"><i class="fa fa-file-o"></i> Đăng tin</a></li>
+                            <li><a href="@Url.Action("ListPoster","Poster")"><i class="fa fa-list-alt"></i> Danh sách tin đăng</a></li>
                         </ul>
                     </li>
                     <!-- /.Menu Tin đăng -->
@@ -500,6 +500,7 @@
     <script src="~/Areas/Content/bower_components/fastclick/lib/fastclick.js"></script>
     <script src="~/Areas/Content/bower_components/select2/dist/js/select2.full.min.js"></script>
     <script src="~/Areas/Content/plugins/iCheck/icheck.min.js"></script>
+    <script src="~/Areas/Content/custome-js/bootbox4.2.0.js"></script>
     <script src="~/Areas/Content/dist/js/adminlte.min.js"></script>
     <script src="~/Areas/Content/dist/js/demo.js"></script>
     @RenderSection("Scripts", required: false)
@@ -508,7 +509,33 @@
             $('#calloutbox').removeAttr('hidden');
             $('#calloutbox').delay(3000).slideUp(500);
             $('.sidebar-menu').tree()
-            
+            $('.btn-link').click(function (e) {
+
+                /*
+                * hủy liên kết
+                *
+                * việc này quan trọng
+                * nếu không hủy liên kết, modal sẽ không được load đúng cách
+                * vì action sẽ trả về 1 trang html trống với partialview
+                *
+                * cách tương tự return false; cách này thực hiện ở cuối method
+                */
+                e.preventDefault();
+
+                var $modal = $('#myModal');
+                var $modalDialog = $('.modal-dialog');
+                var href = $(this).prop('href');
+
+                // không cho phép tắt modal khi click bên ngoài modal
+                var option = { backdrop: 'static' };
+
+                // kiểm tra (logic, điều kiện...)
+
+                // load modal
+                $modalDialog.load(href, function () {
+                    $modal.modal(option, 'show');
+                });
+            });
         })
     </script>
 </body>

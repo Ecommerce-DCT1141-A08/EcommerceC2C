@@ -13,7 +13,7 @@ namespace WebsiteThuongMaiDienTu.Areas.Merchant.Controllers
 {
     public class HomeController : BaseController
     {
-        EcommerceC2CA08 db = new EcommerceC2CA08();
+        EcommerceC2CA08Entities db = new EcommerceC2CA08Entities();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         public ApplicationSignInManager SignInManager
@@ -69,9 +69,15 @@ namespace WebsiteThuongMaiDienTu.Areas.Merchant.Controllers
         //[CustomAuthorize(Roles = "Merchant")]
         public ActionResult Logout()
         {
+            if (User.IsInRole("Merchant"))
+            {
+                AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                return RedirectToAction("Index", "Home", new { area = "" });
+            }
+            else
+                return RedirectToAction("Shop", "Home", new { area = "" });
             //return RedirectToAction("LogOff", "Account", new { area = "" });
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home", new { area = "" });
+            
         }
         private IAuthenticationManager AuthenticationManager
         {

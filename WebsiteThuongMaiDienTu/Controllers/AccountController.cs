@@ -18,7 +18,7 @@ namespace WebsiteThuongMaiDienTu.Controllers
     public class AccountController : Controller
     {
         ApplicationDbContext context = new ApplicationDbContext();
-        EcommerceC2CA08 db = new EcommerceC2CA08();
+        EcommerceC2CA08Entities db = new EcommerceC2CA08Entities();
 
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

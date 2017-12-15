@@ -20,6 +20,7 @@ namespace WebsiteThuongMaiDienTu.Models
             this.ActivityMerchants = new HashSet<ActivityMerchant>();
             this.Deliveries = new HashSet<Delivery>();
             this.Discounts = new HashSet<Discount>();
+            this.Guarantees = new HashSet<Guarantee>();
             this.HistoryLockeds = new HashSet<HistoryLocked>();
             this.MerchantOrders = new HashSet<MerchantOrder>();
             this.MerchantPayments = new HashSet<MerchantPayment>();
@@ -28,6 +29,7 @@ namespace WebsiteThuongMaiDienTu.Models
             this.OrderDetails = new HashSet<OrderDetail>();
             this.Posters = new HashSet<Poster>();
             this.Ratings = new HashSet<Rating>();
+            this.HistoryUseCoins = new HashSet<HistoryUseCoin>();
         }
     
         public int MerchantID { get; set; }
@@ -53,6 +55,8 @@ namespace WebsiteThuongMaiDienTu.Models
         public virtual ICollection<Discount> Discounts { get; set; }
         public virtual District District { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Guarantee> Guarantees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistoryLocked> HistoryLockeds { get; set; }
         public virtual Province Province { get; set; }
         public virtual Ward Ward { get; set; }
@@ -70,5 +74,7 @@ namespace WebsiteThuongMaiDienTu.Models
         public virtual ICollection<Poster> Posters { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rating> Ratings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HistoryUseCoin> HistoryUseCoins { get; set; }
     }
 }

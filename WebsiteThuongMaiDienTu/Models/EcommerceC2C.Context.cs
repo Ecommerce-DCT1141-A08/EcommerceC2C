@@ -13,10 +13,10 @@ namespace WebsiteThuongMaiDienTu.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EcommerceC2CA08 : DbContext
+    public partial class EcommerceC2CA08Entities : DbContext
     {
-        public EcommerceC2CA08()
-            : base("name=EcommerceC2CA08")
+        public EcommerceC2CA08Entities()
+            : base("name=EcommerceC2CA08Entities")
         {
         }
     
@@ -26,6 +26,7 @@ namespace WebsiteThuongMaiDienTu.Models
         }
     
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<Accessory> Accessories { get; set; }
         public virtual DbSet<ActivityMerchant> ActivityMerchants { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
@@ -43,6 +44,8 @@ namespace WebsiteThuongMaiDienTu.Models
         public virtual DbSet<Guarantee> Guarantees { get; set; }
         public virtual DbSet<HistoryLocked> HistoryLockeds { get; set; }
         public virtual DbSet<HistoryUseCoin> HistoryUseCoins { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<LaptopConfig> LaptopConfigs { get; set; }
         public virtual DbSet<Merchant> Merchants { get; set; }
         public virtual DbSet<MerchantOrder> MerchantOrders { get; set; }
         public virtual DbSet<MerchantOrderDetail> MerchantOrderDetails { get; set; }
@@ -52,6 +55,7 @@ namespace WebsiteThuongMaiDienTu.Models
         public virtual DbSet<OrderA> OrderAs { get; set; }
         public virtual DbSet<OrderDelivery> OrderDeliveries { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+        public virtual DbSet<PhoneConfig> PhoneConfigs { get; set; }
         public virtual DbSet<Poster> Posters { get; set; }
         public virtual DbSet<PosterCategory> PosterCategories { get; set; }
         public virtual DbSet<Price> Prices { get; set; }

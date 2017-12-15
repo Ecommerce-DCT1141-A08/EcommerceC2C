@@ -4,46 +4,54 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ccc39e82297449389425a3523b2b6a82" Name="Diagram1">
+      <Diagram DiagramId="32b472a453b0456c8b93bbdeaa40a8dc" Name="Diagram1">
         <EntityTypeShape EntityType="EcommerceC2CA08Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.ActivityMerchant" Width="1.5" PointX="12.75" PointY="36.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.AspNetRole" Width="1.5" PointX="6" PointY="33.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.AspNetUserClaim" Width="1.5" PointX="10.5" PointY="32.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.AspNetUserLogin" Width="1.5" PointX="10.5" PointY="34.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.AspNetUser" Width="1.5" PointX="8.25" PointY="32.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.Category" Width="1.5" PointX="12.75" PointY="29.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.CoinPack" Width="1.5" PointX="15.5" PointY="32.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.Customer" Width="1.5" PointX="7.5" PointY="39.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.Delivery" Width="1.5" PointX="12.75" PointY="39.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.DeliveryLocation" Width="1.5" PointX="5.25" PointY="37.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.Discount" Width="1.5" PointX="12.75" PointY="43" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.DiscountGift" Width="1.5" PointX="15" PointY="43.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.DiscountPrice" Width="1.5" PointX="18" PointY="43.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.District" Width="1.5" PointX="3" PointY="36.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.Guarantee" Width="1.5" PointX="12.75" PointY="50.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.HistoryLocked" Width="1.5" PointX="17.75" PointY="35.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.HistoryUseCoin" Width="1.5" PointX="20" PointY="35" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.Merchant" Width="1.5" PointX="10.5" PointY="38.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.MerchantOrder" Width="1.5" PointX="20" PointY="38.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.MerchantOrderDetail" Width="1.5" PointX="20.5" PointY="43.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.MerchantPayment" Width="1.5" PointX="17.75" PointY="38.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.NoticeCustomer" Width="1.5" PointX="12.75" PointY="47.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.NoticeMerchant" Width="1.5" PointX="12.75" PointY="33.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.OrderA" Width="1.5" PointX="9.75" PointY="46" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.OrderDelivery" Width="1.5" PointX="18" PointY="47" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.OrderDetail" Width="1.5" PointX="20.25" PointY="47.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.Poster" Width="1.5" PointX="15" PointY="35.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.PosterCategory" Width="1.5" PointX="22.25" PointY="38.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.Price" Width="1.5" PointX="17.25" PointY="50.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.Province" Width="1.5" PointX="0.75" PointY="31.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.Rating" Width="1.5" PointX="15.75" PointY="47.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceC2CA08Model.Ward" Width="1.5" PointX="5.25" PointY="50.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Accessory" Width="1.5" PointX="20.25" PointY="46.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.ActivityMerchant" Width="1.5" PointX="12.75" PointY="48" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.AspNetRole" Width="1.5" PointX="6" PointY="44.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.AspNetUserClaim" Width="1.5" PointX="10.5" PointY="43.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.AspNetUserLogin" Width="1.5" PointX="10.5" PointY="46" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.AspNetUser" Width="1.5" PointX="8.25" PointY="43.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Category" Width="1.5" PointX="12.75" PointY="44.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.CoinPack" Width="1.5" PointX="15.5" PointY="40.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Customer" Width="1.5" PointX="7.5" PointY="53.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Delivery" Width="1.5" PointX="12.75" PointY="51" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.DeliveryLocation" Width="1.5" PointX="5.25" PointY="49.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Discount" Width="1.5" PointX="12.75" PointY="54.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.DiscountGift" Width="1.5" PointX="15" PointY="55.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.DiscountPrice" Width="1.5" PointX="18" PointY="54.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.District" Width="1.5" PointX="3" PointY="48.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Guarantee" Width="1.5" PointX="12.75" PointY="58.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.HistoryLocked" Width="1.5" PointX="15.75" PointY="58.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.HistoryUseCoin" Width="1.5" PointX="23" PointY="49.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Image" Width="1.5" PointX="17.25" PointY="63.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.LaptopConfig" Width="1.5" PointX="23.25" PointY="43.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Merchant" Width="1.5" PointX="10.5" PointY="51.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.MerchantOrder" Width="1.5" PointX="20" PointY="49.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.MerchantOrderDetail" Width="1.5" PointX="19.5" PointY="62.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.MerchantPayment" Width="1.5" PointX="17.75" PointY="50" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.NoticeCustomer" Width="1.5" PointX="18.75" PointY="59.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.NoticeMerchant" Width="1.5" PointX="17.75" PointY="46.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.OrderA" Width="1.5" PointX="9.75" PointY="59.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.OrderDelivery" Width="1.5" PointX="15" PointY="62.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.OrderDetail" Width="1.5" PointX="22.5" PointY="59.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.PhoneConfig" Width="1.5" PointX="23.25" PointY="53.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Poster" Width="1.5" PointX="15" PointY="47.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.PosterCategory" Width="1.5" PointX="17.25" PointY="43.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Price" Width="1.5" PointX="17.25" PointY="73.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Province" Width="1.5" PointX="0.75" PointY="42.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Rating" Width="1.5" PointX="20.75" PointY="54.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceC2CA08Model.Ward" Width="1.5" PointX="5.25" PointY="65" IsExpanded="true" />
         <EntityTypeShape EntityType="EcommerceC2CA08Model.Webmaster" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="EcommerceC2CA08Model.FK_Accessories_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.FK_Accessories_Poster" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.fk_ActivityMerchant_Merchant" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.fk_Customer_AspNetUsers" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.fk_Merchant_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.FK_LaptopConfig_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.FK_PhoneConfig_Category" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.fk_Poster_Category" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.fk_PosterCategory_Category" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.fk_MerchantPayment_CoinPack" ManuallyRouted="false" />
@@ -67,14 +75,17 @@
         <AssociationConnector Association="EcommerceC2CA08Model.fk_Poster_Discount" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.fk_DiscountGift_Poster" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.fk_DiscountPrice_Poster" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_DiscountPrice_Price" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.FK_District_Province" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.fk_Merchant_District" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.fk_Order_District" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.FK_Ward_District" ManuallyRouted="false" />
-        <AssociationConnector Association="EcommerceC2CA08Model.fk_Poster_Guarantee" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Guarantee_Merchant" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.fk_HistoryLocked_Merchant" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.fk_HistoryUseCoin_Payment" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.fk_HistoryUseCoin_Poster" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.FK_Image_Poster" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.FK_LaptopConfig_Poster" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.fk_Merchant_Province" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.fk_Merchant_Ward" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.fk_MerchantOrder_Merchant" ManuallyRouted="false" />
@@ -92,9 +103,13 @@
         <AssociationConnector Association="EcommerceC2CA08Model.fk_OrderDelivery_OrderA" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.fk_OrderDetail_OrderA" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.fk_OrderDetail_Poster" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_OrderDetail_Price" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.FK_PhoneConfig_Poster" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_Poster_Price" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.fk_PosterCategory_Poster" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.fk_Price_Poster" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceC2CA08Model.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceC2CA08Model.fk_HistoryUseCoin_Merchant" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

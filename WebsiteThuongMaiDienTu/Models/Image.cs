@@ -12,15 +12,13 @@ namespace WebsiteThuongMaiDienTu.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Guarantee
+    public partial class Image
     {
-        public int GuaranteeID { get; set; }
-        public int MerchantID { get; set; }
-        public string Name { get; set; }
-        public string Keyword { get; set; }
-        public string Description { get; set; }
-        public Nullable<System.DateTime> Created { get; set; }
+        public int Id { get; set; }
+        public string Filename { get; set; }
+        public string Extension { get; set; }
+        public int PosterID { get; set; }
     
-        public virtual Merchant Merchant { get; set; }
+        public virtual Poster Poster { get; set; }
     }
 }

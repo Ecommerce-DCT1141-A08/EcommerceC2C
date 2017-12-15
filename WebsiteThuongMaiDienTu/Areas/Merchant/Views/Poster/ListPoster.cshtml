@@ -1,0 +1,163 @@
+﻿@model IEnumerable<WebsiteThuongMaiDienTu.Models.Poster>
+@{
+    ViewBag.Title = "ListPoster";
+    Layout = "~/Areas/Merchant/Views/Shared/_Merchant.cshtml";
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Tin đăng
+        <small>advanced tables</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home")"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Tin đăng</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Danh sách Tin đăng</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <p>
+                        <a href="@Url.Action("CreatePoster", "Poster")" id="btnAddNewBook" class="btn btn-link">
+                            <i class="fa fa-plus"></i>  Đăng tin
+                        </a>
+                    </p>
+                    <table id="listposter" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Hình ảnh</th>
+                                <th>Tiêu đề tin</th>
+                                <th>Danh mục</th>
+                                <th>Giới thiệu</th>
+                                <th>Tồn kho</th>
+                                <th>Giá bán</th>
+                                <th>Khuyến mãi</th>
+                                <th>Ngày đăng tin</th>
+                                <th>Loại tin</th>
+                                <th>Trạng thái</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.PosterID)</td>
+                                    <td style="padding:0px">
+                                    @*@Html.DisplayFor(modelItem => item.Images.FirstOrDefault().Filename)*@
+                                            <div class="box-body">
+                                                <div id="carousel-generic-@item.PosterID" class="carousel slide" data-ride="carousel" style="height:100%;width:100%;padding:0px">
+                                                    <ol class="carousel-indicators">
+                                                        @for (int i = 0; i < item.Images.Count(); i++)
+                                                        {
+                                                            if (i == 0)
+                                                            {
+                                                                <li data-target="#carousel-generic-@item.PosterID" data-slide-to="@i" class="active"></li>
+                                                            }
+                                                            else
+                                                            {
+                                                                <li data-target="#carousel-generic-@item.PosterID" data-slide-to="@i" class=""></li>
+                                                            }
+                                                        }
+                                                    </ol>
+                                                    <div class="carousel-inner">
+                                                        @foreach (var x in item.Images)
+                                                        {
+                                                            if (x.Id == item.Images.First().Id)
+                                                            {
+                                                                <div class="item active">
+                                                                    <img src="~/images/Products/@x.Filename" alt="@x.Filename" width="150" height="150">
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="item">
+                                                                    <img src="~/images/Products/@x.Filename" alt="@x.Filename" width="150" height="150">
+                                                                </div>
+                                                            }
+                                                                
+                                                        }
+                                                    </div>
+                                                    <a style="color:dimgray" class="left carousel-control fa fa-angle-left fa-2x" href="#carousel-generic-@item.PosterID" data-slide="prev">
+                                                        @*<span class="fa fa-angle-left"></span>*@
+                                                    </a>
+                                                    <a style="color:dimgray" class="right carousel-control fa fa-angle-right fa-2x" href="#carousel-generic-@item.PosterID" data-slide="next">
+                                                        @*<span class="fa fa-angle-right"></span>*@
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        <!-- /.box-body -->
+                                    </td>
+                                    <td>@Html.DisplayFor(modelItem => item.Keyword)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Category.Name)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Price.SellingPrice)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Discount.DiscountID)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Created)</td>
+                                    <td>
+                                        @if(item.Type == false)
+                                        {
+                                            <span class="text-black">Thường</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-red">Vip</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.StatusID == false)
+                                        {
+                                            <span class="label label-danger">Out of stock</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="label label-success">Available</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @**@
+                                        <a href="@Url.Action("EditPoster", "Poster", routeValues: new { id = item.PosterID })" id="btnEdit" class="btn btn-link" data-toggle="modal" data-target="#myModal">
+                                            <i class="fa fa-edit"></i> Edit
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+<link href="~/Areas/Content/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+
+@*scripts*@
+
+@section Scripts{
+    <script src="~/Areas/Content/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Areas/Content/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#listposter').DataTable();
+        }); // document ready
+
+    </script>
+}
+

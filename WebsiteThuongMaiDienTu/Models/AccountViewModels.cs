@@ -53,7 +53,7 @@ namespace WebsiteThuongMaiDienTu.Models
         [Display(Name = "Email")]
         [EmailAddress]
         public string Email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter your username.")]
         [Display(Name = "Username")]
         public string Username { get; set; }
 
